@@ -21,8 +21,8 @@ public class frame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private int cont;
-	private  ImageIcon img1;
+
+	
 
 	/**
 	 * Launch the application.
@@ -46,7 +46,7 @@ public class frame extends JFrame {
 	 */
 	public frame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 513);
+		setBounds(100, 100, 463, 532);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,16 +54,14 @@ public class frame extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 0, 442, 486);
+		panel.setBounds(0, 0, 442, 494);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		img1=new ImageIcon("SoyunUnitonto.gif");
-		JLabel lblNewLabel = new JLabel(img1);
-		//lblNewLabel.setIcon(img1);
+		
+		JLabel lblNewLabel = new JLabel(new ImageIcon(frame.class.getResource("/Simpsons/SoyunUnitonto.gif")));
 		lblNewLabel.setBounds(0, 0, 442, 355);
 		panel.add(lblNewLabel);
-		
 		
 		
 		textField = new JTextField();
@@ -74,27 +72,15 @@ public class frame extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnPresioneAqu = new JButton("Presione Aquí");
-		panel.add(btnPresioneAqu);
+		JButton btnPresioneAqu = new JButton("Presione Aqu\u00ED");
 		btnPresioneAqu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lblNewLabel.setIcon(new ImageIcon("SoyunUnicornio.gif"));
-				textField.setText("Soy Un Unicornio");
+				lblNewLabel.setIcon(new ImageIcon(frame.class.getResource("/Simpsons/SoyunUnicornio.gif")));
+				textField.setText("Soy un unicornio");
 			}
 		});
-		btnPresioneAqu.setBounds(117, 452, 200, 23);
-		
-		JButton btnExit = new JButton("EXIT");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if(cont==0){lblNewLabel.setIcon(new ImageIcon("exit.gif"));
-							cont++;
-				}
-				else dispose();
-			}
-		});
-		btnExit.setBounds(341, 452, 91, 23);
-		panel.add(btnExit);
+		btnPresioneAqu.setBounds(117, 460, 200, 23);
+		panel.add(btnPresioneAqu);
 		
 	}
 }
