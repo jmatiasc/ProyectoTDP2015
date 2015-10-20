@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Recordatorios/DUDAS.txt</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Prototipo/DUDAS.txt</locationURI>
+		</link>
+		<link>
+			<name>Recordatorios/MODIFICACIONES DE UML.txt</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Prototipo/MODIFICACIONES%20DE%20UML.txt</locationURI>
+		</link>
+		<link>
+			<name>Recordatorios/faltante.txt</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/Prototipo/faltante.txt</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
