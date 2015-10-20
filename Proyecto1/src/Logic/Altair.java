@@ -15,8 +15,8 @@ public class Altair extends Enemigo {
         Random num=new Random();
         int n=num.nextInt()%4;
         Posicion p;
-        if(n==0){
-        	p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);}
+        if (n==0){
+        	p = new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);}
         else
         	if(n==1){
 			        p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);

@@ -14,55 +14,68 @@ public class Bomberman extends Personaje {
     protected Bomba miBomba;
     protected Tablero tablero;
     
-    public  Bomberman() {
+    public  Bomberman(Tablero t) {
         vidas=3;
-        velocidad=1;
+        velocidad=32;
         cantBombas=1;
         alcanceBomba=1;
-        
+        tablero = t;
     }
     /**
      * 
      */
-    public void moverArriba() {
+    public boolean moverArriba() {
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);
+    	if(p.ejeY<0)
+    		p.setEjeY(0);
     	if(tablero.obtenerCelda(p).avanzar(this)){  	
-        ubicacion=p;
-        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-    }
+	        ubicacion=p;
+	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
+        return true;
+    	}
+    	else return false;
     }
 
     /**
      * 
      */
-    public void moverAbajo() {
+    public boolean moverAbajo() {
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);
+    	if(p.ejeY>12)p.setEjeY(12);
     	if(tablero.obtenerCelda(p).avanzar(this)) { 	
         ubicacion=p;
         tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+        return true;
+    	}
+    	else return false;
     }
 
     /**
      * 
      */
-    public void moverIzquierda() {
+    public boolean moverIzquierda() {
     	Posicion p=new Posicion(ubicacion.getEjeX()-1,ubicacion.getEjeY());
+    	if(p.ejeX<0)p.setEjeX(0);
     	if(tablero.obtenerCelda(p).avanzar(this))  	{
         ubicacion=p;
         tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+        return true;
+    	}
+    	else return false;
     }
 
     /**
      * 
      */
-    public void moverDerecha() {
+    public boolean moverDerecha() {
     	Posicion p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
+    	if(p.ejeX>30)p.setEjeX(30);
     	if(tablero.obtenerCelda(p).avanzar(this))  {	
         ubicacion=p;
         tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+        return true;
+    	}
+    	else return false;
     }
 
     /**
@@ -138,4 +151,7 @@ public class Bomberman extends Personaje {
     	return ubicacion;
     }
     
+    public int getVelocidad() {
+    	return velocidad;
+    }
 }

@@ -20,7 +20,7 @@ public class Tablero {
      */
     public Tablero(int Alto, int Ancho) {
     	//BOMBERMAN
-    	personaje=new Bomberman();
+    	personaje=new Bomberman(this);
     	personaje.setPosicion(new Posicion(1,1));
     	
     	//ENEMIGOS
@@ -51,14 +51,15 @@ public class Tablero {
     	misEnemigos[4]=altair2;
     	misEnemigos[5]=sirius;
     
-    
+    	this.Ancho = Ancho;
+    	this.Alto = Alto;
     	
         matrizCeldas=new Celda[Ancho][Alto];
         
         
         //LLENO DE CELDAS LA MATRIZ
         for(int i=0; i< Ancho;i++){
-        	for(int j=0;j<Alto;i++){
+        	for(int j=0;j<Alto;j++){
         		matrizCeldas[i][j]=new Celda(new Posicion(i,j));
         	}
         	
@@ -66,8 +67,8 @@ public class Tablero {
         
         
         //AGREGO LAS PAREDES INDESTRUCTIBLES A LAS CELDAS
-        for(int h=0;h<Alto;h++){
-	        for(int n=0;n<Ancho;n++){
+        for(int h=0;h<Ancho;h++){
+	        for(int n=0;n<Alto;n++){
 	        	
 	        	if(n==0){
 		        	matrizCeldas[h][n].setContenido(new Pared());  
@@ -78,6 +79,16 @@ public class Tablero {
 			        	matrizCeldas[h][n].setContenido(new Pared());  
 			        	matrizCeldas[h][n].getContenido().setEstado(new Indestructible());  
 			        	}
+		        		else
+		        			if(n==12){
+		    		        	matrizCeldas[h][n].setContenido(new Pared());  
+		    		        	matrizCeldas[h][n].getContenido().setEstado(new Indestructible());  
+		    		        	}
+		    		        	else 
+		    		        		if(h==30){
+		    			        	matrizCeldas[h][n].setContenido(new Pared());  
+		    			        	matrizCeldas[h][n].getContenido().setEstado(new Indestructible());  
+		    			        	}
 			        	else 
 			        		if(h%2==0 && n%2==0){
 				        	matrizCeldas[h][n].setContenido(new Pared());  
@@ -107,7 +118,6 @@ public class Tablero {
 
     
     public void borrarBomberman(){
-    	
     	Posicion p=personaje.getPosicion();
     	obtenerCelda(p).getContenido().setBomberman(null);
     	personaje.setPosicion(null);
@@ -117,4 +127,17 @@ public class Tablero {
     public Celda obtenerCelda(Posicion p){
     	return matrizCeldas[p.getEjeX()][p.getEjeY()];
     }
+    
+    public Bomberman getBomberman() {
+    	return personaje;
+    }
+    
+    public Enemigo[] getEnemigos() {
+    	return misEnemigos;
+    }
+    
+    public Celda[][] getMatrizCeldas() {
+    	return matrizCeldas;
+    }
+ 
 }
