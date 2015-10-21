@@ -25,14 +25,14 @@ public class Posicion {
      * @param int x
      */
     public void setEjeX(int x) {
-        // TODO implement here
+        ejeX=x;
     }
 
     /**
      * @param int y
      */
     public void setEjeY(int y) {
-        // TODO implement here
+        ejeY=y;
     }
 
    

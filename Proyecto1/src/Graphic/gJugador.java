@@ -8,16 +8,19 @@ public class gJugador extends gEntidad {
 
 	protected Bomberman bomberman;
 	private Tablero tablero;
-
 	
-	public gJugador(int velocidad,Bomberman bom, int x, int y,Tablero tablero) {
+	private gTablero gTab;
+
+	//private int vidas;
+	public gJugador(int velocidad,Bomberman bom, int x, int y,Tablero tablero,gTablero gt) {
 		
 		//super(velocidad, x, y);
 		super(32, x, y);
+		//vidas=3;
 		
 		bomberman=bom;
 		this.tablero=tablero;
-		
+		gTab=gt;
 		
 		this.mImages[0] = new ImageIcon(this.getClass().getResource("/BattleCity/up.png"));
 		this.mImages[1] = new ImageIcon(this.getClass().getResource("/BattleCity/down.png"));
@@ -25,6 +28,7 @@ public class gJugador extends gEntidad {
 		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right.png"));
 		
 		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
+		this.mMuerte = new ImageIcon(this.getClass().getResource("/BattleCity/muerte.png"));
 	}
 
 	public void mover(int dir){
@@ -78,4 +82,22 @@ public class gJugador extends gEntidad {
 			return 11;
 		return aux;
 	}
+	
+	
+	public void morir(){
+		//vidas--;
+		
+		
+		gTab.matarBomberman();
+		mPosicion.x=32;
+		mPosicion.y=32;
+		getGrafico();
+		//if (vidas==0){
+		//	super.muerte();
+		//}
+		
+	}
+	
+	
+	
 }

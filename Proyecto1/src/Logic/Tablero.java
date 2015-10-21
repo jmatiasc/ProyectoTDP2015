@@ -131,6 +131,7 @@ public class Tablero {
     }
 
     public Celda obtenerCelda(Posicion p){
+    	
     	return matrizCeldas[p.getEjeX()][p.getEjeY()];
     }
     

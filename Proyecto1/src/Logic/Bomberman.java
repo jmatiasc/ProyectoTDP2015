@@ -122,7 +122,15 @@ public class Bomberman extends Personaje {
     
     public void morir() {
         vidas--;
-        ubicacion=new Posicion(0,0);
+    	
+    	tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
+    	
+    	
+        ubicacion.setEjeY(1);
+        ubicacion.setEjeX(1);
+        
+        tablero.obtenerCelda(ubicacion).getContenido().setBomberman(this);
+        
         if(vidas==0)tablero.borrarBomberman();
         	
     }

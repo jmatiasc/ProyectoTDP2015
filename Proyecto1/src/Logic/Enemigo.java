@@ -45,7 +45,8 @@ public abstract class Enemigo extends Personaje {
 						        	p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
 						        	if(p.ejeX>30)p.setEjeX(30);
 						        }
-        if(tablero.obtenerCelda(p).avanzar(this))  	{
+        if( p!=null && tablero.obtenerCelda(p).avanzar(this) )  	{
+        	
         	tablero.obtenerCelda(ubicacion).getContenido().setEnemigo(null);
             ubicacion=p;
             tablero.obtenerCelda(p).getContenido().setEnemigo(this);

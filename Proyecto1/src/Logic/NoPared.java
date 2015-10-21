@@ -25,7 +25,9 @@ public class NoPared extends Contenido {
         bomberman=b;
         return true;
         }
-        else
+        else if (bomberman!=null && b==null){
+    		bomberman=null;
+    }
         return false;
     }
 
@@ -37,6 +39,9 @@ public class NoPared extends Contenido {
         if(enemigo==null && bomba==null){
         	enemigo=e;
         	return true;    	
+        }
+        else if (enemigo!=null && e==null){
+        		enemigo=null;
         }
         return false;
     }
@@ -67,23 +72,30 @@ public class NoPared extends Contenido {
     /**
      * @return
      */
-    public boolean Destruir() {
-        return false;
-    }
+ 
 	
 	public boolean avanzar(Personaje p) {
 		
 		return true;
 	}
 	
+	/**
+     * @return
+     */
 	public boolean destruir() {
 		return false;
 	}
 	
+	/**
+     * @return
+     */
 	public int getPuntos() {
 		return 0;
 	}
 	
+	/**
+     * @return
+     */
 	public PowerUp getPowerUp(){
 		return powerUp;
 	}
