@@ -1,6 +1,6 @@
 package Graphic;
 
-public class MaloThread extends Thread {
+public class RugulusThread extends Thread {
 	
 	// Logica que implementa al malo.
 	private gRugulus mLogica;
@@ -9,7 +9,7 @@ public class MaloThread extends Thread {
 	// Es volatile porque es accedida desde concurrentemente desde diferentes threads.
 	private volatile boolean mDetener;
 	
-	public MaloThread(gRugulus logica) {
+	public RugulusThread(gRugulus logica) {
 		this.mLogica  = logica;
 		this.mDetener = false;
 	}

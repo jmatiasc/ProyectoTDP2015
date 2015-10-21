@@ -14,7 +14,7 @@ public class gTablero {
 	
 	private Tablero t;
 	
-	private MaloThread mMalos[];
+	private RugulusThread mRugulus[];
 	
 	private gJugador mJugador;
 	
@@ -35,28 +35,55 @@ public class gTablero {
 		gui.add(this.mJugador.getGrafico());
 		
 		// Creo los malos y agrego a la gui su grafico.
-		this.mMalos = new MaloThread[3];
-		for(int i = 0; i < this.mMalos.length; i++){
+		this.mRugulus = new RugulusThread[3];
+		/*for(int i = 0; i < this.mRugulus.length; i++){
 			Random r = new Random();
 			
 			gRugulus malo = new gRugulus(10, r.nextInt(gui.getWidth() - 32), r.nextInt(gui.getHeight() - 32));
-			this.mMalos[i] = new MaloThread(malo);
+			this.mRugulus[i] = new RugulusThread(malo);
 			gui.add(malo.getGrafico());
 			
-			this.mMalos[i].start();
-			
-		}
+			this.mRugulus[i].start();	
+		}*/
+		
+		//22 11. 17 2. 12 9 
+		
+		//agrego los rugulus
+		Enemigo rug[]=t.getEnemigos() ;
+		
+		gRugulus rugulus1 = new gRugulus(32,22*32,11*32,rug[0]);
+		mRugulus[0] = new RugulusThread(rugulus1);
+		gui.add(rugulus1.getGrafico());
+		this.mRugulus[0].start();
+		
+		
+		gRugulus rugulus2 = new gRugulus(32,17*32,2*32,rug[1]);
+		mRugulus[1] = new RugulusThread(rugulus2);
+		gui.add(rugulus2.getGrafico());
+		this.mRugulus[1].start();
+		
+		
+		gRugulus rugulus3 = new gRugulus(32,12*32,9*32,rug[2]);
+		mRugulus[2] = new RugulusThread(rugulus3);
+		gui.add(rugulus3.getGrafico());
+		this.mRugulus[2].start();
+		
+		
+		
+		
 	}
 	
 	public void mover(int dir){
+		if(mJugador!=null)
 		this.mJugador.mover(dir);
+		
 	}
 	
 	
 	public void destruir(int malo) {
-		if(this.mMalos[malo] != null) {
-			this.mMalos[malo].destruir();
-			this.mMalos[malo] = null;
+		if(this.mRugulus[malo] != null) {
+			this.mRugulus[malo].destruir();
+			this.mRugulus[malo] = null;
 		}
 	}
 

@@ -9,7 +9,8 @@ public class Sirius extends Enemigo {
 
 	protected Bomberman bomberman;
 	
-    public Sirius(Bomberman b) {    	
+    public Sirius(Bomberman b,Tablero t) {    
+    	super(t);
         velocidad=1;
         bomberman=b;
         modoDios=false;
@@ -18,7 +19,7 @@ public class Sirius extends Enemigo {
     
     
     //FALTA IMPLEMENTAR LA MANERA EN QUE EL SIRIUS VA A SEGUIR AL BOMBERMAN
-    public void mover() {
+    public int mover() {
         Random num=new Random();
         int n=num.nextInt()%4;
         Posicion p;
@@ -38,6 +39,9 @@ public class Sirius extends Enemigo {
             ubicacion=p;
             tablero.obtenerCelda(p).getContenido().setEnemigo(this);
 	        }
+        
+        return 0;
     }
+   
 
 }

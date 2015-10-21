@@ -23,33 +23,7 @@ public class Tablero {
     	personaje=new Bomberman(this);
     	personaje.setPosicion(new Posicion(1,1));
     	
-    	//ENEMIGOS
-    	Enemigo rugulus1=new Rugulus();
-    	rugulus1.setPosicion(new Posicion(22,11));
     	
-    	Enemigo rugulus2=new Rugulus();
-    	rugulus2.setPosicion(new Posicion(17,2));
-    	
-    	Enemigo rugulus3=new Rugulus();
-    	rugulus3.setPosicion(new Posicion(12,9));
-    	
-    	Enemigo altair1=new Altair();
-    	altair1.setPosicion(new Posicion(2,6));
-    	
-    	Enemigo altair2=new Altair();
-    	altair2.setPosicion(new Posicion(23,6));
-    	
-    	Enemigo sirius=new Sirius(personaje);
-    	sirius.setPosicion(new Posicion(20,11));
-  
-    //lleno el arreglo de enemigos
-    	misEnemigos=new Enemigo[6];
-    	misEnemigos[0]=rugulus1;
-    	misEnemigos[1]=rugulus2;
-    	misEnemigos[2]=rugulus3;
-    	misEnemigos[3]=altair1;
-    	misEnemigos[4]=altair2;
-    	misEnemigos[5]=sirius;
     
     	this.Ancho = Ancho;
     	this.Alto = Alto;
@@ -102,8 +76,7 @@ public class Tablero {
 	        }
         }
         
-        
-        
+       
         //LAS PAREDES DESTRUCTIBLES SE AGREGAN EN LUGARES AL AZAR, el 50% de las celdas que aun no han sido ocupadas(TOTAL 403,TOTAL DE DESOCUPADAS 160, TOTAL OCUPADAS(INDESTRUCTIBLES)=243)
         
         /**for(int t=0;t<81;t++){
@@ -112,7 +85,40 @@ public class Tablero {
         **/
         
         
-        
+      //ENEMIGOS
+    	Enemigo rugulus1=new Rugulus(new Posicion(22,11),this);
+    	this.obtenerCelda(rugulus1.getPosicion()).getContenido().setEnemigo(rugulus1);
+    	//rugulus1.setPosicion(new Posicion(22,11));
+    	
+    	
+    	
+    	Enemigo rugulus2=new Rugulus(new Posicion(17,2),this);
+    	this.obtenerCelda(rugulus2.getPosicion()).getContenido().setEnemigo(rugulus2);
+    	//rugulus2.setPosicion(new Posicion(17,2));
+    	
+    	
+    	
+    	Enemigo rugulus3=new Rugulus(new Posicion(12,9),this);
+    	this.obtenerCelda(rugulus3.getPosicion()).getContenido().setEnemigo(rugulus3);
+    	//rugulus3.setPosicion(new Posicion(12,9));
+    	
+    	Enemigo altair1=new Altair(this);
+    	altair1.setPosicion(new Posicion(2,6));
+    	
+    	Enemigo altair2=new Altair(this);
+    	altair2.setPosicion(new Posicion(23,6));
+    	
+    	Enemigo sirius=new Sirius(personaje,this);
+    	sirius.setPosicion(new Posicion(20,11));
+  
+    //lleno el arreglo de enemigos
+    	misEnemigos=new Enemigo[6];
+    	misEnemigos[0]=rugulus1;
+    	misEnemigos[1]=rugulus2;
+    	misEnemigos[2]=rugulus3;
+    	misEnemigos[3]=altair1;
+    	misEnemigos[4]=altair2;
+    	misEnemigos[5]=sirius;
         
     }
 

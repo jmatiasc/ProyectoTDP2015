@@ -14,7 +14,14 @@ public abstract class Contenido  {
     protected EstadoPared miEstado;
     
     public Contenido() {
+    	
     	miEstado=null;
+        bomberman=null;
+    	bomba=null;
+    	powerUp=null;
+        enemigo=null;
+       
+    	
     }
     public abstract void setEstado(EstadoPared e); 
     public abstract boolean avanzar(Personaje p);

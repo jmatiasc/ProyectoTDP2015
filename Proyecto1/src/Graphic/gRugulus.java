@@ -4,26 +4,36 @@ import java.util.Random;
 
 import javax.swing.ImageIcon;
 
+import Logic.*;
+
 public class gRugulus extends gEntidad {
+	Rugulus mRug;
 	
-	public gRugulus(int velocidad, int x, int y) {
+	public gRugulus(int velocidad, int x, int y, Enemigo rug) {
 		super(velocidad, x, y);
+		
+		
+		mRug=(Rugulus) rug;
+		
+		
 		
 		this.mImages[0] = new ImageIcon(this.getClass().getResource("/BattleCity/up2.png"));
 		this.mImages[1] = new ImageIcon(this.getClass().getResource("/BattleCity/down2.png"));
 		this.mImages[2] = new ImageIcon(this.getClass().getResource("/BattleCity/left2.png"));
 		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right2.png"));
 		
-		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
+		//this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
 	}
 	
 	public void mover() {
 		// Calculo la siguiente direccion aleatoriamente.
-		Random rnd = new Random();
-		int dir = rnd.nextInt(4);
 		
-		switch (dir) {
-			case MOVIMIENTO_ARRIBA : 
+		
+		int n=mRug.mover();
+		if (n!=-1){
+		switch (n) {
+			
+			case MOVIMIENTO_ARRIBA : 				
 				this.mPosicion.setLocation(this.mPosicion.x, this.mPosicion.y - this.mVelocidad);
 				break;
 			case MOVIMIENTO_ABAJO :
@@ -37,7 +47,8 @@ public class gRugulus extends gEntidad {
 				break;
 		}
 		
-		super.mover(dir);
+		super.mover(n);
+		}
 	}
 	
 	
