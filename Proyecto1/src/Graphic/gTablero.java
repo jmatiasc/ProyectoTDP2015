@@ -1,5 +1,6 @@
 package Graphic;
 
+import java.awt.Component;
 import java.util.Random;
 
 import javax.swing.Icon;
@@ -17,13 +18,17 @@ public class gTablero {
 	
 	private gJugador mJugador;
 	
+	private ImageIcon paredI;
 	
 	
 	private GUI gui;
 	
 	public gTablero(GUI gui){
-		this.gui=gui;	
-
+		
+		paredI= new ImageIcon((this.getClass().getResource("/BattleCity/pared.png")));
+		
+		ponerPared(gui);
+		
 		// Creo el jugador y lo agrego el grafico a la gui.
 		t = new Tablero(13,31);
 		this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t);
@@ -55,4 +60,57 @@ public class gTablero {
 		}
 	}
 
+	
+	private void ponerPared(GUI gui){
+		/*JLabel labelPared=new JLabel (paredI);
+		gui.add(labelPared);
+		labelPared.setBounds(0, 0, 32,32);*/
+		
+		for(int h=0;h<31;h++){
+	        for(int n=0;n<13;n++){
+	        	
+	        	if(n==0){
+	        		JLabel labelPared=new JLabel (paredI);
+	        		gui.add(labelPared);
+	        		labelPared.setBounds(h*32,0, 32,32);
+		        	}
+		        	else 
+		        		if(h==0){  JLabel labelPared=new JLabel (paredI);
+		        		gui.add(labelPared);
+		        		labelPared.setBounds(0, n*32, 32,32);
+			        	}
+		        		else
+		        			if(n==12){
+		        				 JLabel labelPared=new JLabel (paredI);
+		 		        		gui.add(labelPared);
+		 		        		labelPared.setBounds(h*32, n*32, 32,32);
+		    		        	}
+		    		        	else 
+		    		        		if(h==30){
+		    		        			 JLabel labelPared=new JLabel (paredI);
+		 		 		        		gui.add(labelPared);
+		 		 		        		labelPared.setBounds(h*32, n*32, 32,32);
+		    			        	
+		    			        	}
+			        	else 
+			        		if(h%2==0 && n%2==0){
+			        			 JLabel labelPared=new JLabel (paredI);
+			 		        		gui.add(labelPared);
+			 		        		labelPared.setBounds(h*32, n*32, 32,32);
+				        	
+				        	}
+	        				//AGREGO AL RESTO TODAS NoPared para prototipo
+			        		else{
+			        			//matrizCeldas[h][n].setContenido(new NoPared(null));  
+				        	  }
+			        			
+	        }
+        }
+		
+		
+		
+	}
+	
+	
+	
 }

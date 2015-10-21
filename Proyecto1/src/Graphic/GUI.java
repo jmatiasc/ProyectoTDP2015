@@ -36,6 +36,10 @@ public class GUI extends JFrame {
 			public void keyReleased(KeyEvent arg0) {
 				accion(arg0);
 			}
+			public void keyTyped(KeyEvent e) {
+			}
+			public void keyPressed(KeyEvent e) {
+				accion(e);			}
 		});
 		
 		this.mContentPane = new JPanel();
@@ -45,7 +49,7 @@ public class GUI extends JFrame {
 		setContentPane(this.mContentPane);
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 992, 416);
+		setBounds(100, 100, 1009, 452);
 		
 		this.mJuego = new gTablero(this);
 	}
