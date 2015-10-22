@@ -99,7 +99,7 @@ public class Bomberman extends Personaje {
      * 
      */
     public void aumentarVelocidad() {
-        velocidad++;
+        velocidad=velocidad*2;
     }
 
     /**

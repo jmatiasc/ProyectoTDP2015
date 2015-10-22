@@ -36,9 +36,11 @@ public class SpeedUp extends PowerUp {
     /**
      * @param Posicion p
      */
-    public void setUbicacion(Posicion p){
-    	ubicacion=p;
-    }
 
+	@Override
+	public void setPosicion(Posicion p) {
+		super.setPosicion(p);
+		
+	}
 
 }

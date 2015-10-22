@@ -37,6 +37,10 @@ public abstract class PowerUp {
     /**
      * @param Posicion p
      */
-    public abstract void setUbicacion(Posicion p);
+    public void setPosicion(Posicion p){
+    	ubicacion=p;
+    }
 
+    public Posicion getPosicion(){return ubicacion;}
+    
 }

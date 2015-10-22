@@ -35,9 +35,9 @@ public class Masacrality extends PowerUp {
     /**
      * @param Posicion p
      */
-    public void setUbicacion(Posicion p){
-    	
-    	ubicacion=p;
-    }
+    public void setPosicion(Posicion p) {
+    	super.setPosicion(p);
+		
+	}
 
 }

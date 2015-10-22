@@ -86,6 +86,9 @@ public class Pared extends Contenido {
         	bomberman.morir();
         
     }
+    public void setPowerUp(PowerUp p){
+		powerUp=p;
+	}
 
 
 

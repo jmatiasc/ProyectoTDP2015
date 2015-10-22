@@ -16,7 +16,7 @@ public abstract class gEntidad {
 	
 	protected Icon mImages[];
 	protected Icon mDestroyedImage;
-	protected Icon mMuerte;
+	
 	
 	protected final int mWidth  = 32;
 	protected final int mHeight = 32;
@@ -62,13 +62,9 @@ public abstract class gEntidad {
 		return this.mGrafico;
 	}
 	
-	protected void muerte() {
-		if(this.mGrafico != null){
-			this.mGrafico.setIcon(this.mMuerte);
-			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
-		}
+
+		
 	}
 	
 	
 
-}

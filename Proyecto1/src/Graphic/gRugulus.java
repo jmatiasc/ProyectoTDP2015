@@ -23,7 +23,7 @@ public class gRugulus extends gEntidad {
 		this.mImages[2] = new ImageIcon(this.getClass().getResource("/BattleCity/left2.png"));
 		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right2.png"));
 		
-		//this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
+		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
 	}
 	
 	public void mover() {
@@ -65,9 +65,10 @@ public class gRugulus extends gEntidad {
 	
 	
 	private void chequeoColisiones(){
+		if(jugador!=null){
 		if(mPosicion.equals(jugador.getPosicion())){
 			jugador.morir();
-		}
+		}}
 	}
 	
 	

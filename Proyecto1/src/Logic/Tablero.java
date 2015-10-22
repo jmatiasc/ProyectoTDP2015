@@ -13,6 +13,7 @@ public class Tablero {
     protected Enemigo [] misEnemigos;
     protected Pared[] paredes;
     protected Celda[][] matrizCeldas;
+    protected SpeedUp velocidad;
 
     /**
      * @param Alto 
@@ -102,24 +103,33 @@ public class Tablero {
     	this.obtenerCelda(rugulus3.getPosicion()).getContenido().setEnemigo(rugulus3);
     	//rugulus3.setPosicion(new Posicion(12,9));
     	
-    	Enemigo altair1=new Altair(this);
-    	altair1.setPosicion(new Posicion(2,6));
+    	//Enemigo altair1=new Altair(this);
+    	//altair1.setPosicion(new Posicion(2,6));
     	
-    	Enemigo altair2=new Altair(this);
-    	altair2.setPosicion(new Posicion(23,6));
+    	//Enemigo altair2=new Altair(this);
+    	//altair2.setPosicion(new Posicion(23,6));
     	
-    	Enemigo sirius=new Sirius(personaje,this);
-    	sirius.setPosicion(new Posicion(20,11));
+    	//Enemigo sirius=new Sirius(personaje,this);
+    	//sirius.setPosicion(new Posicion(20,11));
   
     //lleno el arreglo de enemigos
     	misEnemigos=new Enemigo[6];
     	misEnemigos[0]=rugulus1;
     	misEnemigos[1]=rugulus2;
     	misEnemigos[2]=rugulus3;
-    	misEnemigos[3]=altair1;
-    	misEnemigos[4]=altair2;
-    	misEnemigos[5]=sirius;
+    	//misEnemigos[3]=altair1;
+    	//misEnemigos[4]=altair2;
+    	//misEnemigos[5]=sirius;
         
+    	//creo PowerUp Velocidad
+    	velocidad=new SpeedUp(personaje);
+    	velocidad.setPosicion(new Posicion(3,6));
+    	obtenerCelda(velocidad.getPosicion()).getContenido().setPowerUp(velocidad);
+    	
+    	
+    	
+    	
+    	
     }
 
     
@@ -131,6 +141,7 @@ public class Tablero {
     }
 
     public Celda obtenerCelda(Posicion p){
+    	
     	
     	return matrizCeldas[p.getEjeX()][p.getEjeY()];
     }
@@ -145,6 +156,10 @@ public class Tablero {
     
     public Celda[][] getMatrizCeldas() {
     	return matrizCeldas;
+    }
+    
+    public SpeedUp getVelocidad(){
+    	return velocidad;
     }
  
 }

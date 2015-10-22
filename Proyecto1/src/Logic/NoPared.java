@@ -99,5 +99,9 @@ public class NoPared extends Contenido {
 	public PowerUp getPowerUp(){
 		return powerUp;
 	}
+	
+	public void setPowerUp(PowerUp p){
+		powerUp=p;
+	}
 
 }

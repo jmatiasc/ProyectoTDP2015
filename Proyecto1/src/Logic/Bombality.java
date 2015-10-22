@@ -37,8 +37,9 @@ public class Bombality extends PowerUp {
     /**
      * @param Posicion p
      */
-    public void setUbicacion(Posicion p){
-    	ubicacion=p;
-    }
+    public void setPosicion(Posicion p) {
+    	super.setPosicion(p);
+		
+	}
 
 }
