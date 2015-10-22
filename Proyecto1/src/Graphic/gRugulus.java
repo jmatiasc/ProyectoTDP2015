@@ -15,7 +15,9 @@ public class gRugulus extends gEntidad {
 		
 		
 		mRug=(Rugulus) rug;
+		rug.setPosicion(new Posicion(x,y));
 		this.jugador=jugador;
+		
 		
 		
 		this.mImages[0] = new ImageIcon(this.getClass().getResource("/BattleCity/up2.png"));
@@ -36,6 +38,7 @@ public class gRugulus extends gEntidad {
 			
 			case MOVIMIENTO_ARRIBA : 				
 				this.mPosicion.setLocation(this.mPosicion.x, this.mPosicion.y - this.mVelocidad);
+				
 				chequeoColisiones();
 				break;
 			case MOVIMIENTO_ABAJO :
@@ -57,7 +60,6 @@ public class gRugulus extends gEntidad {
 		
 		}
 	}
-	
 	
 	public void destruir() {
 		super.destruir();

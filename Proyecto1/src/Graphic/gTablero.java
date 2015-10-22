@@ -16,10 +16,13 @@ public class gTablero {
 	
 	private RugulusThread mRugulus[];
 	
+	private JugadorThread jugadorThread;
+	
 	private gJugador mJugador;
 	
 	private ImageIcon paredI;
 	
+	private boolean movimientoBloqueado = false;
 	
 	private GUI gui;
 	
@@ -29,10 +32,13 @@ public class gTablero {
 		
 		ponerPared(gui);
 		
+		
 		// Creo el jugador y lo agrego el grafico a la gui.
 		t = new Tablero(13,31);
 		this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
 		gui.add(this.mJugador.getGrafico());
+		jugadorThread = new JugadorThread(mJugador);
+		jugadorThread.start();
 		
 		// Creo los malos y agrego a la gui su grafico.
 		this.mRugulus = new RugulusThread[3];
@@ -76,9 +82,11 @@ public class gTablero {
 		
 	}
 	
-	public void mover(int dir){
-		this.mJugador.mover(dir);
-		
+	public void mover(int dir) {
+		//if(jugadorThread.getLocked() == false) {
+			this.mJugador.mover(dir);
+			//jugadorThread.bloquearMovimiento();
+		//}
 	}
 	
 	
@@ -87,6 +95,11 @@ public class gTablero {
 			this.mRugulus[malo].destruir();
 			this.mRugulus[malo] = null;
 		}*/
+	}
+	
+	public void pausar() {
+		for (int i=0; i<mRugulus.length;i++)
+			mRugulus[i].detener();
 	}
 
 	
@@ -136,14 +149,17 @@ public class gTablero {
 	        }
 		}}
 		
-		public void matarBomberman(){
+		public void matarBomberman() {
 			mJugador.destruir();
+			//pausar();
 			//mJugador=null;
 			//mJugador= new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
 			//gui.add(mJugador.getGrafico());
-			
-		}
+		}		
 		
+		public JugadorThread getJugadorThread() {
+			return jugadorThread;
+		}
 	}
 	
 	

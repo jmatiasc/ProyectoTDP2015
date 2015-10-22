@@ -29,7 +29,8 @@ public class Destructible extends EstadoPared {
     public boolean avanzar(Personaje p) {
         if(p.GetModoDios())
             return true;
-        	else return false;
+        else 
+        	return false;
     }
     
     public PowerUp getPowerUp(){

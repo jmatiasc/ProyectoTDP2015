@@ -28,7 +28,6 @@ public class Indestructible extends EstadoPared {
      * @return
      */
     public boolean avanzar(Personaje p) {
-        
         return false;
     }
 

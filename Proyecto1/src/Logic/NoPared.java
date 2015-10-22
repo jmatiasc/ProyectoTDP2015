@@ -75,7 +75,6 @@ public class NoPared extends Contenido {
  
 	
 	public boolean avanzar(Personaje p) {
-		
 		return true;
 	}
 	

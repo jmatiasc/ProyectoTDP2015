@@ -131,7 +131,8 @@ public class Bomberman extends Personaje {
         
         tablero.obtenerCelda(ubicacion).getContenido().setBomberman(this);
         
-        if(vidas==0)tablero.borrarBomberman();
+        /*if(vidas==0)
+        	tablero.borrarBomberman();*/
         	
     }
 
