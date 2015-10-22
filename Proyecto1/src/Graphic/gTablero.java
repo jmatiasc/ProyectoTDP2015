@@ -16,8 +16,6 @@ public class gTablero {
 	
 	private RugulusThread mRugulus[];
 	
-	private JugadorThread jugadorThread;
-	
 	private gJugador mJugador;
 	
 	private ImageIcon paredI;
@@ -37,8 +35,6 @@ public class gTablero {
 		t = new Tablero(13,31);
 		this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
 		gui.add(this.mJugador.getGrafico());
-		jugadorThread = new JugadorThread(mJugador);
-		jugadorThread.start();
 		
 		// Creo los malos y agrego a la gui su grafico.
 		this.mRugulus = new RugulusThread[3];
@@ -157,9 +153,6 @@ public class gTablero {
 			//gui.add(mJugador.getGrafico());
 		}		
 		
-		public JugadorThread getJugadorThread() {
-			return jugadorThread;
-		}
 	}
 	
 	
