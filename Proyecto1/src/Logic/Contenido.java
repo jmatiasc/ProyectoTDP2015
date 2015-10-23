@@ -25,7 +25,7 @@ public abstract class Contenido  {
     }
     public abstract void setEstado(EstadoPared e); 
     public abstract boolean avanzar(Personaje p);
-    public abstract boolean  destruir();
+    public abstract int  destruir();
     public abstract int getPuntos();
     public abstract PowerUp getPowerUp();
 	public abstract boolean setBomberman(Bomberman b);

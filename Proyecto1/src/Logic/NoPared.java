@@ -82,8 +82,19 @@ public class NoPared extends Contenido {
 	/**
      * @return
      */
-	public boolean destruir() {
-		return false;
+	public int destruir() {
+		if(enemigo!=null){
+			int p=enemigo.destruir();
+			enemigo=null;
+			return p;
+		}
+		if(bomberman!=null){
+			bomberman.morir();
+			bomberman=null;
+			return -1;
+		}
+		return 0;
+		
 	}
 	
 	/**

@@ -18,9 +18,9 @@ public class Indestructible extends EstadoPared {
     /**
      * @return
      */
-    public boolean destruir() {
+    public int destruir() {
         
-        return false;
+        return 0;
     }
 
     /**
@@ -41,5 +41,8 @@ public class Indestructible extends EstadoPared {
 		
 		return 0;
 	}
+	 public boolean explotar(){
+		 return false;
+	 }
 
 }

@@ -1,5 +1,6 @@
 package Graphic;
 import Logic.*;
+
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -11,6 +12,9 @@ public class gJugador extends gEntidad {
 	
 	private gTablero gTab;
 
+	private gBomba bomba;//agregado
+	
+	private ImageIcon imgBomba;
 	
 	public gJugador(int velocidad,Bomberman bom, int x, int y,Tablero tablero,gTablero gt) {
 		
@@ -28,6 +32,8 @@ public class gJugador extends gEntidad {
 		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right.png"));
 		
 		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
+		imgBomba= new ImageIcon(this.getClass().getResource("/BattleCity/muerte.png"));
+		
 		
 	}
 
@@ -54,6 +60,16 @@ public class gJugador extends gEntidad {
 				this.mPosicion.setLocation(this.mPosicion.x + this.mVelocidad, this.mPosicion.y);
 				super.mover(MOVIMIENTO_DERECHA);}
 				break;
+			case KeyEvent.VK_A :
+				Bomba b=bomberman.dejarBomba();
+				if(b!=null)
+				{
+				
+				gTab.dejarBomba(mPosicion,b);
+				
+				}
+				break;
+				
 		}
 	}
 	
@@ -85,6 +101,8 @@ public class gJugador extends gEntidad {
 	public void aumentarVelocidad(){
 		mVelocidad*=2;
 	}
+	
+
 	
 	
 }

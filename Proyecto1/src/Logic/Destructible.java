@@ -18,8 +18,8 @@ public class Destructible extends EstadoPared {
     /**
      * @return
      */
-    public boolean destruir() {
-        return true;
+    public int destruir() {
+        return puntos;
     }
 
     /**

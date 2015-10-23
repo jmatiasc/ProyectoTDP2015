@@ -25,7 +25,7 @@ public class Pared extends Contenido {
     /**
      * @return
      */
-    public boolean destruir() {
+    public int destruir() {
           return miEstado.destruir();
     }
 
@@ -89,6 +89,9 @@ public class Pared extends Contenido {
     public void setPowerUp(PowerUp p){
 		powerUp=p;
 	}
+
+
+	
 
 
 

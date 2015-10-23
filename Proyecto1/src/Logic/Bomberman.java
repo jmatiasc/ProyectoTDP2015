@@ -7,19 +7,21 @@ import java.util.*;
  */
 public class Bomberman extends Personaje {
 
-    protected int vidas;
+   
     protected int velocidad;
     protected int cantBombas;
     protected int alcanceBomba;
-    protected Bomba miBomba;
+ 
     protected Tablero tablero;
+    protected int puntos;
     
     public  Bomberman(Tablero t) {
-        vidas=3;
+        
         velocidad=32;
         cantBombas=1;
         alcanceBomba=1;
         tablero = t;
+        puntos=0;
     }
     /**
      * 
@@ -42,6 +44,7 @@ public class Bomberman extends Personaje {
      * 
      */
     public boolean moverAbajo() {
+    	
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);
     	if(p.ejeY>12)p.setEjeY(12);
     	if(tablero.obtenerCelda(p).avanzar(this)) { 
@@ -87,12 +90,19 @@ public class Bomberman extends Personaje {
     }
 
     /**
-     * crea una bomba(new bomba(Poscion ubicacion,alcanceBomba))
+     * 
      */
-    public void dejarBomba() {
-    	miBomba=new Bomba(ubicacion,alcanceBomba,tablero,this);
-    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
-    	//falta agregarla al tablero??????
+    public Bomba dejarBomba() {
+    	if(cantBombas!=0){
+	    	cantBombas--;
+	    	Bomba miBomba=new Bomba(ubicacion,alcanceBomba,tablero,this);
+	    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
+	    	puntos+=miBomba.activar();
+	    	return miBomba;
+	    	
+	    	}
+    	else return null;
+	    	
     }
 
     /**
@@ -121,7 +131,7 @@ public class Bomberman extends Personaje {
      */
     
     public void morir() {
-        vidas--;
+      
     	
     	tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
     	
@@ -131,8 +141,8 @@ public class Bomberman extends Personaje {
         
         tablero.obtenerCelda(ubicacion).getContenido().setBomberman(this);
         
-        if(vidas==0)tablero.borrarBomberman();
-        	
+        
+        tablero.borrarBomberman();
     }
 
     /**
@@ -154,13 +164,23 @@ public class Bomberman extends Personaje {
         int auxCB=cantBombas;
     	velocidad=99999999;
         cantBombas=99999999;
-        //PASAN 5 SEGUNDOS Y LO MODIFICADO VUELVE A LOS VALORES ANTES OBTENIDOS
+        
+        try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         modoDios=false;
         int velocidad=auxVel;
         int cantBombas=auxCB;
         
         
         
+    }
+    
+    
+    public void desactibarModoDios(){
+    	
     }
 
     public Posicion getPosicion(){

@@ -62,6 +62,8 @@ public abstract class gEntidad {
 		return this.mGrafico;
 	}
 	
+	
+	
 
 		
 	}

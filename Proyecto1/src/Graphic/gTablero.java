@@ -1,6 +1,7 @@
 package Graphic;
 
 import java.awt.Component;
+import java.awt.Point;
 import java.util.Random;
 
 import javax.swing.Icon;
@@ -19,17 +20,21 @@ public class gTablero {
 	private gJugador mJugador;
 	
 	private ImageIcon paredI;
-	
+	private ImageIcon PastoI;
 	
 	private GUI gui;
 	
-	PowerUpVelocidad velocidad;
+	private PowerUpVelocidad velocidad;
+
+	private gBomba bomba;
 	
 	public gTablero(GUI gui){
+		this.gui=gui;
 		
 		paredI= new ImageIcon((this.getClass().getResource("/BattleCity/pared.png")));
+		PastoI= new ImageIcon((this.getClass().getResource("/BattleCity/pasto.png")));
 		
-		ponerPared(gui);
+		
 		
 		// Creo el jugador y lo agrego el grafico a la gui.
 		t = new Tablero(13,31);
@@ -69,6 +74,8 @@ public class gTablero {
 		velocidad=new PowerUpVelocidad(3*32,6*32,t.getVelocidad());
 		gui.add(velocidad.getGrafico());
 		
+		
+		ponerPared(gui);
 		
 		
 		
@@ -141,8 +148,10 @@ public class gTablero {
 				        	}
 	        				//AGREGO AL RESTO TODAS NoPared para prototipo
 			        		else{
-			        			//aca van las noparedes o caminos
-			        			//matrizCeldas[h][n].setContenido(new NoPared(null));  
+			        			//JLabel labelPasto=new JLabel (PastoI);
+			        			//gui.add(labelPasto);
+			        			//labelPasto.setBounds(h*32, n*32, 32,32);
+			        			 
 				        	  }
 			        			
 	        }
@@ -155,8 +164,71 @@ public class gTablero {
 		}
 		
 		
+		public void dejarBomba(Point p,Bomba b){
+			
+			
+				
+				
+				
+					gBomba bomba=new gBomba(b);
+					bomba.setPosicion(p);
+					bomba.dejarBomba();
+					gui.add(bomba.getGrafico());
+					BombaThread tb=new BombaThread(bomba);
+					
+					tb.start();
+					
+					mostrarExplosion(bomba.getPosicion());
 		
-		
+			}
+		public void mostrarExplosion(Point p){
+			//cuando alcance es 1
+					Point  arriba[]=new Point[1];
+					Point abajo[]=new Point[1];
+					Point izquierda[]=new Point[1];
+					Point derecha[]=new Point[1];
+					
+			
+			
+			for(int i=0; i<1;i++){
+	    		 arriba[i]=new Point(p.x,p.y-(i+32));
+	    		 System.out.println(""+arriba[i].x+","+arriba[i].y);
+	    		 abajo[i]=new Point(p.x,p.y+(i+32));
+	    		 izquierda[i]=new Point(p.x-(i+32),p.y);
+	    		 derecha[i]=new Point(p.x+(i+32),p.y);
+	    		 }
+			
+				Explosion [] arreglo=new Explosion[5];
+			
+				int a=0;
+				for(int  i=0; i<arriba.length;i++){
+				arreglo[a]=new Explosion(arriba[i]);
+				a++;
+				}
+				
+				for(int i=0; i<abajo.length;i++){
+					arreglo[a]=new Explosion(abajo[i]);
+					a++;
+				}
+				
+				for(int i=0; i<derecha.length;i++){
+					arreglo[a]=new Explosion(derecha[i]);
+					a++;
+				}
+				
+				for(int i=0; i<izquierda.length;i++){
+					arreglo[a]=new Explosion(izquierda[i]);
+					a++;
+				}
+				arreglo[4]=new Explosion(p);
+				
+				for(int i=0; i<arreglo.length;i++){
+				gui.add(arreglo[i].getGrafico());
+				
+				}
+				
+				
+			}
 	}
 	
 	

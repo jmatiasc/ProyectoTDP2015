@@ -39,7 +39,7 @@ public class Celda {
      */
     public int destruir() {
     	int puntos=0;
-        if(contenido.destruir()){
+        if(contenido.destruir()!=0){
         	puntos=contenido.getPuntos();
         	PowerUp p=contenido.getPowerUp();
         	contenido=new NoPared(p);

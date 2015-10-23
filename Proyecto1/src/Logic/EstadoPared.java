@@ -17,7 +17,7 @@ public abstract class EstadoPared {
     /**
      * @return
      */
-    public abstract boolean destruir();
+    public abstract int destruir();
 
     /**
      * @param p 
@@ -32,5 +32,6 @@ public abstract class EstadoPared {
 
     public abstract PowerUp getPowerUp();
     
+
     
 }

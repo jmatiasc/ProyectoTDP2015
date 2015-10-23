@@ -18,6 +18,7 @@ public abstract class Enemigo extends Personaje {
      * modifica la ubicacion del enemigo y ademas actualiza su posicion en tablero
      */
     public int mover() {
+    	if(ubicacion.getEjeX()!=0 && ubicacion.getEjeY()!=0){
     	
     	Random num=new Random();
         int n=num.nextInt()%4;
@@ -53,7 +54,8 @@ public abstract class Enemigo extends Personaje {
             tablero.obtenerCelda(p).getContenido().chequeoColisiones();
             return n;
 	        }
-        return -1;
+        return -1;}
+    	else return -1;
     }
     public void matarBomberman() {
         // TODO implement here
@@ -61,8 +63,9 @@ public abstract class Enemigo extends Personaje {
     /**
      * mata al enemigo, ubicacion=null
      */
-    public void destruir() {
-        // TODO implement here
+    public int destruir() {
+       ubicacion=new Posicion(0,0);
+       return puntos;
     }
 
     public int getPuntos() {
