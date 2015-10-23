@@ -23,15 +23,15 @@ public class gBomba{
 		protected Point mPosicion;
 		
 		protected Bomba bomba;
+		protected gTablero gTab;
 		
 		
-		
-		public gBomba(Bomba b){
+		public gBomba(Bomba b,gTablero t){
 			//this.mPosicion  = new Point(x, y);
 			bomba=b;
 			imgBomba = new ImageIcon(this.getClass().getResource("/BattleCity/muerte.png"));
 			this.mGrafico = new JLabel(imgBomba);
-
+			gTab = t; //Cambio
 			
 			
 		}
@@ -52,22 +52,19 @@ public class gBomba{
 		protected void destruir() {
 				this.mGrafico.setIcon(null);
 				bomba.explotar();
-				
-				
-				
-			
+				gTab.mostrarExplosion(getPosicion());
 		}
 		
 		
 		public void setPosicion(Point pos)
 		{
-			mPosicion = pos;
+			Point p = new Point(pos.x,pos.y); //Cambio
+			mPosicion = p;
 			
 		}
 		
 		public void dejarBomba(){
 			mGrafico.setIcon(imgBomba);
-			
 		}
 		
 		

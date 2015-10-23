@@ -20,7 +20,7 @@ public class Explosion {
 	
 	public Explosion(Point p){
 		this.mPosicion  = p;
-		mPowerUpV = new ImageIcon(this.getClass().getResource("/BattleCity/pared.png"));
+		mPowerUpV = new ImageIcon(this.getClass().getResource("/BattleCity/explosion.png"));
 		
 		if(this.mGrafico == null){
 			this.mGrafico = new JLabel(mPowerUpV);
@@ -36,9 +36,8 @@ public class Explosion {
 	}
 	
 	public JLabel getGrafico() {	
-		
-		
-		return this.mGrafico;}
+		return this.mGrafico;
+	}
 
 	protected void destruir() {
 			this.mGrafico.setIcon(null);

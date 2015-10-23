@@ -65,7 +65,7 @@ public class gJugador extends gEntidad {
 				if(b!=null)
 				{
 				
-				gTab.dejarBomba(mPosicion,b);
+					gTab.dejarBomba(mPosicion,b);
 				
 				}
 				break;

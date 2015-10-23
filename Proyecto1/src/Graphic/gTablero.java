@@ -164,13 +164,8 @@ public class gTablero {
 		}
 		
 		
-		public void dejarBomba(Point p,Bomba b){
-			
-			
-				
-				
-				
-					gBomba bomba=new gBomba(b);
+		public void dejarBomba(Point p,Bomba b){	
+					gBomba bomba=new gBomba(b,this); //Cambio
 					bomba.setPosicion(p);
 					bomba.dejarBomba();
 					gui.add(bomba.getGrafico());
@@ -178,7 +173,7 @@ public class gTablero {
 					
 					tb.start();
 					
-					mostrarExplosion(bomba.getPosicion());
+					//mostrarExplosion(bomba.getPosicion());
 		
 			}
 		public void mostrarExplosion(Point p){
@@ -222,12 +217,11 @@ public class gTablero {
 				}
 				arreglo[4]=new Explosion(p);
 				
+				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/BattleCity/explosion.png")); //Agregue esto 1/2
 				for(int i=0; i<arreglo.length;i++){
-				gui.add(arreglo[i].getGrafico());
-				
+					gui.add(arreglo[i].getGrafico());
+					arreglo[i].getGrafico().setIcon(mPowerUpV);//agregue esto 2/2
 				}
-				
-				
 			}
 	}
 	
