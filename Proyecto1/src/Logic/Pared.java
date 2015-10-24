@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Pared
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Pared extends Contenido {
 

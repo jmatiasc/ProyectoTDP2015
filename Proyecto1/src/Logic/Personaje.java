@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Personaje
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public abstract class Personaje {
 

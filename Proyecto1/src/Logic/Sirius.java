@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Sirius
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Sirius extends Enemigo {
 

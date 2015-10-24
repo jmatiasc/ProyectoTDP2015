@@ -2,7 +2,11 @@ package Logic;
 
 import java.util.*;
 
-
+/**
+ * Clase PowerUp
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
+ */
 public abstract class PowerUp {
 
 	protected Posicion ubicacion;

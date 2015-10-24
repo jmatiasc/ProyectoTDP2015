@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase abstracta Contenido
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public abstract class Contenido  {
     protected int puntos;
@@ -13,16 +15,18 @@ public abstract class Contenido  {
     protected Enemigo enemigo;
     protected EstadoPared miEstado;
     
+    /**
+     * Constructor de la clase Contenido.
+     * Inicializa los atributos.
+     */
     public Contenido() {
-    	
     	miEstado=null;
         bomberman=null;
     	bomba=null;
     	powerUp=null;
-        enemigo=null;
-       
-    	
+        enemigo=null;	
     }
+    
     public abstract void setEstado(EstadoPared e); 
     public abstract boolean avanzar(Personaje p);
     public abstract int  destruir();

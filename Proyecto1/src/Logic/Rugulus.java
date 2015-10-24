@@ -2,7 +2,11 @@ package Logic;
 
 import java.util.*;
 
-
+/**
+ * Clase Rugulus
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
+ */
 public class Rugulus extends Enemigo {
 
 	/**
