@@ -3,40 +3,48 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Destructible
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
-
-
 public class Destructible extends EstadoPared {
-
-	
+	/**
+	 * Constructor de la clase Destructible
+	 * @param p PowerUp a asignar.
+	 */
     public Destructible(PowerUp p) {
-    puntos=10;
-       pw=p;
+    	puntos = 10;
+    	pw = p;
     }
 
     /**
-     * @return
+     * Consulta la cantidad de puntos a otorgar.
      */
-    public boolean destruir() {
-        return true;
+    public int destruir() {
+        return puntos;
     }
 
     /**
-     * @param p 
-     * @return
+     * Consulta si es posible avanzar.
+     * @return true si es posible, false en caso contrario.
      */
     public boolean avanzar(Personaje p) {
         if(p.GetModoDios())
             return true;
-        	else return false;
+        else 
+        	return false;
     }
     
+    /**
+     * Consulta el PowerUp asociado a la pared.
+     */
     public PowerUp getPowerUp(){
     	return pw;
     }
 
-	@Override
+	/**
+	 * Consulta los puntos que otorga la pared.
+	 */
 	public int getPuntos() {
 		return puntos;
 	}

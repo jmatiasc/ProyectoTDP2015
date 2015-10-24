@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Pared
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Pared extends Contenido {
 
@@ -17,34 +19,50 @@ public class Pared extends Contenido {
     }
 
     /**
+     * le inserta el elemento e  al atributo EstadoPared
      * @param EstadoPared e
+     * 
      */
     public void setEstado(EstadoPared e) {
        miEstado=e;    }
 
     /**
-     * @return
+     * llama al metodo destruir del atributo mi estado de tipo EstadoPared
+     * @return los puntos del elemento que destruyo
+     * 
      */
-    public boolean destruir() {
+    public int destruir() {
           return miEstado.destruir();
     }
 
     /**
-     * @param p 
-     * @return
+     * @param p
+     * @return true si el personaje p puede acceder a la siguiente celda, false en caso contrario
+     * 
      */
     public boolean avanzar(Personaje p) {
     	return miEstado.avanzar(p);
     }
-
-	@Override
+    /**
+     * @return retorna lo puntos de mi EstadoPared
+     */
+    
 	public int getPuntos() {
 		
 		return miEstado.getPuntos();
 	}
+	 /**
+     * 
+     * @return un powerUp que se encuentre en EstadoPared
+     */
 	public PowerUp getPowerUp(){
 		return miEstado.getPowerUp();
 	}
+	 /**
+	  * le inserta el elmento b al  atributo bomberman 
+     * @param b de tipo Bomberman
+     * @return true si fue insertado correctamente, false en caso contrario
+     */
 	public boolean setBomberman(Bomberman b) {
         if(bomberman==null && bomba==null){
         bomberman=b;
@@ -55,8 +73,9 @@ public class Pared extends Contenido {
     }
 
     /**
-     * @param e 
-     * @return
+     * inserta e en el atributo enemigo
+     * @param e de tipo Enemigo, 
+     * @return true si fue insertado correctamente, false en caso contrario
      */
     public boolean setEnemigo(Enemigo e) {
         if(enemigo==null && bomba==null){
@@ -67,8 +86,9 @@ public class Pared extends Contenido {
     }
 
     /**
-     * @param bm 
-     * @return
+     * inserta bm en el atributo bomba
+     * @param bm  de tipo Bomba
+     * @return	true si fue insertado correctamente, false en caso contrario
      */
     public boolean setBomba(Bomba bm) {
         if(bomba==null ){
@@ -79,13 +99,25 @@ public class Pared extends Contenido {
     }
 
     /**
-     * 
+     * cheuqea si se encuentran un enemigo y el bomberman en la misma celda 
+     *  
      */
     public void chequeoColisiones() {
         if(bomberman!=null && enemigo!=null)
         	bomberman.morir();
         
     }
+    /**
+     * inserta p en el atributo powerUp
+     * @param p de tipo PowerUp
+     * 
+     */
+    public void setPowerUp(PowerUp p){
+		powerUp=p;
+	}
+
+
+	
 
 
 

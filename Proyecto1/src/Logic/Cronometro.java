@@ -3,31 +3,22 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Cronometro
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Cronometro {
-
+    protected int horas;
+    protected int minutos;
+    protected int segundos;
+    
     /**
-     * Default constructor
+     * Constructor de la clase Cronometro.
      */
     public Cronometro() {
+    	
     }
-
-    /**
-     * 
-     */
-    protected int horas;
-
-    /**
-     * 
-     */
-    protected int minutos;
-
-    /**
-     * 
-     */
-    protected int segundos;
-
+    
     /**
      * 
      */
@@ -36,24 +27,16 @@ public class Cronometro {
     }
 
     /**
-     * 
+     * Inicia el cronometro.
      */
     public void iniciar() {
         // TODO implement here
     }
 
     /**
-     * 
+     * Reinicia el cronometro. 
      */
     public void reiniciar() {
         // TODO implement here
     }
-
-    /**
-     * 
-     */
-    public void Cronometro() {
-        // TODO implement here
-    }
-
 }

@@ -3,111 +3,150 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Bomberman
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Bomberman extends Personaje {
-
-    protected int vidas;
-    protected int velocidad;
-    protected int cantBombas;
-    protected int alcanceBomba;
-    protected Bomba miBomba;
-    protected Tablero tablero;
+	protected int velocidad;
+	protected int cantBombas;
+	protected int alcanceBomba;
+	protected Tablero tablero;
+	protected int puntos;
     
-    public  Bomberman() {
-        vidas=3;
-        velocidad=1;
-        cantBombas=1;
-        alcanceBomba=1;
-        
+	/**
+	 * Constructor de la clase Bomberman.
+	 * @param t Tablero vinculado al Bomberman.
+	 */
+    public  Bomberman(Tablero t) {
+    	velocidad=32;
+    	cantBombas=1;
+    	alcanceBomba=1;
+    	tablero = t;
+    	puntos=0;
     }
+    
     /**
-     * 
+     * De ser posible, avanza al Bomberman una celda hacia arriba. 
+     * @return true si avanza, false en caso contrario.
      */
-    public void moverArriba() {
+    public boolean moverArriba() {
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);
+    	if(p.ejeY<0)
+    		p.setEjeY(0);
     	if(tablero.obtenerCelda(p).avanzar(this)){  	
-        ubicacion=p;
-        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-    }
+    		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
+	        ubicacion=p;
+	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+        return true;
+    	}
+    	else return false;
     }
 
     /**
-     * 
+     * De ser posible, avanza al Bomberman una celda hacia abajo. 
+     * @return true si avanza, false en caso contrario.
      */
-    public void moverAbajo() {
+    public boolean moverAbajo() {
+    	
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);
-    	if(tablero.obtenerCelda(p).avanzar(this)) { 	
-        ubicacion=p;
-        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+    	if(p.ejeY>12)p.setEjeY(12);
+    	if(tablero.obtenerCelda(p).avanzar(this)) { 
+    		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
+	        ubicacion=p;
+	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+	        return true;
+    	}
+    	else return false;
     }
 
     /**
-     * 
+     * De ser posible, avanza al Bomberman una celda hacia la izquierda. 
+     * @return true si avanza, false en caso contrario.
      */
-    public void moverIzquierda() {
+    public boolean moverIzquierda() {
     	Posicion p=new Posicion(ubicacion.getEjeX()-1,ubicacion.getEjeY());
+    	if(p.ejeX<0)p.setEjeX(0);
     	if(tablero.obtenerCelda(p).avanzar(this))  	{
-        ubicacion=p;
-        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+    		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
+	        ubicacion=p;
+	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+	        return true;
+	    	}
+	    	else return false;
     }
 
     /**
-     * 
+     * De ser posible, avanza al Bomberman una celda hacia la derecha. 
+     * @return true si avanza, false en caso contrario.
      */
-    public void moverDerecha() {
+    public boolean moverDerecha() {
     	Posicion p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
+    	if(p.ejeX>30)p.setEjeX(30);
     	if(tablero.obtenerCelda(p).avanzar(this))  {	
+    		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
         ubicacion=p;
         tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        }
+        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+        return true;
+    	}
+    	else return false;
     }
 
     /**
-     * crea una bomba(new bomba(Poscion ubicacion,alcanceBomba))
+     * Si la cantidad de bombas es mayor que cero, deja una bomba.
+     * @return bomba si se pudo plantar, null en caso contrario.
      */
-    public void dejarBomba() {
-    	miBomba=new Bomba(ubicacion,alcanceBomba,tablero,this);
-    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
-    	//falta agregarla al tablero??????
+    public Bomba dejarBomba() {
+    	if (cantBombas!=0) {
+    		cantBombas--;
+	    	Bomba miBomba = new Bomba(ubicacion,alcanceBomba,tablero,this);
+	    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
+	    	puntos += miBomba.activar();
+	    	return miBomba;
+	    }
+    	else 
+    		return null;	
     }
 
     /**
-     * 
+     * Duplica la velocidad de Bomberman.
      */
     public void aumentarVelocidad() {
-        velocidad++;
+        velocidad=velocidad*2;
     }
 
     /**
-     * 
+     * Aumenta la cantidad de bombas en uno.
      */
-    
     public void aumentarCantBombas(){
     	cantBombas++;
     }
     
     /**
-     * 
+     * Duplica el alcance de la bomba.
      */
     public void aumentarAlcance(){
     	alcanceBomba=alcanceBomba*2;
     }
-    /**
-     * 
-     */
     
+    /**
+     * Mata al bomberman y lo devuelve a su posición inicial.
+     */
     public void morir() {
-        vidas--;
-        ubicacion=new Posicion(0,0);
-        if(vidas==0)tablero.borrarBomberman();
-        	
+    	tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
+        ubicacion.setEjeY(1);
+        ubicacion.setEjeX(1);
+        tablero.obtenerCelda(ubicacion).getContenido().setBomberman(this);
+        tablero.borrarBomberman();
     }
 
     /**
-     * @param PowerUp p
+     * Activa el PowerUp y mejora a Bomberman.
+     * @param p Powerup a activar.
      */
     public void powerUp(PowerUp p) {
         p.aumentarCantidadBombas();
@@ -117,7 +156,7 @@ public class Bomberman extends Personaje {
     }
 
     /**
-     * 
+     * Activa el modo dios, durante 5 segundos.
      */
     public void activarModoDios(){
     	modoDios=true;
@@ -125,17 +164,29 @@ public class Bomberman extends Personaje {
         int auxCB=cantBombas;
     	velocidad=99999999;
         cantBombas=99999999;
-        //PASAN 5 SEGUNDOS Y LO MODIFICADO VUELVE A LOS VALORES ANTES OBTENIDOS
+        try {
+        	Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         modoDios=false;
         int velocidad=auxVel;
-        int cantBombas=auxCB;
-        
-        
-        
+        int cantBombas=auxCB; 
     }
-
+    
+    /**
+     * Consulta la posición de Bomberman.
+     * @return
+     */
     public Posicion getPosicion(){
     	return ubicacion;
     }
     
+    /**
+     * Consulta la velocidad de Bomberman.
+     * @return
+     */
+    public int getVelocidad() {
+    	return velocidad;
+    }
 }

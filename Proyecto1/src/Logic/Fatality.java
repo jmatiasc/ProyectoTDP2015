@@ -3,40 +3,53 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Fatality
+ * @author Bernabe - Cabrera - Paez 
  */
-public class Fatality extends PowerUp {
-
+public class Fatality extends PowerUp
+{
     /**
-     * Default constructor
+     * Constructor
+     * @param b Bomberman
      */
-    public Fatality(Bomberman b) {
+    public Fatality(Bomberman b) 
+    {
     	super(b);
     }
+    
     /**
-     * @param Bomberman b
+     * Aumenta la velocidad del Bomberman
      */
-    public void aumentarVelocidad(){}
+    public void aumentarVelocidad()
+    {}
 
     /**
-     * @param Bomberman b
+     * Duplica el alcance de la explosión de la bomba del personaje principal
      */
-    public void duplicarAlcance(){
+    public void duplicarAlcance()
+    {
     	jugador.aumentarAlcance();
     }
+    
     /**
-     * @param Bomberman b
+     * Aumenta la cantidad de bombas que el personaje principal puede colocar
      */
-    public void aumentarCantidadBombas(){}
+    public void aumentarCantidadBombas()
+    {}
+    
     /**
-     * @param Bomberman b
+     * La cantidad de bombas de Bomberman será ilimitada, podrá atravesar paredes 
+     * y será inmune a los malos y las explosiones
      */
-    public void fullAtributos(){}
+    public void fullAtributos()
+    {}
+    
     /**
-     * @param Posicion p
+     * Establece la posición del powerup Fatality
+     * @param Posicion p posición del powerup Fatality
      */
-    public void setUbicacion(Posicion p){
-    	ubicacion=p;
-    }
-
+    public void setPosicion(Posicion p) 
+    {
+    	super.setPosicion(p);	
+	}
 }

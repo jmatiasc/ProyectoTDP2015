@@ -2,7 +2,11 @@ package Logic;
 
 import java.util.*;
 
-
+/**
+ * Clase PowerUp
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
+ */
 public abstract class PowerUp {
 
 	protected Posicion ubicacion;
@@ -37,6 +41,14 @@ public abstract class PowerUp {
     /**
      * @param Posicion p
      */
-    public abstract void setUbicacion(Posicion p);
+    public void setPosicion(Posicion p){
+    	ubicacion=p;
+    }
 
+    /**
+     * retorna el atributo ubicacion 
+     * @return Posicion
+     */
+    public Posicion getPosicion(){return ubicacion;}
+    
 }

@@ -3,7 +3,9 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase SpeedUp
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class SpeedUp extends PowerUp {
 
@@ -15,6 +17,7 @@ public class SpeedUp extends PowerUp {
     }
 
     /**
+     * aumenta la velocidad del bomberman
      * @param Bomberman b
      */
     public void aumentarVelocidad(){
@@ -33,12 +36,13 @@ public class SpeedUp extends PowerUp {
      * @param Bomberman b
      */
     public void fullAtributos(){}
+    
     /**
      * @param Posicion p
      */
-    public void setUbicacion(Posicion p){
-    	ubicacion=p;
-    }
-
+	public void setPosicion(Posicion p) {
+		super.setPosicion(p);
+		
+	}
 
 }

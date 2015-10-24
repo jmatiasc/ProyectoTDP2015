@@ -2,37 +2,29 @@ package Logic;
 
 import java.util.*;
 
+/**
+ * Clase Altair
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
+ */
 public class Altair extends Enemigo {
-
-	public void Altair(Posicion p) {
+	/**
+     * Constructor de Altair.
+     * Inicializa el tablero de Enemigo.
+     * 
+     */
+	public Altair(Tablero t) {
+		super(t);
+	}
+	
+	/**
+	 * Inicializa los atributos de Altair.
+	 * @param t Tablero en donde se encuentra Altair.
+	 * @param p Posición de Altair en el tablero.
+	 */
+	public void Altair(Tablero t,Posicion p) {
         ubicacion=p;
-        velocidad=1;
+        velocidad=32;
         modoDios=true;
     }
-
-   
-    public void mover() {
-        Random num=new Random();
-        int n=num.nextInt()%4;
-        Posicion p;
-        if(n==0){
-        	p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);}
-        else
-        	if(n==1){
-			        p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);
-        			}
-		        else if(n==2){
-				        	p=new Posicion(ubicacion.getEjeX()-1,ubicacion.getEjeY());}
-					        else {
-					        	p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
-					        	
-					        }
-        if(tablero.obtenerCelda(p).avanzar(this))  	{
-            ubicacion=p;
-            tablero.obtenerCelda(p).getContenido().setEnemigo(this);
-	        }
-    }
-
-
-
 }

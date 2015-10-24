@@ -3,42 +3,48 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Bombality
+ * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
+ *
  */
 public class Bombality extends PowerUp {
-
     /**
-     * Default constructor
+     * Constructor de la clase Bombality
+     * Asigna Bomberman a la clase Powerup.
      */
-    public Bombality(Bomberman b) {
+	public Bombality(Bomberman b) {
     	super(b);
     }
+    
     /**
-     * @param Bomberman b
+     * Aumenta la velocidad del bomberman.
      */
     public void aumentarVelocidad(){}
 
     /**
-     * @param Bomberman b
+     * Duplica el alcance del bomberman.
      */
     public void duplicarAlcance(){
     	
     }
+    
     /**
-     * @param Bomberman b
+     * Aumenta la cantidad de bombas.
      */
     public void aumentarCantidadBombas(){
     	jugador.aumentarCantBombas();
     }
+    
     /**
-     * @param Bomberman b
+     * Atributos
      */
     public void fullAtributos(){}
+    
     /**
-     * @param Posicion p
+     * Setea la posición del PowerUp.
      */
-    public void setUbicacion(Posicion p){
-    	ubicacion=p;
-    }
+    public void setPosicion(Posicion p) {
+    	super.setPosicion(p);
+	}
 
 }

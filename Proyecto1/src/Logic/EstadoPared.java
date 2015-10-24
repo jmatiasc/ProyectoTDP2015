@@ -3,34 +3,42 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase EstadoPared
+ * @author Bernabe - Cabrera - Paez
  */
-public abstract class EstadoPared {
-	
+public abstract class EstadoPared
+{	
 	protected int puntos;
 	protected PowerUp pw;
-    /**
-     * Default constructor
+  
+	/**
+     * Constructor
      */
-    public EstadoPared() {
-    }
+    public EstadoPared() 
+    {}
+    
     /**
-     * @return
+     * Si es posible destruye una pared y devuelve el puntaje de su destrucción
+     * @return puntos si la pared es indestructible devuelve 0
      */
-    public abstract boolean destruir();
+    public abstract int destruir();
 
     /**
-     * @param p 
-     * @return
+     * Determina si el personaje puede atravesar una pared
+     * @param p personaje
+     * @return true si el personaje puede atravesar la pared,false en caso contrario
      */
     public abstract boolean avanzar(Personaje p);
 
     /**
-     * @return
+     * Devuelve el puntaje de la destrucción de una pared
+     * @return puntos
      */
     public abstract int getPuntos();
-
-    public abstract PowerUp getPowerUp();
     
-    
+    /**
+     * Devuelve powerup de la pared 
+     * @return pw si no tiene powerup retorna null
+     */
+    public abstract PowerUp getPowerUp();   
 }
