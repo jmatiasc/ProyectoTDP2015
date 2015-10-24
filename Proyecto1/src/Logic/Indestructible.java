@@ -3,46 +3,65 @@ package Logic;
 import java.util.*;
 
 /**
- * 
+ * Clase Indestructible
+ * @author Bernabe - Cabrera - Paez
  */
-public class Indestructible extends EstadoPared {
+public class Indestructible extends EstadoPared
+{
 
     /**
-     * Default constructor
+     * Constructor
      */
-    public Indestructible() {
+    public Indestructible() 
+    {
     	puntos=0;
     	pw=null;
     }
 
     /**
-     * @return
+     * Si es posible destruye una pared y devuelve el puntaje de su destrucción
+     * @return puntos si la pared es indestructible devuelve 0
      */
-    public int destruir() {
-        
+    public int destruir() 
+    {    
         return 0;
     }
 
     /**
-     * @param p 
-     * @return
+     * Determina si el personaje puede atravesar una pared
+     * @param p personaje
+     * @return true si el personaje puede atravesar la pared,false en caso contrario
      */
-    public boolean avanzar(Personaje p) {
-        
+    public boolean avanzar(Personaje p)
+    {    
         return false;
     }
-
-    public PowerUp getPowerUp(){
+    
+    /**
+     * Devuelve powerup de la pared 
+     * @return pw si no tiene powerup retorna null
+     */
+    public PowerUp getPowerUp()
+    {
     	return pw;
     }
-
-	@Override
-	public int getPuntos() {
-		
+    
+    /**
+     * Devuelve el puntaje de la destrucción de una pared
+     * @Override
+     * @return puntos devuelve 0 porque la pared es indestrutible
+     */
+	public int getPuntos()
+	{	
 		return 0;
 	}
-	 public boolean explotar(){
+	
+	/**
+	 * Determina si la pared se puede destruuir
+	 * @return false
+	 */
+	public boolean explotar()
+	{
 		 return false;
-	 }
-
+	}
 }
