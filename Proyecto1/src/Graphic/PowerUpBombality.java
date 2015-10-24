@@ -5,15 +5,13 @@ import java.awt.Point;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import Logic.*;
 
 
-import java.awt.Point;
 
-public class PowerUpVelocidad {
+public class PowerUpBombality {
 
 	protected JLabel mGrafico;
-	protected Icon mPowerUpV;
+	protected Icon mPowerUpB;
 	
 	protected final int mWidth  = 32;
 	protected final int mHeight = 32;
@@ -21,9 +19,9 @@ public class PowerUpVelocidad {
 	protected Point mPosicion;
 	
 	
-	public PowerUpVelocidad(int x, int y){
+	public PowerUpBombality(int x, int y){
 		this.mPosicion  = new Point(x, y);
-		mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/speedUp.png"));
+		mPowerUpB = new ImageIcon(this.getClass().getResource("/imagenes/bombality.png"));
 		
 
 		
@@ -37,7 +35,7 @@ public class PowerUpVelocidad {
 	public JLabel getGrafico() {	
 			
 		if(this.mGrafico == null){
-			this.mGrafico = new JLabel(mPowerUpV);
+			this.mGrafico = new JLabel(mPowerUpB);
 			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
 		}
 		return this.mGrafico;}
@@ -48,4 +46,5 @@ public class PowerUpVelocidad {
 		
 	}
 	
+
 }

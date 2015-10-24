@@ -16,10 +16,5 @@ public class Rugulus extends Enemigo {
         modoDios=false;
     }
 
-    
-
-	
-    
-    
 
 }

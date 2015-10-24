@@ -15,6 +15,7 @@ public class SpeedUp extends PowerUp {
     }
 
     /**
+     * aumenta la velocidad del bomberman
      * @param Bomberman b
      */
     public void aumentarVelocidad(){
@@ -33,11 +34,10 @@ public class SpeedUp extends PowerUp {
      * @param Bomberman b
      */
     public void fullAtributos(){}
+    
     /**
      * @param Posicion p
      */
-
-	@Override
 	public void setPosicion(Posicion p) {
 		super.setPosicion(p);
 		

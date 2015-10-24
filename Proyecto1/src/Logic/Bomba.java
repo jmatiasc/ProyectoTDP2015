@@ -66,6 +66,8 @@ public class Bomba {
     
     public void explotar(){
     	bomberman.aumentarCantBombas();
+    	
+    	
     }
     
     private int explosion(Celda arreglo[]){

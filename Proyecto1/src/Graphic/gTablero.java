@@ -20,19 +20,20 @@ public class gTablero {
 	private gJugador mJugador;
 	
 	private ImageIcon paredI;
-	private ImageIcon PastoI;
+
 	
 	private GUI gui;
 	
 	private PowerUpVelocidad velocidad;
+	private PowerUpBombality bombality;
 
 	private gBomba bomba;
 	
 	public gTablero(GUI gui){
 		this.gui=gui;
 		
-		paredI= new ImageIcon((this.getClass().getResource("/BattleCity/pared.png")));
-		PastoI= new ImageIcon((this.getClass().getResource("/BattleCity/pasto.png")));
+		paredI= new ImageIcon((this.getClass().getResource("/imagenes/pared.png")));
+	
 		
 		
 		
@@ -71,10 +72,13 @@ public class gTablero {
 		this.mRugulus[2].start();
 		
 		
-		velocidad=new PowerUpVelocidad(3*32,6*32,t.getVelocidad());
+		velocidad=new PowerUpVelocidad(3*32,6*32);
 		gui.add(velocidad.getGrafico());
 		
+		Posicion pos=t.getBombality().getPosicion();
+		bombality=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
 		
+		gui.add(bombality.getGrafico());
 		ponerPared(gui);
 		
 		
@@ -94,20 +98,21 @@ public class gTablero {
 	//el chequeo lo debo cambiar a cada powerUp
 	private void chequeoColisiones(){
 		if (velocidad!=null){
-		if(velocidad.getPosicion().equals(mJugador.getPosicion())){
-			mJugador.aumentarVelocidad();
-			velocidad.destruir();
-			velocidad=null;}
-		
-			
-		}
+				if(velocidad.getPosicion().equals(mJugador.getPosicion())){
+					mJugador.aumentarVelocidad();
+					velocidad.destruir();
+					this.velocidad=null;}	
+				}
+		if (bombality!=null){
+			if(bombality.getPosicion().equals(mJugador.getPosicion())){
+				mJugador.aumentarBombas();
+				bombality.destruir();
+				this.bombality=null;}
+			}
 	}
 	
 	public void destruir(int malo) {
-		/*if(this.mRugulus[malo] != null) {
-			this.mRugulus[malo].destruir();
-			this.mRugulus[malo] = null;
-		}*/
+	
 	}
 
 	
@@ -146,19 +151,16 @@ public class gTablero {
 			 		        		labelPared.setBounds(h*32, n*32, 32,32);
 				        	
 				        	}
-	        				//AGREGO AL RESTO TODAS NoPared para prototipo
-			        		else{
-			        			//JLabel labelPasto=new JLabel (PastoI);
-			        			//gui.add(labelPasto);
-			        			//labelPasto.setBounds(h*32, n*32, 32,32);
+	        		
 			        			 
-				        	  }
+				        	  
 			        			
 	        }
 		}}
 		
 		public void matarBomberman(){
 			mJugador.destruir();
+
 			mJugador=null;
 			
 		}
@@ -173,7 +175,7 @@ public class gTablero {
 					
 					tb.start();
 					
-					//mostrarExplosion(bomba.getPosicion());
+					
 		
 			}
 		public void mostrarExplosion(Point p){
@@ -187,7 +189,7 @@ public class gTablero {
 			
 			for(int i=0; i<1;i++){
 	    		 arriba[i]=new Point(p.x,p.y-(i+32));
-	    		 System.out.println(""+arriba[i].x+","+arriba[i].y);
+	    		
 	    		 abajo[i]=new Point(p.x,p.y+(i+32));
 	    		 izquierda[i]=new Point(p.x-(i+32),p.y);
 	    		 derecha[i]=new Point(p.x+(i+32),p.y);
@@ -217,13 +219,19 @@ public class gTablero {
 				}
 				arreglo[4]=new Explosion(p);
 				
-				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/BattleCity/explosion.png")); //Agregue esto 1/2
+				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png")); //Agregue esto 1/2
 				for(int i=0; i<arreglo.length;i++){
 					gui.add(arreglo[i].getGrafico());
 					arreglo[i].getGrafico().setIcon(mPowerUpV);//agregue esto 2/2
+					
 				}
+				
+				ThreadRetardo t=new ThreadRetardo(arreglo,gui);
+				t.start();
+				
+				
+				
 			}
-	}
-	
-	
-	
+		
+		
+}

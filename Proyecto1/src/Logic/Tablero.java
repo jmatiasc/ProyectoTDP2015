@@ -14,6 +14,7 @@ public class Tablero {
     protected Pared[] paredes;
     protected Celda[][] matrizCeldas;
     protected SpeedUp velocidad;
+    protected Bombality bombality;
 
     /**
      * @param Alto 
@@ -127,7 +128,9 @@ public class Tablero {
     	obtenerCelda(velocidad.getPosicion()).getContenido().setPowerUp(velocidad);
     	
     	
-    	
+    	bombality=new Bombality(personaje);
+    	bombality.setPosicion(new Posicion(3,11));
+    	obtenerCelda(bombality.getPosicion()).getContenido().setPowerUp(bombality);
     	
     	
     }
@@ -162,4 +165,5 @@ public class Tablero {
     	return velocidad;
     }
  
+    public Bombality getBombality(){return bombality;}
 }

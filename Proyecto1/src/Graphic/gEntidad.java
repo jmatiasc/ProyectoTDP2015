@@ -65,6 +65,7 @@ public abstract class gEntidad {
 	
 	
 
+	
 		
 	}
 	

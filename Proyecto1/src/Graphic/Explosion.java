@@ -10,7 +10,9 @@ import javax.swing.JLabel;
 
 public class Explosion {
 	protected JLabel mGrafico;
+
 	protected Icon mPowerUpV;
+
 	
 	protected final int mWidth  = 32;
 	protected final int mHeight = 32;
@@ -20,7 +22,8 @@ public class Explosion {
 	
 	public Explosion(Point p){
 		this.mPosicion  = p;
-		mPowerUpV = new ImageIcon(this.getClass().getResource("/BattleCity/explosion.png"));
+		mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png"));
+		
 		
 		if(this.mGrafico == null){
 			this.mGrafico = new JLabel(mPowerUpV);
@@ -42,7 +45,6 @@ public class Explosion {
 	protected void destruir() {
 			this.mGrafico.setIcon(null);
 			
-		
 	}
-	
+
 }

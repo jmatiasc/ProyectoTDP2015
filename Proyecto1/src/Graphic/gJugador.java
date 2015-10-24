@@ -12,13 +12,13 @@ public class gJugador extends gEntidad {
 	
 	private gTablero gTab;
 
-	private gBomba bomba;//agregado
+	private gBomba bomba;
 	
-	private ImageIcon imgBomba;
+	private MovimientoThread movimientoThread;
 	
 	public gJugador(int velocidad,Bomberman bom, int x, int y,Tablero tablero,gTablero gt) {
 		
-		//super(velocidad, x, y);
+		
 		super(32, x, y);
 		
 		
@@ -26,18 +26,18 @@ public class gJugador extends gEntidad {
 		this.tablero=tablero;
 		gTab=gt;
 		
-		this.mImages[0] = new ImageIcon(this.getClass().getResource("/BattleCity/up.png"));
-		this.mImages[1] = new ImageIcon(this.getClass().getResource("/BattleCity/down.png"));
-		this.mImages[2] = new ImageIcon(this.getClass().getResource("/BattleCity/left.png"));
-		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right.png"));
+		this.mImages[0] = new ImageIcon(this.getClass().getResource("/imagenes/up.png"));
+		this.mImages[1] = new ImageIcon(this.getClass().getResource("/imagenes/down.png"));
+		this.mImages[2] = new ImageIcon(this.getClass().getResource("/imagenes/left.png"));
+		this.mImages[3] = new ImageIcon(this.getClass().getResource("/imagenes/right.png"));
 		
-		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
-		imgBomba= new ImageIcon(this.getClass().getResource("/BattleCity/muerte.png"));
+		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
+		;
 		
 		
 	}
 
-	public void mover(int dir){
+	/*public void mover(int dir){
 		
 		switch (dir){
 			case KeyEvent.VK_UP :
@@ -71,7 +71,7 @@ public class gJugador extends gEntidad {
 				break;
 				
 		}
-	}
+	}*/
 	
 	private int obtenerPosicionX(int x) {
 		int aux = x/32;
@@ -89,8 +89,6 @@ public class gJugador extends gEntidad {
 	
 	
 	public void morir(){
-		
-		
 		gTab.matarBomberman();
 		mPosicion.x=0;
 		mPosicion.y=0;
@@ -102,7 +100,73 @@ public class gJugador extends gEntidad {
 		mVelocidad*=2;
 	}
 	
+	public void aumentarBombas(){
+		
+		//bomberman.aumentarCantBombas();
+	}
 
+	public void transicionArriba() {
+		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y-8);
+		super.mover(MOVIMIENTO_ARRIBA);
+	}
 	
+	public void transicionAbajo() {
+		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y+8);
+		super.mover(MOVIMIENTO_ABAJO);
+	}
+	
+	public void transicionIzquierda() {
+		this.mPosicion.setLocation(this.mPosicion.x-8,this.mPosicion.y);
+		super.mover(MOVIMIENTO_IZQUIERDA);
+	}
+	
+	public void transicionDerecha() {
+		this.mPosicion.setLocation(this.mPosicion.x+8,this.mPosicion.y);
+		super.mover(MOVIMIENTO_DERECHA);
+	}
+
+	public void mover(int dir){
+		if(bomberman!=null){
+		switch (dir){
+			case KeyEvent.VK_UP :
+				if(bomberman.moverArriba()){
+					movimientoThread = new MovimientoThread(this); //Cambio
+					movimientoThread.setDir("arriba");
+					movimientoThread.start();
+				}
+				break;
+			case KeyEvent.VK_DOWN :
+				if(bomberman.moverAbajo()){
+					movimientoThread = new MovimientoThread(this); //Cambio
+					movimientoThread.setDir("abajo");
+					movimientoThread.start();
+				}
+				break;
+			case KeyEvent.VK_LEFT :
+				if(bomberman.moverIzquierda()){
+					movimientoThread = new MovimientoThread(this); //Cambio
+					movimientoThread.setDir("izquierda");
+					movimientoThread.start();
+				}
+				break;
+			case KeyEvent.VK_RIGHT :
+				if(bomberman.moverDerecha()){
+					movimientoThread = new MovimientoThread(this); //Cambio
+					movimientoThread.setDir("derecha");
+					movimientoThread.start();
+				}
+				break;
+			case KeyEvent.VK_A :
+				Bomba b=bomberman.dejarBomba();
+				if(b!=null)
+				{
+				
+					gTab.dejarBomba(mPosicion,b);
+				
+				}
+				break;
+		}
+		}
+	}
 	
 }

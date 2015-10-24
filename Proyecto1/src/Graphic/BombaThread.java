@@ -10,9 +10,10 @@ public class BombaThread extends Thread{
 	public void run(){
 		
 		try {
-			System.out.println("Thread de bomba viejaaaa");
+			
 			sleep(5000);
 			bomba.destruir();
+			
 			
 		} catch (InterruptedException e) {
 			

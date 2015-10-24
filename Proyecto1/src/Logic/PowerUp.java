@@ -41,6 +41,10 @@ public abstract class PowerUp {
     	ubicacion=p;
     }
 
+    /**
+     * retorna el atributo ubicacion 
+     * @return Posicion
+     */
     public Posicion getPosicion(){return ubicacion;}
     
 }

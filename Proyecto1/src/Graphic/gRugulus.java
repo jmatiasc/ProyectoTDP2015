@@ -18,12 +18,12 @@ public class gRugulus extends gEntidad {
 		this.jugador=jugador;
 		
 		
-		this.mImages[0] = new ImageIcon(this.getClass().getResource("/BattleCity/up2.png"));
-		this.mImages[1] = new ImageIcon(this.getClass().getResource("/BattleCity/down2.png"));
-		this.mImages[2] = new ImageIcon(this.getClass().getResource("/BattleCity/left2.png"));
-		this.mImages[3] = new ImageIcon(this.getClass().getResource("/BattleCity/right2.png"));
+		this.mImages[0] = new ImageIcon(this.getClass().getResource("/imagenes/up2.png"));
+		this.mImages[1] = new ImageIcon(this.getClass().getResource("/imagenes/down2.png"));
+		this.mImages[2] = new ImageIcon(this.getClass().getResource("/imagenes/left2.png"));
+		this.mImages[3] = new ImageIcon(this.getClass().getResource("/imagenes/right2.png"));
 		
-		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/BattleCity/explotion.png"));
+		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
 	}
 	
 	public void mover() {

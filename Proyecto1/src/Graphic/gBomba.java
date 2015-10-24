@@ -3,12 +3,12 @@ package Graphic;
 	import java.awt.Point;
 
 	import javax.swing.Icon;
-	import javax.swing.ImageIcon;
-	import javax.swing.JLabel;
-	import Logic.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
+import Logic.*;
 
-	import java.awt.Point;
+import java.awt.Point;
 public class gBomba{
 	
 
@@ -29,7 +29,7 @@ public class gBomba{
 		public gBomba(Bomba b,gTablero t){
 			//this.mPosicion  = new Point(x, y);
 			bomba=b;
-			imgBomba = new ImageIcon(this.getClass().getResource("/BattleCity/muerte.png"));
+			imgBomba = new ImageIcon(this.getClass().getResource("/imagenes/bomba.gif"));
 			this.mGrafico = new JLabel(imgBomba);
 			gTab = t; //Cambio
 			
@@ -53,6 +53,7 @@ public class gBomba{
 				this.mGrafico.setIcon(null);
 				bomba.explotar();
 				gTab.mostrarExplosion(getPosicion());
+				
 		}
 		
 		
@@ -63,11 +64,14 @@ public class gBomba{
 			
 		}
 		
+		
+		
 		public void dejarBomba(){
 			mGrafico.setIcon(imgBomba);
 		}
 		
 		
+	
 		
 	}
 
