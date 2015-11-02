@@ -15,7 +15,8 @@ public class gTablero {
 	
 	private Tablero t;
 	
-	private RugulusThread mRugulus[];
+	private Thread Enemigos[];
+	
 	
 	private gJugador mJugador;
 	
@@ -43,33 +44,53 @@ public class gTablero {
 		gui.add(this.mJugador.getGrafico());
 		
 		// Creo los malos y agrego a la gui su grafico.
-		this.mRugulus = new RugulusThread[3];
+		this.Enemigos = new Thread[6];
 		
 		//agrego los rugulus en posiciones que coinciden con las que creo los rugulus en el tablero
-		Enemigo rug[]=t.getEnemigos() ;
+		Enemigo enemig[]=t.getEnemigos() ;
 		
-		//gRugulus rugulus1 = new gRugulus(32,22*32,11*32,rug[0],mJugador);
-		gRugulus rugulus1 = new gRugulus(32,rug[0].getPosicion().getEjeX()*32,rug[0].getPosicion().getEjeY()*32,rug[0],mJugador);
-		mRugulus[0] = new RugulusThread(rugulus1);
+		
+		
+		gRugulus rugulus1 = new gRugulus(32,enemig[0].getPosicion().getEjeX()*32,enemig[0].getPosicion().getEjeY()*32,enemig[0],mJugador);
+		Enemigos[0] = new RugulusThread(rugulus1);
 		gui.add(rugulus1.getGrafico());
 		
 		
 		
-		//gRugulus rugulus2 = new gRugulus(32,17*32,2*32,rug[1],mJugador);
-		gRugulus rugulus2 = new gRugulus(32,rug[1].getPosicion().getEjeX()*32,rug[1].getPosicion().getEjeY()*32,rug[1],mJugador);
-		mRugulus[1] = new RugulusThread(rugulus2);
+		
+		gRugulus rugulus2 = new gRugulus(32,enemig[1].getPosicion().getEjeX()*32,enemig[1].getPosicion().getEjeY()*32,enemig[1],mJugador);
+		Enemigos[1] = new RugulusThread(rugulus2);
 		gui.add(rugulus2.getGrafico());
 		
 		
 		
-		//gRugulus rugulus3 = new gRugulus(32,12*32,9*32,rug[2],mJugador);
-		gRugulus rugulus3 = new gRugulus(32,rug[2].getPosicion().getEjeX()*32,rug[2].getPosicion().getEjeY()*32,rug[2],mJugador);
-		mRugulus[2] = new RugulusThread(rugulus3);
+		
+		gRugulus rugulus3 = new gRugulus(32,enemig[2].getPosicion().getEjeX()*32,enemig[2].getPosicion().getEjeY()*32,enemig[2],mJugador);
+		Enemigos[2] = new RugulusThread(rugulus3);
 		gui.add(rugulus3.getGrafico());
 		
-		this.mRugulus[0].start();
-		this.mRugulus[1].start();
-		this.mRugulus[2].start();
+		
+		
+		gAltair altair1 = new gAltair(32,enemig[3].getPosicion().getEjeX()*32,enemig[3].getPosicion().getEjeY()*32,enemig[3],mJugador);
+		Enemigos[3] = new AltairThread(altair1);
+		gui.add(altair1.getGrafico());
+		
+		
+		gAltair altair2 = new gAltair(32,enemig[4].getPosicion().getEjeX()*32,enemig[4].getPosicion().getEjeY()*32,enemig[4],mJugador);
+		Enemigos[4] = new AltairThread(altair2);
+		gui.add(altair2.getGrafico());
+		
+		gSirius Sirius = new gSirius(32,enemig[5].getPosicion().getEjeX()*32,enemig[5].getPosicion().getEjeY()*32,enemig[5],mJugador);
+		Enemigos[5] = new SiriusThread(Sirius);
+		gui.add(Sirius.getGrafico());
+		
+		
+		this.Enemigos[0].start();
+		this.Enemigos[1].start();
+		this.Enemigos[2].start();
+		this.Enemigos[3].start();
+		this.Enemigos[4].start();
+		this.Enemigos[5].start();
 		
 		
 		velocidad=new PowerUpVelocidad(3*32,6*32);

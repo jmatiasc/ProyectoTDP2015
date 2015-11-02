@@ -92,37 +92,38 @@ public class Tablero {
       //ENEMIGOS
     	Enemigo rugulus1=new Rugulus(new Posicion(22,11),this);
     	this.obtenerCelda(rugulus1.getPosicion()).getContenido().setEnemigo(rugulus1);
-    	//rugulus1.setPosicion(new Posicion(22,11));
+    	
     	
     	
     	
     	Enemigo rugulus2=new Rugulus(new Posicion(17,2),this);
     	this.obtenerCelda(rugulus2.getPosicion()).getContenido().setEnemigo(rugulus2);
-    	//rugulus2.setPosicion(new Posicion(17,2));
+    	
     	
     	
     	
     	Enemigo rugulus3=new Rugulus(new Posicion(12,9),this);
     	this.obtenerCelda(rugulus3.getPosicion()).getContenido().setEnemigo(rugulus3);
-    	//rugulus3.setPosicion(new Posicion(12,9));
     	
-    	//Enemigo altair1=new Altair(this);
-    	//altair1.setPosicion(new Posicion(2,6));
     	
-    	//Enemigo altair2=new Altair(this);
-    	//altair2.setPosicion(new Posicion(23,6));
+    	Enemigo altair1=new Altair(new Posicion(2,6),this);
+    	this.obtenerCelda(altair1.getPosicion()).getContenido().setEnemigo(altair1);
     	
-    	//Enemigo sirius=new Sirius(personaje,this);
-    	//sirius.setPosicion(new Posicion(20,11));
+    	Enemigo altair2=new Altair(new Posicion(23,6),this);
+    	this.obtenerCelda(altair2.getPosicion()).getContenido().setEnemigo(altair2);
+    	
+    	Enemigo sirius=new Sirius(new Posicion(20,11),this,personaje);
+    	this.obtenerCelda(sirius.getPosicion()).getContenido().setEnemigo(sirius);
+    	
   
     //lleno el arreglo de enemigos
     	misEnemigos=new Enemigo[6];
     	misEnemigos[0]=rugulus1;
     	misEnemigos[1]=rugulus2;
     	misEnemigos[2]=rugulus3;
-    	//misEnemigos[3]=altair1;
-    	//misEnemigos[4]=altair2;
-    	//misEnemigos[5]=sirius;
+    	misEnemigos[3]=altair1;
+    	misEnemigos[4]=altair2;
+    	misEnemigos[5]=sirius;
         
     	//creo PowerUp Velocidad
     	velocidad=new SpeedUp(personaje);
