@@ -22,7 +22,7 @@ public class gTablero {
 	
 	private ImageIcon paredI;
 	private ImageIcon paredD;
-
+	private ImageIcon camino;
 	
 	private GUI gui;
 	
@@ -42,6 +42,9 @@ public class gTablero {
 		paredI= new ImageIcon((this.getClass().getResource("/imagenes/pared.png")));
 	
 		paredD= new ImageIcon((this.getClass().getResource("/imagenes/paredD.png")));
+		
+		camino= new ImageIcon((this.getClass().getResource("/imagenes/camino.png")));
+		
 		
 		
 		// Creo el jugador y lo agrego el grafico a la gui.
@@ -102,9 +105,9 @@ public class gTablero {
 	
 		
 		
-		
-		ponerPared(gui);
 		ponerParedD(t.getPosDestructibles(),gui);
+		ponerPared(gui);
+		
 		
 		
 		
@@ -186,32 +189,36 @@ public class gTablero {
 	        		labelPared.setBounds(h*32,0, 32,32);
 		        	}
 		        	else 
-		        		if(h==0){  JLabel labelPared=new JLabel (paredI);
-		        		gui.add(labelPared);
-		        		labelPared.setBounds(0, n*32, 32,32);
-			        	}
-		        		else
-		        			if(n==12){
-		        				 JLabel labelPared=new JLabel (paredI);
-		 		        		gui.add(labelPared);
-		 		        		labelPared.setBounds(h*32, n*32, 32,32);
-		    		        	}
-		    		        	else 
-		    		        		if(h==30){
-		    		        			 JLabel labelPared=new JLabel (paredI);
-		 		 		        		gui.add(labelPared);
-		 		 		        		labelPared.setBounds(h*32, n*32, 32,32);
-		    			        	
-		    			        	}
-			        	else 
-			        		if(h%2==0 && n%2==0){
-			        			 JLabel labelPared=new JLabel (paredI);
+		        		if(h==0){ 
+		        			JLabel labelPared=new JLabel (paredI);
+		        			gui.add(labelPared);
+		        			labelPared.setBounds(0, n*32, 32,32);
+				        	}
+			        		else
+			        			if(n==12){
+			        				 JLabel labelPared=new JLabel (paredI);
 			 		        		gui.add(labelPared);
 			 		        		labelPared.setBounds(h*32, n*32, 32,32);
-				        	
-				        	}
-	        		
-			        			 
+			    		        	}
+			    		        	else 
+			    		        		if(h==30){
+			    		        			 JLabel labelPared=new JLabel (paredI);
+			 		 		        		gui.add(labelPared);
+			 		 		        		labelPared.setBounds(h*32, n*32, 32,32);
+			    			        	
+			    			        		}
+								        	else 
+								        		if(h%2==0 && n%2==0){
+								        			 JLabel labelPared=new JLabel (paredI);
+								 		        		gui.add(labelPared);
+								 		        		labelPared.setBounds(h*32, n*32, 32,32);
+									        	}
+										        	/*else {
+										        		 JLabel labelPared=new JLabel (camino);
+									 		        		gui.add(labelPared);
+									 		        		labelPared.setBounds(h*32, n*32, 32,32);
+										        		
+										        	}	*/ 
 				        	  
 			        			
 	        }
@@ -250,7 +257,7 @@ public class gTablero {
 		
 			}
 		public void mostrarExplosion(Point p,int alcance){
-			//cuando alcance es 1
+			
 					Point  arriba[]=new Point[alcance];
 					Point abajo[]=new Point[alcance];
 					Point izquierda[]=new Point[alcance];
@@ -299,6 +306,7 @@ public class gTablero {
 					
 				}
 				
+
 				ThreadRetardo t=new ThreadRetardo(arreglo,gui);
 				t.start();
 				
