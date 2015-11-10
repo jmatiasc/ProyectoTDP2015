@@ -15,8 +15,14 @@ public class Tablero {
     protected Enemigo [] misEnemigos;
     protected Pared[] paredes;
     protected Celda[][] matrizCeldas;
+    protected Posicion [] posDestructible;
+    
+    
+    //CAMBIAR POR UN ARREGLO DE POWERUPS 
     protected SpeedUp velocidad;
     protected Bombality bombality;
+    protected Fatality fatality;
+    protected Masacrality masacrality;
 
     /**
      * @param Alto 
@@ -45,6 +51,14 @@ public class Tablero {
         
         
         //AGREGO LAS PAREDES INDESTRUCTIBLES A LAS CELDAS
+        int cantIndestructibles=81;
+        Random num=new Random();
+		int azar=0;
+		posDestructible=new Posicion[81];
+		int ult=0;
+		
+		
+		
         for(int h=0;h<Ancho;h++){
 	        for(int n=0;n<Alto;n++){
 	        	
@@ -74,7 +88,18 @@ public class Tablero {
 				        	}
 	        				//AGREGO AL RESTO TODAS NoPared para prototipo
 			        		else{
-			        			matrizCeldas[h][n].setContenido(new NoPared(null));  
+			        			if(cantIndestructibles!=0 && h!=1 && h!=2 && n!=1 && n!=2){
+			        			azar=num.nextInt()%2;
+			        			if(azar==1){
+			        				matrizCeldas[h][n].setContenido(new Pared());
+			        				matrizCeldas[h][n].getContenido().setEstado(new Destructible(null));
+			        				posDestructible[ult]=new Posicion(h,n);
+			        				ult++;
+			        				cantIndestructibles--;
+			        				} 
+			        			else matrizCeldas[h][n].setContenido(new NoPared(null));  
+			        			}
+			        			else  matrizCeldas[h][n].setContenido(new NoPared(null));
 				        	  }
 			        			
 	        }
@@ -82,11 +107,9 @@ public class Tablero {
         
        
         //LAS PAREDES DESTRUCTIBLES SE AGREGAN EN LUGARES AL AZAR, el 50% de las celdas que aun no han sido ocupadas(TOTAL 403,TOTAL DE DESOCUPADAS 160, TOTAL OCUPADAS(INDESTRUCTIBLES)=243)
+        //DEBO AGREGAR 81 PAREDES DESTRUCTIBLES
         
-        /**for(int t=0;t<81;t++){
-        	
-        }
-        **/
+        
         
         
       //ENEMIGOS
@@ -136,6 +159,16 @@ public class Tablero {
     	obtenerCelda(bombality.getPosicion()).getContenido().setPowerUp(bombality);
     	
     	
+    	fatality=new Fatality(personaje);
+    	fatality.setPosicion(new Posicion(6,11));
+    	obtenerCelda(fatality.getPosicion()).getContenido().setPowerUp(fatality);
+    	
+    	
+    	masacrality=new Masacrality(personaje);
+    	masacrality.setPosicion(new Posicion(10,11));
+    	obtenerCelda(masacrality.getPosicion()).getContenido().setPowerUp(masacrality);
+    	
+    	
     }
 
     
@@ -164,9 +197,21 @@ public class Tablero {
     	return matrizCeldas;
     }
     
+    public Posicion [] getPosDestructibles(){
+    	return posDestructible;
+    }
+    
+    
+    
     public SpeedUp getVelocidad(){
     	return velocidad;
     }
  
     public Bombality getBombality(){return bombality;}
+    
+    
+    
+    public Fatality getFatality(){	return fatality;}
+        
+    public Masacrality getMasacrality(){return masacrality;}
 }

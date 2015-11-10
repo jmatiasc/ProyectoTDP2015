@@ -62,6 +62,7 @@ public class Bomba {
 	 * Aumenta la cantidad de bombas de Bomberman luego de que la bomba explota.
 	 */
     public void explotar() {
+    	if(!bomberman.GetModoDios())
     	bomberman.aumentarCantBombas();
     }
     
@@ -84,5 +85,8 @@ public class Bomba {
 				j++;
 	   	}	
 	    return suma;
+    }
+    public int getAlcance(){
+    	return alcance;
     }
 }

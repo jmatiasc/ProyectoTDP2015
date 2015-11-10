@@ -21,13 +21,19 @@ public class gTablero {
 	private gJugador mJugador;
 	
 	private ImageIcon paredI;
+	private ImageIcon paredD;
 
 	
 	private GUI gui;
 	
+	
+	//HACER ARREGLO 
 	private PowerUpVelocidad velocidad;
 	private PowerUpBombality bombality;
-
+	private PowerUpFatality fatality;
+	private PowerUpMasacrality masacrality;
+	
+	
 	private gBomba bomba;
 	
 	public gTablero(GUI gui){
@@ -35,7 +41,7 @@ public class gTablero {
 		
 		paredI= new ImageIcon((this.getClass().getResource("/imagenes/pared.png")));
 	
-		
+		paredD= new ImageIcon((this.getClass().getResource("/imagenes/paredD.png")));
 		
 		
 		// Creo el jugador y lo agrego el grafico a la gui.
@@ -85,14 +91,24 @@ public class gTablero {
 		gui.add(Sirius.getGrafico());
 		
 		
-		this.Enemigos[0].start();
-		this.Enemigos[1].start();
-		this.Enemigos[2].start();
-		this.Enemigos[3].start();
-		this.Enemigos[4].start();
-		this.Enemigos[5].start();
+		//this.Enemigos[0].start();
+		//this.Enemigos[1].start();
+		//this.Enemigos[2].start();
+		//this.Enemigos[3].start();
+		//this.Enemigos[4].start();
+		//this.Enemigos[5].start();
 		
 		
+	
+		
+		
+		
+		ponerPared(gui);
+		ponerParedD(t.getPosDestructibles(),gui);
+		
+		
+		
+		//POWER UPS!!!HACER ARREGLO PLEASE
 		velocidad=new PowerUpVelocidad(3*32,6*32);
 		gui.add(velocidad.getGrafico());
 		
@@ -100,10 +116,18 @@ public class gTablero {
 		bombality=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
 		
 		gui.add(bombality.getGrafico());
-		ponerPared(gui);
+		
+		
+		Posicion posF=t.getFatality().getPosicion();
+		fatality=new PowerUpFatality(posF.getEjeX()*32,posF.getEjeY()*32);
+		gui.add(fatality.getGrafico());
 		
 		
 		
+		
+		Posicion posM=t.getMasacrality().getPosicion();
+		masacrality=new PowerUpMasacrality(posM.getEjeX()*32,posM.getEjeY()*32);
+		gui.add(masacrality.getGrafico());
 		
 		
 	}
@@ -130,6 +154,20 @@ public class gTablero {
 				bombality.destruir();
 				this.bombality=null;}
 			}
+		
+		if (fatality!=null){
+			if(fatality.getPosicion().equals(mJugador.getPosicion())){
+				mJugador.aumentarAlcance();
+				fatality.destruir();
+				this.fatality=null;}
+			}
+		if (masacrality!=null){
+			if(masacrality.getPosicion().equals(mJugador.getPosicion())){
+				mJugador.activarModoDios();
+				masacrality.destruir();
+				this.masacrality=null;}
+			}
+		
 	}
 	
 	public void destruir(int malo) {
@@ -179,6 +217,18 @@ public class gTablero {
 	        }
 		}}
 		
+	
+		private void ponerParedD(Posicion[] pos,GUI gui){
+			int i=0;
+			while(pos[i+1]!=null || i==pos.length){
+				 JLabel labelPared=new JLabel (paredD);
+	        		gui.add(labelPared);
+	        		labelPared.setBounds(pos[i].getEjeX()*32, pos[i].getEjeY()*32, 32,32);
+	        		i++;
+			}
+		}
+	
+		
 		public void matarBomberman(){
 			mJugador.destruir();
 
@@ -199,26 +249,28 @@ public class gTablero {
 					
 		
 			}
-		public void mostrarExplosion(Point p){
+		public void mostrarExplosion(Point p,int alcance){
 			//cuando alcance es 1
-					Point  arriba[]=new Point[1];
-					Point abajo[]=new Point[1];
-					Point izquierda[]=new Point[1];
-					Point derecha[]=new Point[1];
+					Point  arriba[]=new Point[alcance];
+					Point abajo[]=new Point[alcance];
+					Point izquierda[]=new Point[alcance];
+					Point derecha[]=new Point[alcance];
 					
 			
 			
-			for(int i=0; i<1;i++){
-	    		 arriba[i]=new Point(p.x,p.y-(i+32));
+			for(int i=0; i<alcance;i++){
+	    		 arriba[i]=new Point(p.x,p.y-(i*32+32));
 	    		
-	    		 abajo[i]=new Point(p.x,p.y+(i+32));
-	    		 izquierda[i]=new Point(p.x-(i+32),p.y);
-	    		 derecha[i]=new Point(p.x+(i+32),p.y);
+	    		 abajo[i]=new Point(p.x,p.y+(i*32+32));
+	    		 izquierda[i]=new Point(p.x-(i*32+32),p.y);
+	    		 derecha[i]=new Point(p.x+(i*32+32),p.y);
 	    		 }
 			
-				Explosion [] arreglo=new Explosion[5];
-			
-				int a=0;
+				int cant=alcance*4+1;
+				Explosion [] arreglo=new Explosion[cant];
+				arreglo[0]=new Explosion(p);
+				
+				int a=1;
 				for(int  i=0; i<arriba.length;i++){
 				arreglo[a]=new Explosion(arriba[i]);
 				a++;
@@ -238,7 +290,7 @@ public class gTablero {
 					arreglo[a]=new Explosion(izquierda[i]);
 					a++;
 				}
-				arreglo[4]=new Explosion(p);
+				
 				
 				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png")); //Agregue esto 1/2
 				for(int i=0; i<arreglo.length;i++){

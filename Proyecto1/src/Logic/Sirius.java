@@ -27,10 +27,7 @@ public class Sirius extends Enemigo {
     	
     	if(ubicacion.getEjeX()!=0 && ubicacion.getEjeY()!=0)
     	{
-    		//Random num=new Random();
-    		//int n=num.nextInt()%4;
-    		//if(n<0)
-    		//	n=Math.abs(n);
+    		
     		Posicion p;
     		
     		
@@ -99,7 +96,15 @@ public class Sirius extends Enemigo {
     	}
     	return 3;
     	
-    	
     }
-
 }
+
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    
+

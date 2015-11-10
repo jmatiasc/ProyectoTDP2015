@@ -169,4 +169,18 @@ public class gJugador extends gEntidad {
 		}
 	}
 	
+	
+	
+	public void aumentarAlcance() {
+		//bomberman.aumentarAlcance();
+		
+	}
+
+	public void activarModoDios() {
+		MasacralityThread mas=new MasacralityThread(bomberman);
+		mas.start();
+		
+		
+	}
+	
 }

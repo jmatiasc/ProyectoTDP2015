@@ -13,12 +13,14 @@ public class Bomberman extends Personaje {
 	protected int alcanceBomba;
 	protected Tablero tablero;
 	protected int puntos;
+
     
 	/**
 	 * Constructor de la clase Bomberman.
 	 * @param t Tablero vinculado al Bomberman.
 	 */
     public  Bomberman(Tablero t) {
+
     	velocidad=32;
     	cantBombas=1;
     	alcanceBomba=1;
@@ -102,6 +104,7 @@ public class Bomberman extends Personaje {
      */
     public Bomba dejarBomba() {
     	if (cantBombas!=0) {
+    		if(!modoDios)
     		cantBombas--;
 	    	Bomba miBomba = new Bomba(ubicacion,alcanceBomba,tablero,this);
 	    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
@@ -131,6 +134,7 @@ public class Bomberman extends Personaje {
      */
     public void aumentarAlcance(){
     	alcanceBomba=alcanceBomba*2;
+    	
     }
     
     /**
@@ -160,19 +164,17 @@ public class Bomberman extends Personaje {
      */
     public void activarModoDios(){
     	modoDios=true;
-    	int auxVel=velocidad;
-        int auxCB=cantBombas;
-    	velocidad=99999999;
-        cantBombas=99999999;
-        try {
-        	Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-        modoDios=false;
-        int velocidad=auxVel;
-        int cantBombas=auxCB; 
+    
     }
+    
+    
+    
+    public void desactivarModoDios(){
+    	 modoDios=false;      
+    	
+    }
+    
+    
     
     /**
      * Consulta la posición de Bomberman.

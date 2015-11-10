@@ -52,7 +52,7 @@ public class gBomba{
 		protected void destruir() {
 				this.mGrafico.setIcon(null);
 				bomba.explotar();
-				gTab.mostrarExplosion(getPosicion());
+				gTab.mostrarExplosion(getPosicion(), bomba.getAlcance());
 				
 		}
 		
