@@ -23,7 +23,12 @@ public class Tablero {
     protected Bombality bombality;
     protected Fatality fatality;
     protected Masacrality masacrality;
-
+    //CAMBIANDO....
+    
+    protected PowerUp [] powerArreglo;
+    
+    
+    
     /**
      * @param Alto 
      * @param Ancho
@@ -57,8 +62,27 @@ public class Tablero {
 		posDestructible=new Posicion[81];
 		int ult=0;
 		
+		 //CAMBIANDO POR ARREGLO
+		    	
+		    	powerArreglo=new PowerUp[11];
+			
+		    	powerArreglo[0]=new SpeedUp(personaje);
+		    	powerArreglo[1]=new SpeedUp(personaje);
+		    	powerArreglo[2]=new SpeedUp(personaje);
+		    	powerArreglo[3]=new SpeedUp(personaje);
+		    	
+		    	powerArreglo[4]=new Fatality(personaje);
+		    	powerArreglo[5]=new Fatality(personaje);
+		    	powerArreglo[6]=new Fatality(personaje);
+		    	
+		    	powerArreglo[7]=new Bombality(personaje);
+		    	powerArreglo[8]=new Bombality(personaje);
+		    	powerArreglo[9]=new Bombality(personaje);
+		    	
+		    	powerArreglo[10]=new Masacrality(personaje);
+		    	
 		
-		
+		int cantPU=0;
         for(int h=0;h<Ancho;h++){
 	        for(int n=0;n<Alto;n++){
 	        	
@@ -91,12 +115,26 @@ public class Tablero {
 			        			if(cantIndestructibles!=0 && h!=1 && h!=2 && n!=1 && n!=2){
 			        			azar=num.nextInt()%2;
 			        			if(azar==1){
-			        				matrizCeldas[h][n].setContenido(new Pared());
-			        				matrizCeldas[h][n].getContenido().setEstado(new Destructible(null));
-			        				posDestructible[ult]=new Posicion(h,n);
-			        				ult++;
-			        				cantIndestructibles--;
-			        				} 
+			        				if(cantPU<11){
+			        					
+			        					matrizCeldas[h][n].setContenido(new Pared());
+			        					matrizCeldas[h][n].getContenido().setEstado(new Destructible(powerArreglo[cantPU]));
+			        					powerArreglo[cantPU].setPosicion(new Posicion(h,n));
+				        				posDestructible[ult]=new Posicion(h,n);
+				        				ult++;
+				        				cantPU++;
+				        				cantIndestructibles--;			        				
+			        				}
+			        				
+			        				else{
+					        				matrizCeldas[h][n].setContenido(new Pared());
+					        				matrizCeldas[h][n].getContenido().setEstado(new Destructible(null));
+					        				posDestructible[ult]=new Posicion(h,n);
+					        				ult++;
+					        				cantIndestructibles--;
+			        				}
+			        				
+			        			}
 			        			else matrizCeldas[h][n].setContenido(new NoPared(null));  
 			        			}
 			        			else  matrizCeldas[h][n].setContenido(new NoPared(null));
@@ -149,7 +187,7 @@ public class Tablero {
     	misEnemigos[5]=sirius;
         
     	//creo PowerUp Velocidad
-    	velocidad=new SpeedUp(personaje);
+    	/*velocidad=new SpeedUp(personaje);
     	velocidad.setPosicion(new Posicion(3,6));
     	obtenerCelda(velocidad.getPosicion()).getContenido().setPowerUp(velocidad);
     	
@@ -167,7 +205,8 @@ public class Tablero {
     	masacrality=new Masacrality(personaje);
     	masacrality.setPosicion(new Posicion(10,11));
     	obtenerCelda(masacrality.getPosicion()).getContenido().setPowerUp(masacrality);
-    	
+    	*/
+   
     	
     }
 
@@ -203,15 +242,7 @@ public class Tablero {
     
     
     
-    public SpeedUp getVelocidad(){
-    	return velocidad;
+    public PowerUp[] obtenerPowerUp(){
+    	return powerArreglo;
     }
- 
-    public Bombality getBombality(){return bombality;}
-    
-    
-    
-    public Fatality getFatality(){	return fatality;}
-        
-    public Masacrality getMasacrality(){return masacrality;}
 }

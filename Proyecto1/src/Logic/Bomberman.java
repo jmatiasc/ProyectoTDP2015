@@ -108,7 +108,7 @@ public class Bomberman extends Personaje {
     		cantBombas--;
 	    	Bomba miBomba = new Bomba(ubicacion,alcanceBomba,tablero,this);
 	    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
-	    	miBomba.activar(ubicacion);
+	    	puntos += miBomba.activar();
 	    	return miBomba;
 	    }
     	else 

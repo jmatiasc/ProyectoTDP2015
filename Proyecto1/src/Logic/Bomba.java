@@ -1,10 +1,6 @@
 package Logic;
 
-
-
-
-
-
+import java.util.*;
 
 /**
  * Clase Bomba
@@ -36,67 +32,36 @@ public class Bomba {
     * del alcance(x+alance,x-alcance,y+alcance,y-alcance), las agrega a una estructura y luego invoca a destruir
     * Modificar la bomba del bomberman, agregarle un NULL
     */
-	public void activar(Posicion p) {
-		
-					
-			
-				
-			
+	public int activar() {
+		/* Celda actual=miTablero.obtenerCelda(ubicacion);
+		Celda arriba[]=new Celda[alcance];
+		Celda abajo[]=new Celda[alcance];
+    	Celda izquierda[]=new Celda[alcance];
+    	Celda derecha[]=new Celda[alcance];
+    	 
+    	for(int i=0; i<alcance;i++){
+    		arriba[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-(i+1)));
+    		abajo[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+(i+1)));
+    		izquierda[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX()-(i+1),ubicacion.getEjeY()));
+    		derecha[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX()+(i+1),ubicacion.getEjeY()));}
+    	 
+    	//deben transcurrir 3 segundos antes de que explote
+    	int puntos=actual.destruir();
+    	 
+    	puntos+=explosion(arriba);
+    	puntos+=explosion(abajo);
+    	puntos+=explosion(izquierda);
+    	puntos+=explosion(derecha); 
+    	 
+    	return puntos;*/
+    	
+    	return 0;
     }
     
 	/**
 	 * Aumenta la cantidad de bombas de Bomberman luego de que la bomba explota.
 	 */
     public void explotar() {
-    	
-    	Posicion  arriba[]=new Posicion[alcance];
-		Posicion abajo[]=new Posicion[alcance];
-		Posicion izquierda[]=new Posicion[alcance];
-		Posicion derecha[]=new Posicion[alcance];
-				
-		
-		
-		for(int i=0; i<alcance;i++){
-			
-			
-			 arriba[i]=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-(i));
-			 abajo[i]=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+(i));
-			 izquierda[i]=new Posicion(ubicacion.getEjeX()-(i),ubicacion.getEjeY());
-			 derecha[i]=new Posicion(ubicacion.getEjeX()+(i),ubicacion.getEjeY());
-			 }
-		
-			int cant=alcance*4+1;
-			Celda [] arreglo=new Celda[cant];
-			
-			arreglo[0]=miTablero.obtenerCelda(ubicacion);
-			
-			int a=1;
-			for(int  i=0; i<arriba.length;i++){
-			arreglo[a]=miTablero.obtenerCelda(arriba[i]);
-			a++;
-			}
-			
-			for(int i=0; i<abajo.length;i++){
-				arreglo[a]=miTablero.obtenerCelda(abajo[i]);
-				a++;
-			}
-			
-			for(int i=0; i<derecha.length;i++){
-				arreglo[a]=miTablero.obtenerCelda(derecha[i]);
-				a++;
-			}
-			
-			for(int i=0; i<izquierda.length;i++){
-				arreglo[a]=miTablero.obtenerCelda(izquierda[i]);
-				a++;
-			}
-    	
-    	
-    	for(int i=0; i<arreglo.length;i++){
-			arreglo[i].destruir();
-				
-			}
-    	
     	if(!bomberman.GetModoDios())
     	bomberman.aumentarCantBombas();
     }

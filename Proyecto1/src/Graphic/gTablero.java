@@ -22,16 +22,14 @@ public class gTablero {
 	
 	private ImageIcon paredI;
 	private ImageIcon paredD;
-	private ImageIcon camino;
+
 	
 	private GUI gui;
 	
 	
 	//HACER ARREGLO 
-	private PowerUpVelocidad velocidad;
-	private PowerUpBombality bombality;
-	private PowerUpFatality fatality;
-	private PowerUpMasacrality masacrality;
+	private PowerUp [] arregloP;
+	
 	
 	
 	private gBomba bomba;
@@ -42,9 +40,6 @@ public class gTablero {
 		paredI= new ImageIcon((this.getClass().getResource("/imagenes/pared.png")));
 	
 		paredD= new ImageIcon((this.getClass().getResource("/imagenes/paredD.png")));
-		
-		camino= new ImageIcon((this.getClass().getResource("/imagenes/camino.png")));
-		
 		
 		
 		// Creo el jugador y lo agrego el grafico a la gui.
@@ -94,42 +89,80 @@ public class gTablero {
 		gui.add(Sirius.getGrafico());
 		
 		
-		//this.Enemigos[0].start();
-		//this.Enemigos[1].start();
-		//this.Enemigos[2].start();
-		//this.Enemigos[3].start();
-		//this.Enemigos[4].start();
-		//this.Enemigos[5].start();
+		this.Enemigos[0].start();
+		this.Enemigos[1].start();
+		this.Enemigos[2].start();
+		this.Enemigos[3].start();
+		this.Enemigos[4].start();
+		this.Enemigos[5].start();
 		
 		
 	
 		
 		
-		ponerParedD(t.getPosDestructibles(),gui);
-		ponerPared(gui);
 		
+		ponerPared(gui);
+		ponerParedD(t.getPosDestructibles(),gui);
 		
 		
 		
 		//POWER UPS!!!HACER ARREGLO PLEASE
-		velocidad=new PowerUpVelocidad(3*32,6*32);
-		gui.add(velocidad.getGrafico());
-		
-		Posicion pos=t.getBombality().getPosicion();
-		bombality=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
-		
-		gui.add(bombality.getGrafico());
 		
 		
-		Posicion posF=t.getFatality().getPosicion();
-		fatality=new PowerUpFatality(posF.getEjeX()*32,posF.getEjeY()*32);
-		gui.add(fatality.getGrafico());
+		arregloP=t.obtenerPowerUp();
+		
+		Posicion pos=arregloP[0].getPosicion();
+		PowerUpVelocidad velocidad1=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(velocidad1.getGrafico());
+		
+		pos=arregloP[1].getPosicion();
+		PowerUpVelocidad velocidad2=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(velocidad2.getGrafico());
+		
+		pos=arregloP[2].getPosicion();
+		PowerUpVelocidad velocidad3=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(velocidad3.getGrafico());
+		
+		
+		pos=arregloP[3].getPosicion();
+		PowerUpVelocidad velocidad4=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(velocidad4.getGrafico());
+		//_____________________________________________________________________
+		
+		pos=arregloP[4].getPosicion();
+		PowerUpFatality fatality1=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(fatality1.getGrafico());
 		
 		
 		
+		pos=arregloP[5].getPosicion();
+		PowerUpFatality fatality2=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(fatality2.getGrafico());
 		
-		Posicion posM=t.getMasacrality().getPosicion();
-		masacrality=new PowerUpMasacrality(posM.getEjeX()*32,posM.getEjeY()*32);
+		
+		pos=arregloP[6].getPosicion();
+		PowerUpFatality fatality3=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(fatality3.getGrafico());
+		
+		//_____________________________________________________
+		pos=arregloP[7].getPosicion();
+		PowerUpBombality bombality1=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(bombality1.getGrafico());
+		
+		pos=arregloP[8].getPosicion();
+		PowerUpBombality bombality2=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(bombality2.getGrafico());
+
+
+		pos=arregloP[9].getPosicion();
+		PowerUpBombality bombality3=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
+		gui.add(bombality3.getGrafico());
+		
+		//____________________________________________________________________
+		
+		
+		pos=arregloP[10].getPosicion();
+		PowerUpMasacrality masacrality=new PowerUpMasacrality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(masacrality.getGrafico());
 		
 		
@@ -145,31 +178,16 @@ public class gTablero {
 	
 	//el chequeo lo debo cambiar a cada powerUp
 	private void chequeoColisiones(){
-		if (velocidad!=null){
-				if(velocidad.getPosicion().equals(mJugador.getPosicion())){
-					mJugador.aumentarVelocidad();
-					velocidad.destruir();
-					this.velocidad=null;}	
-				}
-		if (bombality!=null){
-			if(bombality.getPosicion().equals(mJugador.getPosicion())){
-				mJugador.aumentarBombas();
-				bombality.destruir();
-				this.bombality=null;}
-			}
 		
-		if (fatality!=null){
-			if(fatality.getPosicion().equals(mJugador.getPosicion())){
-				mJugador.aumentarAlcance();
-				fatality.destruir();
-				this.fatality=null;}
-			}
-		if (masacrality!=null){
-			if(masacrality.getPosicion().equals(mJugador.getPosicion())){
-				mJugador.activarModoDios();
-				masacrality.destruir();
-				this.masacrality=null;}
-			}
+		for(int i=0;i<arregloP.length;i++)
+			
+				if(arregloP[i].getPosicion().equals(mJugador.getPosicion())){
+					ImageIcon nada=new ImageIcon((this.getClass().getResource("/imagenes/nada.png")));
+					gui.add(new JLabel(nada));
+					arregloP[i]=null;
+					
+				}	
+		
 		
 	}
 	
@@ -189,36 +207,32 @@ public class gTablero {
 	        		labelPared.setBounds(h*32,0, 32,32);
 		        	}
 		        	else 
-		        		if(h==0){ 
-		        			JLabel labelPared=new JLabel (paredI);
-		        			gui.add(labelPared);
-		        			labelPared.setBounds(0, n*32, 32,32);
-				        	}
-			        		else
-			        			if(n==12){
-			        				 JLabel labelPared=new JLabel (paredI);
+		        		if(h==0){  JLabel labelPared=new JLabel (paredI);
+		        		gui.add(labelPared);
+		        		labelPared.setBounds(0, n*32, 32,32);
+			        	}
+		        		else
+		        			if(n==12){
+		        				 JLabel labelPared=new JLabel (paredI);
+		 		        		gui.add(labelPared);
+		 		        		labelPared.setBounds(h*32, n*32, 32,32);
+		    		        	}
+		    		        	else 
+		    		        		if(h==30){
+		    		        			 JLabel labelPared=new JLabel (paredI);
+		 		 		        		gui.add(labelPared);
+		 		 		        		labelPared.setBounds(h*32, n*32, 32,32);
+		    			        	
+		    			        	}
+			        	else 
+			        		if(h%2==0 && n%2==0){
+			        			 JLabel labelPared=new JLabel (paredI);
 			 		        		gui.add(labelPared);
 			 		        		labelPared.setBounds(h*32, n*32, 32,32);
-			    		        	}
-			    		        	else 
-			    		        		if(h==30){
-			    		        			 JLabel labelPared=new JLabel (paredI);
-			 		 		        		gui.add(labelPared);
-			 		 		        		labelPared.setBounds(h*32, n*32, 32,32);
-			    			        	
-			    			        		}
-								        	else 
-								        		if(h%2==0 && n%2==0){
-								        			 JLabel labelPared=new JLabel (paredI);
-								 		        		gui.add(labelPared);
-								 		        		labelPared.setBounds(h*32, n*32, 32,32);
-									        	}
-										        	/*else {
-										        		 JLabel labelPared=new JLabel (camino);
-									 		        		gui.add(labelPared);
-									 		        		labelPared.setBounds(h*32, n*32, 32,32);
-										        		
-										        	}	*/ 
+				        	
+				        	}
+	        		
+			        			 
 				        	  
 			        			
 	        }
@@ -257,7 +271,7 @@ public class gTablero {
 		
 			}
 		public void mostrarExplosion(Point p,int alcance){
-			
+			//cuando alcance es 1
 					Point  arriba[]=new Point[alcance];
 					Point abajo[]=new Point[alcance];
 					Point izquierda[]=new Point[alcance];
@@ -306,7 +320,6 @@ public class gTablero {
 					
 				}
 				
-
 				ThreadRetardo t=new ThreadRetardo(arreglo,gui);
 				t.start();
 				

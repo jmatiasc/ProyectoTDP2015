@@ -58,7 +58,4 @@ public class Celda {
         }
         return puntos;
     }
-    
-   
-    
 }
