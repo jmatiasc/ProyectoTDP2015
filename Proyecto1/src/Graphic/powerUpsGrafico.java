@@ -6,18 +6,25 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class PowerUpMasacrality extends powerUpsGrafico{
+public class powerUpsGrafico {
 
-
+	protected JLabel mGrafico;
+	protected Icon imagen;
 	
-	public PowerUpMasacrality(int x, int y){
-		super(x, y);
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/masacrality.png"));
-		
-
-		
-		
+	protected final int mWidth  = 32;
+	protected final int mHeight = 32;
+	
+	protected Point mPosicion;
+	
+	
+	
+	protected powerUpsGrafico(int x, int y) {	
+		this.mPosicion  = new Point(x, y);
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
 	}
+	
+	
+	
 	
 	public Point getPosicion() {
 		return this.mPosicion;

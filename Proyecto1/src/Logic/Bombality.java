@@ -14,6 +14,7 @@ public class Bombality extends PowerUp {
      */
 	public Bombality(Bomberman b) {
     	super(b);
+    	puntos=35;
     }
     
     /**

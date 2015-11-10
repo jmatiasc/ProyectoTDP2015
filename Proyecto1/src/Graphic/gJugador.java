@@ -14,7 +14,7 @@ public class gJugador extends gEntidad {
 
 	private gBomba bomba;
 	
-	private MovimientoThread movimientoThread;
+	
 	
 	public gJugador(int velocidad,Bomberman bom, int x, int y,Tablero tablero,gTablero gt) {
 		
@@ -37,7 +37,7 @@ public class gJugador extends gEntidad {
 		
 	}
 
-	/*public void mover(int dir){
+	public void mover(int dir){
 		
 		switch (dir){
 			case KeyEvent.VK_UP :
@@ -71,7 +71,7 @@ public class gJugador extends gEntidad {
 				break;
 				
 		}
-	}*/
+	}
 	
 	private int obtenerPosicionX(int x) {
 		int aux = x/32;
@@ -105,69 +105,9 @@ public class gJugador extends gEntidad {
 		//bomberman.aumentarCantBombas();
 	}
 
-	public void transicionArriba() {
-		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y-8);
-		super.mover(MOVIMIENTO_ARRIBA);
-	}
-	
-	public void transicionAbajo() {
-		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y+8);
-		super.mover(MOVIMIENTO_ABAJO);
-	}
-	
-	public void transicionIzquierda() {
-		this.mPosicion.setLocation(this.mPosicion.x-8,this.mPosicion.y);
-		super.mover(MOVIMIENTO_IZQUIERDA);
-	}
-	
-	public void transicionDerecha() {
-		this.mPosicion.setLocation(this.mPosicion.x+8,this.mPosicion.y);
-		super.mover(MOVIMIENTO_DERECHA);
-	}
 
-	public void mover(int dir){
-		if(bomberman!=null){
-		switch (dir){
-			case KeyEvent.VK_UP :
-				if(bomberman.moverArriba()){
-					movimientoThread = new MovimientoThread(this); //Cambio
-					movimientoThread.setDir("arriba");
-					movimientoThread.start();
-				}
-				break;
-			case KeyEvent.VK_DOWN :
-				if(bomberman.moverAbajo()){
-					movimientoThread = new MovimientoThread(this); //Cambio
-					movimientoThread.setDir("abajo");
-					movimientoThread.start();
-				}
-				break;
-			case KeyEvent.VK_LEFT :
-				if(bomberman.moverIzquierda()){
-					movimientoThread = new MovimientoThread(this); //Cambio
-					movimientoThread.setDir("izquierda");
-					movimientoThread.start();
-				}
-				break;
-			case KeyEvent.VK_RIGHT :
-				if(bomberman.moverDerecha()){
-					movimientoThread = new MovimientoThread(this); //Cambio
-					movimientoThread.setDir("derecha");
-					movimientoThread.start();
-				}
-				break;
-			case KeyEvent.VK_A :
-				Bomba b=bomberman.dejarBomba();
-				if(b!=null)
-				{
-				
-					gTab.dejarBomba(mPosicion,b);
-				
-				}
-				break;
-		}
-		}
-	}
+
+
 	
 	
 	
@@ -184,3 +124,4 @@ public class gJugador extends gEntidad {
 	}
 	
 }
+

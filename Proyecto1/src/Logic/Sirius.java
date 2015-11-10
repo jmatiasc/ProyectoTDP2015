@@ -17,6 +17,7 @@ public class Sirius extends Enemigo {
         velocidad=1;
         bomberman=b;
         modoDios=false;
+        puntos=50;
     }
 
     

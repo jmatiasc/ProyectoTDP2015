@@ -29,7 +29,7 @@ public class gSirius extends gEntidad{
 		public void mover() {
 			// Calculo la siguiente direccion aleatoriamente.
 			
-			
+			if(mSir.estaVivo()){
 			int n=mSir.mover();
 			if (n!=-1){
 			switch (n) {
@@ -55,7 +55,7 @@ public class gSirius extends gEntidad{
 			
 			super.mover(n);
 			
-			}
+			}}
 		}
 		
 		

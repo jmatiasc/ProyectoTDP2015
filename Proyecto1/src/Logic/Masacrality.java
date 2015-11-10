@@ -15,6 +15,7 @@ public class Masacrality extends PowerUp
     public Masacrality(Bomberman b)
     {
     	super(b);
+    	puntos=50;
     }
     
     /**

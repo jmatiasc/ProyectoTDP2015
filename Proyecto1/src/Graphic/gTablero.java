@@ -29,23 +29,30 @@ public class gTablero {
 	
 	//HACER ARREGLO 
 	private PowerUp [] arregloP;
+	private powerUpsGrafico[] arregloPGrafico;
 	
-	
+	private gPared [] arregloParedD;
 	
 	private gBomba bomba;
 	
 	public gTablero(GUI gui){
 		this.gui=gui;
+		// Creo el jugador y lo agrego el grafico a la gui.
+				t = new Tablero(13,31);
+				this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
+				gui.add(this.mJugador.getGrafico());
+		
+		
+		arregloParedD=new gPared[t.getPosDestructibles().length];
 		
 		paredI= new ImageIcon((this.getClass().getResource("/imagenes/pared.png")));
 	
 		paredD= new ImageIcon((this.getClass().getResource("/imagenes/paredD.png")));
 		
+
 		
-		// Creo el jugador y lo agrego el grafico a la gui.
-		t = new Tablero(13,31);
-		this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
-		gui.add(this.mJugador.getGrafico());
+		
+		
 		
 		// Creo los malos y agrego a la gui su grafico.
 		this.Enemigos = new Thread[6];
@@ -92,9 +99,9 @@ public class gTablero {
 		this.Enemigos[0].start();
 		this.Enemigos[1].start();
 		this.Enemigos[2].start();
-		this.Enemigos[3].start();
-		this.Enemigos[4].start();
-		this.Enemigos[5].start();
+		//this.Enemigos[3].start();
+		//this.Enemigos[4].start();
+		//this.Enemigos[5].start();
 		
 		
 	
@@ -110,53 +117,69 @@ public class gTablero {
 		
 		
 		arregloP=t.obtenerPowerUp();
+		arregloPGrafico=new  powerUpsGrafico[11];
 		
 		Posicion pos=arregloP[0].getPosicion();
 		PowerUpVelocidad velocidad1=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(velocidad1.getGrafico());
+		arregloPGrafico[0]=velocidad1;
+		
 		
 		pos=arregloP[1].getPosicion();
 		PowerUpVelocidad velocidad2=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(velocidad2.getGrafico());
+		arregloPGrafico[1]=velocidad2;
+		
 		
 		pos=arregloP[2].getPosicion();
 		PowerUpVelocidad velocidad3=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(velocidad3.getGrafico());
-		
+		arregloPGrafico[2]=velocidad3;
 		
 		pos=arregloP[3].getPosicion();
 		PowerUpVelocidad velocidad4=new PowerUpVelocidad(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(velocidad4.getGrafico());
+		arregloPGrafico[3]=velocidad4;
 		//_____________________________________________________________________
 		
 		pos=arregloP[4].getPosicion();
 		PowerUpFatality fatality1=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(fatality1.getGrafico());
+		arregloPGrafico[4]=fatality1;
 		
 		
 		
 		pos=arregloP[5].getPosicion();
 		PowerUpFatality fatality2=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(fatality2.getGrafico());
+		arregloPGrafico[5]=fatality2;
+
 		
 		
 		pos=arregloP[6].getPosicion();
 		PowerUpFatality fatality3=new PowerUpFatality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(fatality3.getGrafico());
+		arregloPGrafico[6]=fatality3;
+
 		
 		//_____________________________________________________
 		pos=arregloP[7].getPosicion();
 		PowerUpBombality bombality1=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(bombality1.getGrafico());
+		arregloPGrafico[7]=bombality1;
+
 		
 		pos=arregloP[8].getPosicion();
 		PowerUpBombality bombality2=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(bombality2.getGrafico());
+		arregloPGrafico[8]=bombality2;
 
 
 		pos=arregloP[9].getPosicion();
 		PowerUpBombality bombality3=new PowerUpBombality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(bombality3.getGrafico());
+		arregloPGrafico[9]=bombality3;
+
 		
 		//____________________________________________________________________
 		
@@ -164,6 +187,8 @@ public class gTablero {
 		pos=arregloP[10].getPosicion();
 		PowerUpMasacrality masacrality=new PowerUpMasacrality(pos.getEjeX()*32,pos.getEjeY()*32);
 		gui.add(masacrality.getGrafico());
+		arregloPGrafico[10]=masacrality;
+
 		
 		
 	}
@@ -179,16 +204,20 @@ public class gTablero {
 	//el chequeo lo debo cambiar a cada powerUp
 	private void chequeoColisiones(){
 		
-		for(int i=0;i<arregloP.length;i++)
+		
+		for(int i=0;i<arregloP.length;i++){	
+			if(arregloP[i]!=null){
+			Point pos=new Point(arregloP[i].getPosicion().getEjeX()*32,arregloP[i].getPosicion().getEjeY()*32);
 			
-				if(arregloP[i].getPosicion().equals(mJugador.getPosicion())){
+			if(pos.equals(mJugador.getPosicion())){		
 					ImageIcon nada=new ImageIcon((this.getClass().getResource("/imagenes/nada.png")));
 					gui.add(new JLabel(nada));
+					arregloPGrafico[i].getGrafico().setIcon(nada);
 					arregloP[i]=null;
 					
-				}	
+				}	}
 		
-		
+		}
 	}
 	
 	public void destruir(int malo) {
@@ -241,10 +270,17 @@ public class gTablero {
 	
 		private void ponerParedD(Posicion[] pos,GUI gui){
 			int i=0;
+			
+			
 			while(pos[i+1]!=null || i==pos.length){
-				 JLabel labelPared=new JLabel (paredD);
-	        		gui.add(labelPared);
-	        		labelPared.setBounds(pos[i].getEjeX()*32, pos[i].getEjeY()*32, 32,32);
+				// JLabel labelPared=new JLabel (paredD);
+	        	//	gui.add(labelPared);
+	        	//	labelPared.setBounds(pos[i].getEjeX()*32, pos[i].getEjeY()*32, 32,32);
+				
+				gPared nuevo=new gPared(new Point(pos[i].getEjeX()*32,pos[i].getEjeY()*32));
+				arregloParedD[i]=nuevo;
+				gui.add(nuevo.getGrafico());
+				
 	        		i++;
 			}
 		}
@@ -291,10 +327,11 @@ public class gTablero {
 				Explosion [] arreglo=new Explosion[cant];
 				arreglo[0]=new Explosion(p);
 				
+				
 				int a=1;
 				for(int  i=0; i<arriba.length;i++){
-				arreglo[a]=new Explosion(arriba[i]);
-				a++;
+					arreglo[a]=new Explosion(arriba[i]);
+					a++;
 				}
 				
 				for(int i=0; i<abajo.length;i++){
@@ -312,13 +349,21 @@ public class gTablero {
 					a++;
 				}
 				
-				
-				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png")); //Agregue esto 1/2
+				ImageIcon nada = new ImageIcon(this.getClass().getResource("/imagenes/nada.png")); 
+				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png")); 
 				for(int i=0; i<arreglo.length;i++){
+					if(!perteneceAParedD(arreglo[i].getPosicion())){
 					gui.add(arreglo[i].getGrafico());
-					arreglo[i].getGrafico().setIcon(mPowerUpV);//agregue esto 2/2
-					
+					arreglo[i].getGrafico().setIcon(mPowerUpV);}
+					else {
+						
+						//obtenerPared(arreglo[i].getPosicion()).getGrafico().setIcon(nada);
+						obtenerPared(arreglo[i].getPosicion()).destruir();
+						destruirPared(arreglo[i].getPosicion());
+					}
 				}
+				gui.sumarPuntos(t.getBomberman().getPuntos());
+				
 				
 				ThreadRetardo t=new ThreadRetardo(arreglo,gui);
 				t.start();
@@ -326,6 +371,41 @@ public class gTablero {
 				
 				
 			}
+		
+		
+		private boolean perteneceAParedD(Point p){
+			
+			
+			for(int i=0;i<arregloParedD.length;i++){
+				if(arregloParedD[i]!=null)
+				if(arregloParedD[i].getPosicion().equals(p))return true;
+			}
+			return false;
+			
+		}
+		
+		private gPared obtenerPared(Point p){
+			for(int i=0;i<arregloParedD.length;i++){
+				if(arregloParedD[i].getPosicion().equals(p))return arregloParedD[i];
+			}
+			return null;
+		}
+		
+		
+		private void destruirPared(Point p){
+			
+			for(int i=0;i<arregloParedD.length;i++){
+				if(arregloParedD[i].getPosicion().equals(p))
+					arregloParedD[i]=null;	
+					break;
+			}
+			
+		}
+		
+		
+			
+			
+			
 		
 		
 }

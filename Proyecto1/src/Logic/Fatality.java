@@ -15,6 +15,7 @@ public class Fatality extends PowerUp
     public Fatality(Bomberman b) 
     {
     	super(b);
+    	puntos=35;
     }
     
     /**

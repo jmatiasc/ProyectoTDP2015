@@ -26,6 +26,7 @@ public class gBomba{
 		protected gTablero gTab;
 		
 		
+		
 		public gBomba(Bomba b,gTablero t){
 			//this.mPosicion  = new Point(x, y);
 			bomba=b;

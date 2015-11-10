@@ -11,6 +11,7 @@ public abstract class PowerUp {
 
 	protected Posicion ubicacion;
 	protected Bomberman jugador;
+	protected int puntos;
 	
     public PowerUp(Bomberman b) {
     	jugador=b;
@@ -51,4 +52,5 @@ public abstract class PowerUp {
      */
     public Posicion getPosicion(){return ubicacion;}
     
+    public int getPuntos(){return puntos;}
 }

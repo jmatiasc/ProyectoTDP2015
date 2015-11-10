@@ -20,6 +20,10 @@ public class GUI extends JFrame {
 	private gTablero mTablero;
 	private int puntos;
 	private JLabel lblCambioPuntos;
+	private JLabel lblMinutos;
+	private int minutos;
+	private int segundos;
+	private threadCronometro cronometro;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,7 +51,7 @@ public class GUI extends JFrame {
 		});
 		
 		this.mContentPane = new JPanel();
-		mContentPane.setBackground(new Color(0, 128, 128));
+		mContentPane.setBackground(new Color(72, 61, 139));
 		mContentPane.setForeground(new Color(34, 139, 34));
 		this.mContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.mContentPane.setLayout(null);
@@ -71,14 +75,25 @@ public class GUI extends JFrame {
 		lblCambioPuntos.setForeground(Color.GREEN);
 		lblCambioPuntos.setBounds(111, 11, 46, 14);
 		panel.add(lblCambioPuntos);
+		
+		JLabel lblTiempo = new JLabel("TIEMPO:");
+		lblTiempo.setForeground(Color.WHITE);
+		lblTiempo.setBounds(194, 11, 69, 14);
+		panel.add(lblTiempo);
+		
+		lblMinutos= new JLabel("00:00");
+		lblMinutos.setForeground(Color.GREEN);
+		lblMinutos.setBounds(293, 11, 76, 14);
+		panel.add(lblMinutos);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 1009, 452);
-		setBounds(100, 100, 1009, 520);
+		setBounds(100, 100, 1000, 510);
 		
 		
 		this.mTablero = new gTablero(this);
 		
-		
+		cronometro=new threadCronometro(this);
+		cronometro.start();
 		
 	}
 	
@@ -90,10 +105,15 @@ public class GUI extends JFrame {
 	
 	
 	public void sumarPuntos(int p){
-		puntos+=p;		
-		lblCambioPuntos.setText(""+puntos);
+			
+		lblCambioPuntos.setText(""+p);
 	}
 	
-	
-	
+	public void setHora(int m,int s){
+		minutos=m;
+		segundos=s;
+		lblMinutos.setText(minutos+" : "+segundos);
+		;
+		
+	}
 }

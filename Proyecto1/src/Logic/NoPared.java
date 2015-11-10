@@ -89,8 +89,11 @@ public class NoPared extends Contenido
     {
         if(bomberman!=null && enemigo!=null)
         	bomberman.morir();
-        else if(bomberman!=null && powerUp!=null)
-        	bomberman.powerUp(powerUp);      
+        else if(bomberman!=null && powerUp!=null){
+        	bomberman.powerUp(powerUp);
+        	bomberman.sumarPuntos(powerUp.getPuntos());
+        	powerUp=null;
+        }
     }
 
     /**
@@ -100,6 +103,7 @@ public class NoPared extends Contenido
      */
 	public boolean avanzar(Personaje p)
 	{	
+		
 		return true;
 	}
 	
@@ -113,15 +117,18 @@ public class NoPared extends Contenido
 	{
 		if(enemigo!=null)
 		{
+			
 			int p = enemigo.destruir();
 			enemigo = null;
+			
 			return p;
 		}
 		if(bomberman!=null)
 		{
+			if(!bomberman.GetModoDios()){
 			bomberman.morir();
 			bomberman=null;
-			return -1;
+			return -1;}
 		}
 		return 0;
 	}
@@ -152,5 +159,8 @@ public class NoPared extends Contenido
 	{
 		powerUp = p;
 	}
+	
+	
+	
 
 }

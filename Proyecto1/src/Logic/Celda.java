@@ -50,12 +50,11 @@ public class Celda {
      * @return Cantidad de puntos que otorga el contenido de la Celda.
      */
     public int destruir() {
-    	int puntos = 0;
-        if (contenido.destruir() != 0) {
-        	puntos = contenido.getPuntos();
-        	PowerUp p = contenido.getPowerUp();
-        	contenido = new NoPared(p);
-        }
+    	int puntos = contenido.destruir();
+		    	if(puntos!=0){
+			    	PowerUp p = contenido.getPowerUp();
+			       	contenido = new NoPared(p);
+		    	}
         return puntos;
     }
 }

@@ -14,6 +14,7 @@ public class SpeedUp extends PowerUp {
      */
     public SpeedUp(Bomberman b) {
     	super(b);
+    	puntos=30;
     }
 
     /**

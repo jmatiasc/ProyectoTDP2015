@@ -29,7 +29,7 @@ public class gRugulus extends gEntidad {
 	public void mover() {
 		// Calculo la siguiente direccion aleatoriamente.
 		
-		
+		if(mRug.estaVivo()){
 		int n=mRug.mover();
 		if (n!=-1){
 		switch (n) {
@@ -55,7 +55,7 @@ public class gRugulus extends gEntidad {
 		
 		super.mover(n);
 		
-		}
+		}}
 	}
 	
 	

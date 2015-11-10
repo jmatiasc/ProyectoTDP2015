@@ -13,6 +13,7 @@ public abstract class Enemigo extends Personaje
     protected int velocidad;
     protected int puntos;
     protected Tablero tablero;
+    protected boolean vivo;
     
     /**
      * Constructor
@@ -20,7 +21,9 @@ public abstract class Enemigo extends Personaje
      */
     public Enemigo(Tablero t) 
     {
+    	vivo=true;
     	tablero=t;
+    	puntos=0;
     }
     
     /**
@@ -92,6 +95,7 @@ public abstract class Enemigo extends Personaje
      */
     public int destruir() 
     {
+    	vivo=false;
        ubicacion=new Posicion(0,0);
        return puntos;
     }
@@ -102,7 +106,7 @@ public abstract class Enemigo extends Personaje
      */
     public int getPuntos() 
     {
-        return 0;
+        return puntos;
     }
     
     /**
@@ -114,4 +118,7 @@ public abstract class Enemigo extends Personaje
     	return ubicacion;
     }
 
+    public boolean estaVivo(){
+    	return vivo;
+    }
 }

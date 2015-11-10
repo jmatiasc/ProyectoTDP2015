@@ -31,7 +31,7 @@ public class gAltair extends gEntidad{
 	public void mover() {
 		// Calculo la siguiente direccion aleatoriamente.
 		
-		
+		if(mAlt.estaVivo()){
 		int n=mAlt.mover();
 		if (n!=-1){
 		switch (n) {
@@ -57,7 +57,7 @@ public class gAltair extends gEntidad{
 		
 		super.mover(n);
 		
-		}
+		}}
 	}
 	
 	

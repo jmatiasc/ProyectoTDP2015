@@ -7,11 +7,16 @@ import java.util.*;
  * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
  *
  */
+
+	
+
 public class Destructible extends EstadoPared {
 	/**
 	 * Constructor de la clase Destructible
 	 * @param p PowerUp a asignar.
 	 */
+		protected Enemigo enemigo;
+		
     public Destructible(PowerUp p) {
     	puntos = 10;
     	pw = p;
@@ -21,7 +26,9 @@ public class Destructible extends EstadoPared {
      * Consulta la cantidad de puntos a otorgar.
      */
     public int destruir() {
-        return puntos;
+    	if(enemigo!=null)
+        return puntos+enemigo.getPuntos();
+    	else return puntos;
     }
 
     /**
@@ -49,4 +56,18 @@ public class Destructible extends EstadoPared {
 		return puntos;
 	}
 
+	public boolean setEnemigo(Enemigo e) 
+    {
+        if(enemigo==null )
+        {
+        	enemigo = e;
+        	return true;    	
+        }
+        else 
+        	if(enemigo!=null && e==null)
+        	{
+        		enemigo = null;
+        	}
+        return false;
+    }
 }

@@ -19,5 +19,6 @@ public class Altair extends Enemigo {
         ubicacion=p;
         velocidad=32;
         modoDios=true;
+        puntos=20;
     }
 }

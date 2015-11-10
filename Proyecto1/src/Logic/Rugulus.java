@@ -18,6 +18,7 @@ public class Rugulus extends Enemigo {
     	ubicacion=p;
         velocidad=32;
         modoDios=false;
+        puntos=15;
     }
 
 

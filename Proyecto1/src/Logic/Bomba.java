@@ -1,6 +1,12 @@
 package Logic;
 
+import java.awt.Point;
 import java.util.*;
+
+import javax.swing.ImageIcon;
+
+import Graphic.Explosion;
+import Graphic.ThreadRetardo;
 
 /**
  * Clase Bomba
@@ -32,38 +38,108 @@ public class Bomba {
     * del alcance(x+alance,x-alcance,y+alcance,y-alcance), las agrega a una estructura y luego invoca a destruir
     * Modificar la bomba del bomberman, agregarle un NULL
     */
-	public int activar() {
-		/* Celda actual=miTablero.obtenerCelda(ubicacion);
-		Celda arriba[]=new Celda[alcance];
-		Celda abajo[]=new Celda[alcance];
-    	Celda izquierda[]=new Celda[alcance];
-    	Celda derecha[]=new Celda[alcance];
-    	 
-    	for(int i=0; i<alcance;i++){
-    		arriba[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-(i+1)));
-    		abajo[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+(i+1)));
-    		izquierda[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX()-(i+1),ubicacion.getEjeY()));
-    		derecha[i]=miTablero.obtenerCelda(new Posicion(ubicacion.getEjeX()+(i+1),ubicacion.getEjeY()));}
-    	 
-    	//deben transcurrir 3 segundos antes de que explote
-    	int puntos=actual.destruir();
-    	 
-    	puntos+=explosion(arriba);
-    	puntos+=explosion(abajo);
-    	puntos+=explosion(izquierda);
-    	puntos+=explosion(derecha); 
-    	 
-    	return puntos;*/
-    	
-    	return 0;
+	public void activar() {
     }
     
 	/**
 	 * Aumenta la cantidad de bombas de Bomberman luego de que la bomba explota.
 	 */
     public void explotar() {
-    	if(!bomberman.GetModoDios())
-    	bomberman.aumentarCantBombas();
+    	
+    	
+    	int puntos=0;
+	    	
+	    	Posicion  arriba[]=new Posicion[alcance];
+	    	Posicion abajo[]=new Posicion[alcance];
+	    	Posicion izquierda[]=new Posicion[alcance];
+	    	Posicion derecha[]=new Posicion[alcance];
+	    	
+	    	int posArriba=0;
+	    	int posAbajo=0;
+	    	int posIzquierda=0;
+	    	int posDerecha=0;
+	    	
+	    	
+	    	
+
+			for(int i=1; i<alcance+1;i++){
+				
+				posArriba=ubicacion.getEjeY()-1;
+				if(posArriba>0 )
+				 arriba[i-1]=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);
+				 			 
+				 if(posAbajo<12)
+				 abajo[i-1]=new Posicion(ubicacion.getEjeX(),(ubicacion.getEjeY()+i));
+				 
+				 if(posIzquierda>0)
+				 izquierda[i-1]=new Posicion((ubicacion.getEjeX()-i),ubicacion.getEjeY());
+				 
+				 
+				 if(posDerecha<30)
+				 derecha[i-1]=new Posicion((ubicacion.getEjeX()+i),ubicacion.getEjeY());
+				 
+				 
+				 }
+			
+				int cant=alcance*4+1;
+				Celda [] arreglo=new Celda[cant];
+				arreglo[0]=miTablero.obtenerCelda(ubicacion);
+				
+				
+				
+				boolean seguirArriba=true;
+		    	boolean seguirAbajo=true;
+		    	boolean seguirIzquierda=true;
+		    	boolean seguirDerecha=true;
+				
+				
+				int a=1;
+				for(int  i=0; i<arriba.length;i++){
+					if(arriba[i]!=null && seguirArriba){
+						if(!miTablero.obtenerCelda(arriba[i]).avanzar(bomberman))
+							seguirArriba=false;
+						arreglo[a]=miTablero.obtenerCelda(arriba[i]);}
+						a++;
+				}
+				
+				for(int i=0; i<abajo.length;i++){
+					if(abajo[i]!=null && seguirAbajo){
+						if(!miTablero.obtenerCelda(abajo[i]).avanzar(bomberman))
+							seguirAbajo=false;
+					arreglo[a]=miTablero.obtenerCelda(abajo[i]);}
+					a++;
+				}
+				
+				for(int i=0; i<derecha.length;i++){
+					if(derecha[i]!=null && seguirDerecha){
+						if(!miTablero.obtenerCelda(derecha[i]).avanzar(bomberman))
+							seguirDerecha=false;
+					arreglo[a]=miTablero.obtenerCelda(derecha[i]);}
+					a++;
+				}
+				
+				for(int i=0; i<izquierda.length;i++){
+					if(izquierda[i]!=null && seguirIzquierda){
+						if(!miTablero.obtenerCelda(arriba[i]).avanzar(bomberman))
+							seguirIzquierda=false;
+					arreglo[a]=miTablero.obtenerCelda(izquierda[i]);}
+					a++;
+				}
+				
+				
+				
+				for(int i=0; i<arreglo.length;i++){
+					if(arreglo[i]!=null)
+					puntos+=arreglo[i].destruir();
+					
+				}
+				
+			    	if(!bomberman.GetModoDios())
+			    	bomberman.aumentarCantBombas();
+			    	
+			    	
+			    	
+			    	bomberman.sumarPuntos(puntos);
     }
     
     /**
@@ -71,21 +147,7 @@ public class Bomba {
      * @param arreglo Arreglo de celdas.
      * @return Puntos otorgados por la explosión de la bomba.
      */
-    private int explosion(Celda arreglo[]) {
-    	int suma=0;
-    	int aux=0;
-    	boolean listo=false;
-    	int j=0;
-    	while((!listo) || (j!=arreglo.length)) {
-	    	aux = suma;
-	    	suma += arreglo[j].destruir();
-	    	if (suma-aux!=0)
-	    		listo=true;
-			else
-				j++;
-	   	}	
-	    return suma;
-    }
+
     public int getAlcance(){
     	return alcance;
     }

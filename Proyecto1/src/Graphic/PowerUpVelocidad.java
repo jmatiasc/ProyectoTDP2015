@@ -10,20 +10,14 @@ import Logic.*;
 
 import java.awt.Point;
 
-public class PowerUpVelocidad {
+public class PowerUpVelocidad extends powerUpsGrafico{
 
-	protected JLabel mGrafico;
-	protected Icon mPowerUpV;
-	
-	protected final int mWidth  = 32;
-	protected final int mHeight = 32;
-	
-	protected Point mPosicion;
+
 	
 	
 	public PowerUpVelocidad(int x, int y){
-		this.mPosicion  = new Point(x, y);
-		mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/speedUp.png"));
+		super(x, y);
+		imagen = new ImageIcon(this.getClass().getResource("/imagenes/speedUp.png"));
 		
 
 		
@@ -37,7 +31,7 @@ public class PowerUpVelocidad {
 	public JLabel getGrafico() {	
 			
 		if(this.mGrafico == null){
-			this.mGrafico = new JLabel(mPowerUpV);
+			this.mGrafico = new JLabel(imagen);
 			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
 		}
 		return this.mGrafico;}

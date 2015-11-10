@@ -108,7 +108,6 @@ public class Bomberman extends Personaje {
     		cantBombas--;
 	    	Bomba miBomba = new Bomba(ubicacion,alcanceBomba,tablero,this);
 	    	tablero.obtenerCelda(ubicacion).getContenido().setBomba(miBomba);
-	    	puntos += miBomba.activar();
 	    	return miBomba;
 	    }
     	else 
@@ -190,5 +189,14 @@ public class Bomberman extends Personaje {
      */
     public int getVelocidad() {
     	return velocidad;
+    }
+    
+    public int getPuntos(){
+    	return puntos;
+    }
+    
+    public void sumarPuntos(int p){
+    	puntos+=p;
+    	
     }
 }
