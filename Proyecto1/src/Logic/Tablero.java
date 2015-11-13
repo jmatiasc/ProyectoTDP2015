@@ -49,7 +49,7 @@ public class Tablero {
         //LLENO DE CELDAS LA MATRIZ
         for(int i=0; i< Ancho;i++){
         	for(int j=0;j<Alto;j++){
-        		matrizCeldas[i][j]=new Celda(new Posicion(i,j));
+        		matrizCeldas[i][j]=new Celda(new Posicion(i,j),new Posicion(i,j));
         	}
         	
         }
@@ -114,7 +114,7 @@ public class Tablero {
 			        		else{
 			        			if(cantIndestructibles!=0 && h!=1 && h!=2 && n!=1 && n!=2){
 			        			azar=num.nextInt()%2;
-			        			if(azar==1){
+			        			if(azar==0 && ult <80){
 			        				if(cantPU<11){
 			        					
 			        					matrizCeldas[h][n].setContenido(new Pared());

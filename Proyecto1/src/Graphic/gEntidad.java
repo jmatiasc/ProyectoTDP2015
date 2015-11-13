@@ -12,9 +12,13 @@ public abstract class gEntidad {
 	public static final int MOVIMIENTO_IZQUIERDA = 2;
 	public static final int MOVIMIENTO_DERECHA   = 3;
 	
+	public  int PASOS    = 0;
+	
+	
+	
 	protected JLabel mGrafico;
 	
-	protected Icon mImages[];
+	protected Icon mImages[][];
 	protected Icon mDestroyedImage;
 	
 	
@@ -28,7 +32,7 @@ public abstract class gEntidad {
 	protected gEntidad(int velocidad, int x, int y) {
 		this.mPosicion  = new Point(x, y);
 		this.mVelocidad = velocidad;
-		this.mImages    = new Icon[4];
+		this.mImages    = new Icon[4][4];
 	}
 	
 	public int getVelocidad() {
@@ -41,8 +45,10 @@ public abstract class gEntidad {
 	
 	protected void mover(int dir) {
 		if(this.mGrafico != null){
-			this.mGrafico.setIcon(this.mImages[dir]);
+			this.mGrafico.setIcon(this.mImages[dir][PASOS]);
 			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
+			if(PASOS==3)PASOS=0;
+			else PASOS++;
 			
 		}
 	}
@@ -56,7 +62,7 @@ public abstract class gEntidad {
 	
 	public JLabel getGrafico() {
 		if(this.mGrafico == null){
-			this.mGrafico = new JLabel(this.mImages[0]);
+			this.mGrafico = new JLabel(this.mImages[0][0]);
 			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
 		}
 		return this.mGrafico;

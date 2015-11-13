@@ -21,7 +21,7 @@ public class Bomberman extends Personaje {
 	 */
     public  Bomberman(Tablero t) {
 
-    	velocidad=32;
+    	velocidad=1;
     	cantBombas=1;
     	alcanceBomba=1;
     	tablero = t;
@@ -118,7 +118,9 @@ public class Bomberman extends Personaje {
      * Duplica la velocidad de Bomberman.
      */
     public void aumentarVelocidad() {
+    	
         velocidad=velocidad*2;
+        
     }
 
     /**

@@ -10,6 +10,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.applet.AudioClip;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
 
 public class GUI extends JFrame {
 	
@@ -24,8 +28,14 @@ public class GUI extends JFrame {
 	private int minutos;
 	private int segundos;
 	private threadCronometro cronometro;
-
+	private AudioClip sonido;
+	private JLabel lblGameOver;
+	private JLabel lblPuntos;
+	private JLabel lblPuntaje;
+	
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,19 +49,22 @@ public class GUI extends JFrame {
 	}
 
 	public GUI() {
+		sonido= java.applet.Applet.newAudioClip(getClass().getResource("/Graphic/Musica.wav"));
+		sonido.play();
+		sonido.loop();
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				
+			public void keyReleased(KeyEvent e) {
+				accion(e);
 			}
 			public void keyTyped(KeyEvent e) {
 			}
 			public void keyPressed(KeyEvent e) {
-				accion(e);			}
+							}
 		});
 		
 		this.mContentPane = new JPanel();
-		mContentPane.setBackground(new Color(72, 61, 139));
+		mContentPane.setBackground(new Color(102, 204, 255));
 		mContentPane.setForeground(new Color(34, 139, 34));
 		this.mContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.mContentPane.setLayout(null);
@@ -65,7 +78,7 @@ public class GUI extends JFrame {
 		mContentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblPuntos = new JLabel("PUNTOS:");
+		 lblPuntos = new JLabel("PUNTOS:");
 		lblPuntos.setForeground(Color.WHITE);
 		lblPuntos.setBackground(Color.WHITE);
 		lblPuntos.setBounds(25, 11, 76, 14);
@@ -85,6 +98,20 @@ public class GUI extends JFrame {
 		lblMinutos.setForeground(Color.GREEN);
 		lblMinutos.setBounds(293, 11, 76, 14);
 		panel.add(lblMinutos);
+		
+		lblGameOver = new JLabel("");
+		lblGameOver.setForeground(new Color(204, 0, 0));
+		lblGameOver.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameOver.setFont(new Font("Impact", Font.PLAIN, 93));
+		lblGameOver.setBounds(0, 95, 993, 181);
+		mContentPane.add(lblGameOver);
+		
+		lblPuntaje = new JLabel("");
+		lblPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPuntaje.setFont(new Font("Impact", Font.PLAIN, 32));
+		lblPuntaje.setForeground(new Color(0, 204, 0));
+		lblPuntaje.setBounds(0, 238, 993, 32);
+		mContentPane.add(lblPuntaje);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 1009, 452);
 		setBounds(100, 100, 1000, 510);
@@ -105,7 +132,7 @@ public class GUI extends JFrame {
 	
 	
 	public void sumarPuntos(int p){
-			
+		puntos+=p;
 		lblCambioPuntos.setText(""+p);
 	}
 	
@@ -114,6 +141,13 @@ public class GUI extends JFrame {
 		segundos=s;
 		lblMinutos.setText(minutos+" : "+segundos);
 		;
+		
+	}
+	
+	public void fin(){
+		cronometro.stop();
+		lblGameOver.setText("GAME OVER");
+		lblPuntaje.setText("PUNTOS:"+puntos);
 		
 	}
 }

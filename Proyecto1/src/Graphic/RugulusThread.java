@@ -21,7 +21,7 @@ public class RugulusThread extends Thread {
 			// Duermo el hilo 1 segundo.
 			// De esta manera cada turno se ejecuta cada 1 segundo.
 			try {
-				Thread.sleep(100);
+				Thread.sleep(400);
 				// Realizo el movimiento
 				this.mLogica.mover();
 			} catch (InterruptedException e) { }

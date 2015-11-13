@@ -11,13 +11,15 @@ import java.util.*;
 public class Celda {
     protected Posicion posMatriz;
     protected Contenido contenido;
+    protected Posicion ubicacion;
     
     /**
      * Constructor de la clase Celda.
      * @param p Posición de la celda en la Matriz.
      */
-    public  Celda(Posicion p) {
+    public  Celda(Posicion p,Posicion u) {
         posMatriz=p;
+        ubicacion=u;
     }
     
     /**
@@ -56,5 +58,9 @@ public class Celda {
 			       	contenido = new NoPared(p);
 		    	}
         return puntos;
+    }
+    
+    public Posicion getPosicion(){
+    	return ubicacion;
     }
 }

@@ -22,6 +22,7 @@ public class SpeedUp extends PowerUp {
      * @param Bomberman b
      */
     public void aumentarVelocidad(){
+    	
     	jugador.aumentarVelocidad();
     }
 

@@ -38,93 +38,102 @@ public class Bomba {
     * del alcance(x+alance,x-alcance,y+alcance,y-alcance), las agrega a una estructura y luego invoca a destruir
     * Modificar la bomba del bomberman, agregarle un NULL
     */
-	public void activar() {
+	public Celda [] activar() {
+		
+    	
+    	Posicion  arriba[]=new Posicion[alcance];
+    	Posicion abajo[]=new Posicion[alcance];
+    	Posicion izquierda[]=new Posicion[alcance];
+    	Posicion derecha[]=new Posicion[alcance];
+    	
+    	int posArriba=0;
+    	int posAbajo=0;
+    	int posIzquierda=0;
+    	int posDerecha=0;
+    	
+    	
+    	
+
+		for(int i=1; i<alcance+1;i++){
+			
+			posArriba=ubicacion.getEjeY()-1;
+			if(posArriba>0 )
+			 arriba[i-1]=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-i);
+						
+			
+			posAbajo=ubicacion.getEjeY()+1;
+			 if(posAbajo<12)
+			 abajo[i-1]=new Posicion(ubicacion.getEjeX(),(ubicacion.getEjeY()+i));
+			 
+			 posIzquierda=ubicacion.getEjeY()-1;
+			 if(posIzquierda>0)
+			 izquierda[i-1]=new Posicion((ubicacion.getEjeX()-i),ubicacion.getEjeY());
+			 
+			 
+			 
+			 posDerecha=ubicacion.getEjeY()+1;
+			 if(posDerecha<30)
+			 derecha[i-1]=new Posicion((ubicacion.getEjeX()+i),ubicacion.getEjeY());
+			 
+			 
+			 }
+		
+			int cant=alcance*4+1;
+			Celda [] arreglo=new Celda[cant];
+			arreglo[0]=miTablero.obtenerCelda(ubicacion);
+			
+			
+			
+			boolean seguirArriba=true;
+	    	boolean seguirAbajo=true;
+	    	boolean seguirIzquierda=true;
+	    	boolean seguirDerecha=true;
+			
+			
+			int a=1;
+			for(int  i=0; i<arriba.length;i++){
+				if(arriba[i]!=null && seguirArriba){
+					if(!miTablero.obtenerCelda(arriba[i]).avanzar(bomberman))
+						seguirArriba=false;
+					arreglo[a]=miTablero.obtenerCelda(arriba[i]);}
+					a++;
+			}
+			
+			for(int i=0; i<abajo.length;i++){
+				if(abajo[i]!=null && seguirAbajo){
+					if(!miTablero.obtenerCelda(abajo[i]).avanzar(bomberman)){
+						seguirAbajo=false;
+						
+					}
+				arreglo[a]=miTablero.obtenerCelda(abajo[i]);}
+				a++;
+			}
+			
+			for(int i=0; i<derecha.length;i++){
+				if(derecha[i]!=null && seguirDerecha){
+					if(!miTablero.obtenerCelda(derecha[i]).avanzar(bomberman))
+						seguirDerecha=false;
+				arreglo[a]=miTablero.obtenerCelda(derecha[i]);}
+				a++;
+			}
+			
+			for(int i=0; i<izquierda.length;i++){
+				if(izquierda[i]!=null && seguirIzquierda){
+					if(!miTablero.obtenerCelda(izquierda[i]).avanzar(bomberman))
+						seguirIzquierda=false;
+				arreglo[a]=miTablero.obtenerCelda(izquierda[i]);}
+				a++;
+			}
+			return arreglo;
     }
     
 	/**
 	 * Aumenta la cantidad de bombas de Bomberman luego de que la bomba explota.
 	 */
-    public void explotar() {
+    public int explotar(Celda [] arreglo) {
     	
     	
-    	int puntos=0;
-	    	
-	    	Posicion  arriba[]=new Posicion[alcance];
-	    	Posicion abajo[]=new Posicion[alcance];
-	    	Posicion izquierda[]=new Posicion[alcance];
-	    	Posicion derecha[]=new Posicion[alcance];
-	    	
-	    	int posArriba=0;
-	    	int posAbajo=0;
-	    	int posIzquierda=0;
-	    	int posDerecha=0;
-	    	
-	    	
-	    	
-
-			for(int i=1; i<alcance+1;i++){
-				
-				posArriba=ubicacion.getEjeY()-1;
-				if(posArriba>0 )
-				 arriba[i-1]=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);
-				 			 
-				 if(posAbajo<12)
-				 abajo[i-1]=new Posicion(ubicacion.getEjeX(),(ubicacion.getEjeY()+i));
-				 
-				 if(posIzquierda>0)
-				 izquierda[i-1]=new Posicion((ubicacion.getEjeX()-i),ubicacion.getEjeY());
-				 
-				 
-				 if(posDerecha<30)
-				 derecha[i-1]=new Posicion((ubicacion.getEjeX()+i),ubicacion.getEjeY());
-				 
-				 
-				 }
-			
-				int cant=alcance*4+1;
-				Celda [] arreglo=new Celda[cant];
-				arreglo[0]=miTablero.obtenerCelda(ubicacion);
-				
-				
-				
-				boolean seguirArriba=true;
-		    	boolean seguirAbajo=true;
-		    	boolean seguirIzquierda=true;
-		    	boolean seguirDerecha=true;
-				
-				
-				int a=1;
-				for(int  i=0; i<arriba.length;i++){
-					if(arriba[i]!=null && seguirArriba){
-						if(!miTablero.obtenerCelda(arriba[i]).avanzar(bomberman))
-							seguirArriba=false;
-						arreglo[a]=miTablero.obtenerCelda(arriba[i]);}
-						a++;
-				}
-				
-				for(int i=0; i<abajo.length;i++){
-					if(abajo[i]!=null && seguirAbajo){
-						if(!miTablero.obtenerCelda(abajo[i]).avanzar(bomberman))
-							seguirAbajo=false;
-					arreglo[a]=miTablero.obtenerCelda(abajo[i]);}
-					a++;
-				}
-				
-				for(int i=0; i<derecha.length;i++){
-					if(derecha[i]!=null && seguirDerecha){
-						if(!miTablero.obtenerCelda(derecha[i]).avanzar(bomberman))
-							seguirDerecha=false;
-					arreglo[a]=miTablero.obtenerCelda(derecha[i]);}
-					a++;
-				}
-				
-				for(int i=0; i<izquierda.length;i++){
-					if(izquierda[i]!=null && seguirIzquierda){
-						if(!miTablero.obtenerCelda(arriba[i]).avanzar(bomberman))
-							seguirIzquierda=false;
-					arreglo[a]=miTablero.obtenerCelda(izquierda[i]);}
-					a++;
-				}
+    			int puntos=0;
 				
 				
 				
@@ -140,6 +149,8 @@ public class Bomba {
 			    	
 			    	
 			    	bomberman.sumarPuntos(puntos);
+			    	
+		return puntos;
     }
     
     /**

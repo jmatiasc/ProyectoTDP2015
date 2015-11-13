@@ -99,9 +99,9 @@ public class gTablero {
 		this.Enemigos[0].start();
 		this.Enemigos[1].start();
 		this.Enemigos[2].start();
-		//this.Enemigos[3].start();
-		//this.Enemigos[4].start();
-		//this.Enemigos[5].start();
+		this.Enemigos[3].start();
+		this.Enemigos[4].start();
+		this.Enemigos[5].start();
 		
 		
 	
@@ -194,7 +194,7 @@ public class gTablero {
 	}
 	
 	public void mover(int dir){
-		if(mJugador!=null){
+		if(t.getBomberman()!=null){
 		this.mJugador.mover(dir);
 		chequeoColisiones();
 		}
@@ -209,7 +209,15 @@ public class gTablero {
 			if(arregloP[i]!=null){
 			Point pos=new Point(arregloP[i].getPosicion().getEjeX()*32,arregloP[i].getPosicion().getEjeY()*32);
 			
-			if(pos.equals(mJugador.getPosicion())){		
+			if(pos.equals(mJugador.getPosicion())){
+					if(i>=0 && i<=3){
+						mJugador.aumentarVelocidad();
+					}
+				
+					if(i==10){
+						MasacralityThread activacion=new MasacralityThread(t.getBomberman());
+						activacion.start();
+					}
 					ImageIcon nada=new ImageIcon((this.getClass().getResource("/imagenes/nada.png")));
 					gui.add(new JLabel(nada));
 					arregloPGrafico[i].getGrafico().setIcon(nada);
@@ -272,7 +280,7 @@ public class gTablero {
 			int i=0;
 			
 			
-			while(pos[i+1]!=null || i==pos.length){
+			while(pos[i]!=null || i==pos.length){
 				// JLabel labelPared=new JLabel (paredD);
 	        	//	gui.add(labelPared);
 	        	//	labelPared.setBounds(pos[i].getEjeX()*32, pos[i].getEjeY()*32, 32,32);
@@ -288,8 +296,15 @@ public class gTablero {
 		
 		public void matarBomberman(){
 			mJugador.destruir();
-
 			mJugador=null;
+			((RugulusThread) this.Enemigos[0]).detener();
+			((RugulusThread) this.Enemigos[1]).detener();
+			((RugulusThread) this.Enemigos[2]).detener();
+			((AltairThread) this.Enemigos[3]).detener();
+			((AltairThread) this.Enemigos[4]).detener();
+			((SiriusThread) this.Enemigos[5]).detener();
+			gui.fin();
+			
 			
 		}
 		
@@ -306,52 +321,38 @@ public class gTablero {
 					
 		
 			}
-		public void mostrarExplosion(Point p,int alcance){
-			//cuando alcance es 1
-					Point  arriba[]=new Point[alcance];
-					Point abajo[]=new Point[alcance];
-					Point izquierda[]=new Point[alcance];
-					Point derecha[]=new Point[alcance];
-					
+		public void mostrarExplosion(Point p,Celda [] celdas){
 			
 			
-			for(int i=0; i<alcance;i++){
-	    		 arriba[i]=new Point(p.x,p.y-(i*32+32));
-	    		
-	    		 abajo[i]=new Point(p.x,p.y+(i*32+32));
-	    		 izquierda[i]=new Point(p.x-(i*32+32),p.y);
-	    		 derecha[i]=new Point(p.x+(i*32+32),p.y);
-	    		 }
 			
-				int cant=alcance*4+1;
-				Explosion [] arreglo=new Explosion[cant];
+			
+				System.out.println("cant celdas:"+celdas.length);
+				
+				Explosion [] arreglo=new Explosion[celdas.length];
 				arreglo[0]=new Explosion(p);
 				
+				int x=0;
+				int y=0;
 				
-				int a=1;
-				for(int  i=0; i<arriba.length;i++){
-					arreglo[a]=new Explosion(arriba[i]);
-					a++;
+				for(int  i=0; i<celdas.length;i++){
+					if(celdas[i]!=null){
+					x=celdas[i].getPosicion().getEjeX()*32;
+					System.out.println("cant x:"+x);
+					y=celdas[i].getPosicion().getEjeY()*32;
+					System.out.println("cant y:"+y);
+					arreglo[i]=new Explosion(new Point(x,y));
+					
+				}
+					
 				}
 				
-				for(int i=0; i<abajo.length;i++){
-					arreglo[a]=new Explosion(abajo[i]);
-					a++;
-				}
 				
-				for(int i=0; i<derecha.length;i++){
-					arreglo[a]=new Explosion(derecha[i]);
-					a++;
-				}
-				
-				for(int i=0; i<izquierda.length;i++){
-					arreglo[a]=new Explosion(izquierda[i]);
-					a++;
-				}
 				
 				ImageIcon nada = new ImageIcon(this.getClass().getResource("/imagenes/nada.png")); 
 				ImageIcon mPowerUpV = new ImageIcon(this.getClass().getResource("/imagenes/explosion.png")); 
 				for(int i=0; i<arreglo.length;i++){
+					if(arreglo[i]!=null){
+						
 					if(!perteneceAParedD(arreglo[i].getPosicion())){
 					gui.add(arreglo[i].getGrafico());
 					arreglo[i].getGrafico().setIcon(mPowerUpV);}
@@ -361,7 +362,7 @@ public class gTablero {
 						obtenerPared(arreglo[i].getPosicion()).destruir();
 						destruirPared(arreglo[i].getPosicion());
 					}
-				}
+				}}
 				gui.sumarPuntos(t.getBomberman().getPuntos());
 				
 				

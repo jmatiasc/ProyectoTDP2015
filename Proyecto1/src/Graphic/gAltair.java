@@ -11,6 +11,7 @@ public class gAltair extends gEntidad{
 	
 	Altair mAlt;
 	gJugador jugador;
+	private MovimientoAltair movimientoThread;
 	
 	public gAltair(int velocidad, int x, int y, Enemigo alt,gJugador jugador ) {
 		super(velocidad, x, y);
@@ -19,11 +20,28 @@ public class gAltair extends gEntidad{
 		mAlt=(Altair) alt;
 		this.jugador=jugador;
 		
+		this.mImages[0][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr1.png"));
+		this.mImages[0][1] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr2.png"));
+		this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr1.png"));
+		this.mImages[0][3] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr2.png"));
 		
-		this.mImages[0] = new ImageIcon(this.getClass().getResource("/imagenes/up.png"));
-		this.mImages[1] = new ImageIcon(this.getClass().getResource("/imagenes/down.png"));
-		this.mImages[2] = new ImageIcon(this.getClass().getResource("/imagenes/left.png"));
-		this.mImages[3] = new ImageIcon(this.getClass().getResource("/imagenes/right.png"));
+		
+		
+		this.mImages[1][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj1.png"));
+		this.mImages[1][1] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj2.png"));
+		this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj1.png"));
+		this.mImages[1][3] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj2.png"));
+		
+		
+		this.mImages[2][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aizq2.png"));
+		this.mImages[2][1] = new ImageIcon(this.getClass().getResource("/imagenes/Aizq1.png"));
+		this.mImages[2][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aizq2.png"));
+		this.mImages[2][3] = new ImageIcon(this.getClass().getResource("/imagenes/Aizq3.png"));
+		
+		this.mImages[3][0] = new ImageIcon(this.getClass().getResource("/imagenes/Ader2.png"));
+		this.mImages[3][1] = new ImageIcon(this.getClass().getResource("/imagenes/Ader1.png"));
+		this.mImages[3][2] = new ImageIcon(this.getClass().getResource("/imagenes/Ader2.png"));
+		this.mImages[3][3] = new ImageIcon(this.getClass().getResource("/imagenes/Ader3.png"));
 		
 		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
 	}
@@ -37,28 +55,38 @@ public class gAltair extends gEntidad{
 		switch (n) {
 			
 			case MOVIMIENTO_ARRIBA : 				
-				this.mPosicion.setLocation(this.mPosicion.x, this.mPosicion.y - this.mVelocidad);
+				
+				movimientoThread = new MovimientoAltair(this); //Cambio
+				movimientoThread.setDir("arriba");
+				movimientoThread.start();
 				chequeoColisiones();
 				break;
 			case MOVIMIENTO_ABAJO :
-				this.mPosicion.setLocation(this.mPosicion.x, this.mPosicion.y + this.mVelocidad);
+				
+				movimientoThread = new MovimientoAltair(this); //Cambio
+				movimientoThread.setDir("abajo");
+				movimientoThread.start();
 				chequeoColisiones();
 				break;
 			case MOVIMIENTO_IZQUIERDA :
-				this.mPosicion.setLocation(this.mPosicion.x - this.mVelocidad, this.mPosicion.y);
+				movimientoThread = new MovimientoAltair(this); //Cambio
+				movimientoThread.setDir("izquierda");
+				movimientoThread.start();
 				chequeoColisiones();
 				break;
 			case MOVIMIENTO_DERECHA :
-				this.mPosicion.setLocation(this.mPosicion.x + this.mVelocidad, this.mPosicion.y);
+				movimientoThread = new MovimientoAltair(this); //Cambio
+				movimientoThread.setDir("derecha");
+				movimientoThread.start();
 				chequeoColisiones();
 				break;
 		}
-		
-		
+
 		super.mover(n);
 		
 		}}
 	}
+	
 	
 	
 	public void destruir() {
@@ -71,6 +99,26 @@ public class gAltair extends gEntidad{
 		if(mPosicion.equals(jugador.getPosicion())){
 			jugador.morir();
 		}}
+	}
+	
+	public void transicionArriba() {
+		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y-8);
+		super.mover(MOVIMIENTO_ARRIBA);
+	}
+	
+	public void transicionAbajo() {
+		this.mPosicion.setLocation(this.mPosicion.x,this.mPosicion.y+8);
+		super.mover(MOVIMIENTO_ABAJO);
+	}
+	
+	public void transicionIzquierda() {
+		this.mPosicion.setLocation(this.mPosicion.x-8,this.mPosicion.y);
+		super.mover(MOVIMIENTO_IZQUIERDA);
+	}
+	
+	public void transicionDerecha() {
+		this.mPosicion.setLocation(this.mPosicion.x+8,this.mPosicion.y);
+		super.mover(MOVIMIENTO_DERECHA);
 	}
 	
 	

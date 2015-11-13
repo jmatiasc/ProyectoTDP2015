@@ -33,6 +33,8 @@ public class Sirius extends Enemigo {
     		
     		
     		int n=elegirDireccion();
+    		p=ubicacion;
+    		
     		if(n==0)
     		{
     			//muevo arriba
@@ -55,11 +57,14 @@ public class Sirius extends Enemigo {
 				        if(p.ejeX<0)p.setEjeX(0);
 		        	}
 					else
-					{
+					{	if(n==3){
 			        	//muevo derecha
 					    p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
 					    if(p.ejeX>30)p.setEjeX(30);
 			         }
+					
+					}
+    		
         if( p!=null && tablero.obtenerCelda(p).avanzar(this) )  
         {	
         	tablero.obtenerCelda(ubicacion).getContenido().setEnemigo(null);
@@ -77,6 +82,7 @@ public class Sirius extends Enemigo {
     
     private int elegirDireccion(){
     	int n;
+    	if(bomberman.getPosicion()!=null){
     	Posicion posBomb=bomberman.getPosicion();
     	Posicion p;
     	
@@ -98,6 +104,10 @@ public class Sirius extends Enemigo {
     	return 3;
     	
     }
+    return -1;	
+    }
+    	
+   
 }
 
     	

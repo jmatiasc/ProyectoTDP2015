@@ -52,8 +52,9 @@ public class gBomba{
 
 		protected void destruir() {
 				this.mGrafico.setIcon(null);
-				bomba.explotar();
-				gTab.mostrarExplosion(getPosicion(), bomba.getAlcance());
+				Celda [] arreglo=bomba.activar();
+				bomba.explotar(arreglo);
+				gTab.mostrarExplosion(getPosicion(),arreglo);
 				
 		}
 		

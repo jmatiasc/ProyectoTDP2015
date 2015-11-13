@@ -18,14 +18,15 @@ public class ThreadRetardo extends Thread{
 			
 	
 			
-			sleep(3000);
+			sleep(1000);
 			ImageIcon pasto = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
 			
 			for(int i=0; i<arreglo.length;i++){
+				if(arreglo[i]!=null){
 				gui.add(arreglo[i].getGrafico());
 				arreglo[i].getGrafico().setIcon(pasto);
 				
-			}
+			}}
 			
 		} catch (InterruptedException e) {
 			
