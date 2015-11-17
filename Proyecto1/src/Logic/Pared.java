@@ -64,7 +64,7 @@ public class Pared extends Contenido {
      * @return true si fue insertado correctamente, false en caso contrario
      */
 	public boolean setBomberman(Bomberman b) {
-        if(bomberman==null && bomba==null){
+        if( bomba==null){
         bomberman=b;
         return true;
         }
@@ -90,12 +90,11 @@ public class Pared extends Contenido {
      * @param bm  de tipo Bomba
      * @return	true si fue insertado correctamente, false en caso contrario
      */
-    public boolean setBomba(Bomba bm) {
-        if(bomba==null ){
+    public void setBomba(Bomba bm) {
+        
         	bomba=bm;
-        	return true;
-        }
-        return false;
+        	
+        
     }
 
     /**

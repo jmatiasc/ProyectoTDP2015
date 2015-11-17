@@ -13,6 +13,7 @@ public class MovimientoJugador extends Thread {
 	}
 	
 	public void run() {
+		jugador.comenzarAMover();
 		if (dir.equals("arriba"))
 			try {
 				for(int i=0;i<4;i++) {
@@ -48,6 +49,7 @@ public class MovimientoJugador extends Thread {
 					Thread.sleep(velocidad);
 				}		
 			} catch (InterruptedException e) {System.out.println("Interrupted Exception D:");}
+		jugador.dejarDeMover();
 	}
 	
 	public void setDir(String d) {

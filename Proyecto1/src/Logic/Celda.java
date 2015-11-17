@@ -9,6 +9,7 @@ import java.util.*;
  */
 
 public class Celda {
+	protected Tablero tablero;
     protected Posicion posMatriz;
     protected Contenido contenido;
     protected Posicion ubicacion;
@@ -17,7 +18,8 @@ public class Celda {
      * Constructor de la clase Celda.
      * @param p Posición de la celda en la Matriz.
      */
-    public  Celda(Posicion p,Posicion u) {
+    public  Celda(Posicion p,Posicion u,Tablero t) {
+    	tablero=t;
         posMatriz=p;
         ubicacion=u;
     }
@@ -54,6 +56,7 @@ public class Celda {
     public int destruir() {
     	int puntos = contenido.destruir();
 		    	if(puntos!=0){
+		    		tablero.disminuirParedes();
 			    	PowerUp p = contenido.getPowerUp();
 			       	contenido = new NoPared(p);
 		    	}

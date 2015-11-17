@@ -22,15 +22,15 @@ public class gAltair extends gEntidad{
 		
 		this.mImages[0][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr1.png"));
 		this.mImages[0][1] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr2.png"));
-		this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr1.png"));
+		this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr3.png"));
 		this.mImages[0][3] = new ImageIcon(this.getClass().getResource("/imagenes/Aarr2.png"));
 		
 		
 		
-		this.mImages[1][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj1.png"));
-		this.mImages[1][1] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj2.png"));
-		this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj1.png"));
-		this.mImages[1][3] = new ImageIcon(this.getClass().getResource("/imagenes/Aabj2.png"));
+		this.mImages[1][0] = new ImageIcon(this.getClass().getResource("/imagenes/Abaj1.png"));
+		this.mImages[1][1] = new ImageIcon(this.getClass().getResource("/imagenes/Abaj2.png"));
+		this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Abaj3.png"));
+		this.mImages[1][3] = new ImageIcon(this.getClass().getResource("/imagenes/Abaj2.png"));
 		
 		
 		this.mImages[2][0] = new ImageIcon(this.getClass().getResource("/imagenes/Aizq2.png"));
@@ -43,7 +43,7 @@ public class gAltair extends gEntidad{
 		this.mImages[3][2] = new ImageIcon(this.getClass().getResource("/imagenes/Ader2.png"));
 		this.mImages[3][3] = new ImageIcon(this.getClass().getResource("/imagenes/Ader3.png"));
 		
-		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
+		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
 	}
 	
 	public void mover() {
@@ -85,6 +85,7 @@ public class gAltair extends gEntidad{
 		super.mover(n);
 		
 		}}
+		else destruir();
 	}
 	
 	
@@ -95,7 +96,7 @@ public class gAltair extends gEntidad{
 	
 	
 	private void chequeoColisiones(){
-		if(jugador!=null){
+		if(jugador!=null && !jugador.getModoDios()){
 		if(mPosicion.equals(jugador.getPosicion())){
 			jugador.morir();
 		}}

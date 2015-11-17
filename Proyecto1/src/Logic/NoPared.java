@@ -72,14 +72,12 @@ public class NoPared extends Contenido
 	 * @param bm Bomba
 	 * @return true si la bomba pudo ser agregada, false en caso contrario
 	 */
-    public boolean setBomba(Bomba bm)
+    public void setBomba(Bomba bm)
     {
-        if(bomba==null)
-        {
+       
+        
         	bomba=bm;
-        	return true;
-        }
-        return false;
+       
     }
 
     /**
@@ -87,7 +85,7 @@ public class NoPared extends Contenido
      */
     public void chequeoColisiones() 
     {
-        if(bomberman!=null && enemigo!=null)
+        if(bomberman!=null && enemigo!=null && !bomberman.GetModoDios())
         	bomberman.morir();
         else if(bomberman!=null && powerUp!=null){
         	bomberman.powerUp(powerUp);
@@ -103,7 +101,7 @@ public class NoPared extends Contenido
      */
 	public boolean avanzar(Personaje p)
 	{	
-		
+		if(bomba!=null)return false;
 		return true;
 	}
 	

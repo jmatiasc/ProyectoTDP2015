@@ -16,7 +16,7 @@ public class Tablero {
     protected Pared[] paredes;
     protected Celda[][] matrizCeldas;
     protected Posicion [] posDestructible;
-    
+    protected int cantParedesD;
     
     //CAMBIAR POR UN ARREGLO DE POWERUPS 
     protected SpeedUp velocidad;
@@ -49,16 +49,17 @@ public class Tablero {
         //LLENO DE CELDAS LA MATRIZ
         for(int i=0; i< Ancho;i++){
         	for(int j=0;j<Alto;j++){
-        		matrizCeldas[i][j]=new Celda(new Posicion(i,j),new Posicion(i,j));
+        		matrizCeldas[i][j]=new Celda(new Posicion(i,j),new Posicion(i,j),this);
         	}
         	
         }
         
         
         //AGREGO LAS PAREDES INDESTRUCTIBLES A LAS CELDAS
-        int cantIndestructibles=81;
+        int cantDestructibles=81;
         Random num=new Random();
-		int azar=0;
+		int azar1=0;
+		int azar2=0;
 		posDestructible=new Posicion[81];
 		int ult=0;
 		
@@ -112,10 +113,11 @@ public class Tablero {
 				        	}
 	        				//AGREGO AL RESTO TODAS NoPared para prototipo
 			        		else{
-			        			if(cantIndestructibles!=0 && h!=1 && h!=2 && n!=1 && n!=2){
-			        			azar=num.nextInt()%2;
-			        			if(azar==0 && ult <80){
-			        				if(cantPU<11){
+			        			if(cantDestructibles!=0 && h!=1 && h!=2 && n!=1 && n!=2){
+			        			azar1=num.nextInt()%2;
+			        			azar2=num.nextInt()%2;
+			        			if(azar1==0 && ult <80){
+			        				if(cantPU<11 && azar2==0){
 			        					
 			        					matrizCeldas[h][n].setContenido(new Pared());
 			        					matrizCeldas[h][n].getContenido().setEstado(new Destructible(powerArreglo[cantPU]));
@@ -123,7 +125,7 @@ public class Tablero {
 				        				posDestructible[ult]=new Posicion(h,n);
 				        				ult++;
 				        				cantPU++;
-				        				cantIndestructibles--;			        				
+				        				cantDestructibles--;			        				
 			        				}
 			        				
 			        				else{
@@ -131,7 +133,7 @@ public class Tablero {
 					        				matrizCeldas[h][n].getContenido().setEstado(new Destructible(null));
 					        				posDestructible[ult]=new Posicion(h,n);
 					        				ult++;
-					        				cantIndestructibles--;
+					        				cantDestructibles--;
 			        				}
 			        				
 			        			}
@@ -149,7 +151,9 @@ public class Tablero {
         
         
         
-        
+        cantParedesD=81;
+      
+       
       //ENEMIGOS
     	Enemigo rugulus1=new Rugulus(new Posicion(22,11),this);
     	this.obtenerCelda(rugulus1.getPosicion()).getContenido().setEnemigo(rugulus1);
@@ -245,4 +249,7 @@ public class Tablero {
     public PowerUp[] obtenerPowerUp(){
     	return powerArreglo;
     }
+    
+    public int cantDestructibles(){return cantParedesD;}
+    public void disminuirParedes(){cantParedesD--;}
 }

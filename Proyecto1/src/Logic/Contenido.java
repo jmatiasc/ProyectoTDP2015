@@ -34,7 +34,7 @@ public abstract class Contenido  {
     public abstract PowerUp getPowerUp();
 	public abstract boolean setBomberman(Bomberman b);
 	public abstract  boolean setEnemigo(Enemigo e);
-	public abstract boolean setBomba(Bomba bm);
+	public abstract void setBomba(Bomba bm);
 	public abstract void chequeoColisiones();
 	public abstract void setPowerUp(PowerUp p);
 }

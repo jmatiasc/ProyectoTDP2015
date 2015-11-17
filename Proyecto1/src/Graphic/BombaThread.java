@@ -11,7 +11,7 @@ public class BombaThread extends Thread{
 		
 		try {
 			
-			sleep(5000);
+			sleep(3000);
 			bomba.destruir();
 			
 			

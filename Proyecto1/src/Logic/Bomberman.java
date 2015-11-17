@@ -36,11 +36,12 @@ public class Bomberman extends Personaje {
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()-1);
     	if(p.ejeY<0)
     		p.setEjeY(0);
-    	if(tablero.obtenerCelda(p).avanzar(this)){  	
+    	if(tablero.obtenerCelda(p).avanzar(this)){  
+    		tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
     		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
 	        ubicacion=p;
-	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+	        
         return true;
     	}
     	else return false;
@@ -54,11 +55,12 @@ public class Bomberman extends Personaje {
     	
     	Posicion p=new Posicion(ubicacion.getEjeX(),ubicacion.getEjeY()+1);
     	if(p.ejeY>12)p.setEjeY(12);
-    	if(tablero.obtenerCelda(p).avanzar(this)) { 
+    	if(tablero.obtenerCelda(p).avanzar(this)) {
+    		tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
     		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
 	        ubicacion=p;
-	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+	        
 	        return true;
     	}
     	else return false;
@@ -72,10 +74,11 @@ public class Bomberman extends Personaje {
     	Posicion p=new Posicion(ubicacion.getEjeX()-1,ubicacion.getEjeY());
     	if(p.ejeX<0)p.setEjeX(0);
     	if(tablero.obtenerCelda(p).avanzar(this))  	{
+    		tablero.obtenerCelda(p).getContenido().setBomberman(this);
+	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
     		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
 	        ubicacion=p;
-	        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-	        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+	        
 	        return true;
 	    	}
 	    	else return false;
@@ -89,10 +92,11 @@ public class Bomberman extends Personaje {
     	Posicion p=new Posicion(ubicacion.getEjeX()+1,ubicacion.getEjeY());
     	if(p.ejeX>30)p.setEjeX(30);
     	if(tablero.obtenerCelda(p).avanzar(this))  {	
+    		tablero.obtenerCelda(p).getContenido().setBomberman(this);
+            tablero.obtenerCelda(p).getContenido().chequeoColisiones();
     		tablero.obtenerCelda(ubicacion).getContenido().setBomberman(null);
         ubicacion=p;
-        tablero.obtenerCelda(p).getContenido().setBomberman(this);
-        tablero.obtenerCelda(p).getContenido().chequeoColisiones();
+        
         return true;
     	}
     	else return false;

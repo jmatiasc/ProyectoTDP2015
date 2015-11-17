@@ -65,7 +65,7 @@ public class Bomba {
 			 if(posAbajo<12)
 			 abajo[i-1]=new Posicion(ubicacion.getEjeX(),(ubicacion.getEjeY()+i));
 			 
-			 posIzquierda=ubicacion.getEjeY()-1;
+			 posIzquierda=ubicacion.getEjeX()-1;
 			 if(posIzquierda>0)
 			 izquierda[i-1]=new Posicion((ubicacion.getEjeX()-i),ubicacion.getEjeY());
 			 
@@ -146,7 +146,7 @@ public class Bomba {
 			    	if(!bomberman.GetModoDios())
 			    	bomberman.aumentarCantBombas();
 			    	
-			    	
+			    	miTablero.obtenerCelda(ubicacion).getContenido().setBomba(null);
 			    	
 			    	bomberman.sumarPuntos(puntos);
 			    	

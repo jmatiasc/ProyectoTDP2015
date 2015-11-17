@@ -16,6 +16,7 @@ public class Destructible extends EstadoPared {
 	 * @param p PowerUp a asignar.
 	 */
 		protected Enemigo enemigo;
+		protected Bomberman bomberman;
 		
     public Destructible(PowerUp p) {
     	puntos = 10;
@@ -70,4 +71,6 @@ public class Destructible extends EstadoPared {
         	}
         return false;
     }
+	
+
 }

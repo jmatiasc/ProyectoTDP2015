@@ -21,14 +21,14 @@ public class gSirius extends gEntidad{
 			
 			this.mImages[0][0] = new ImageIcon(this.getClass().getResource("/imagenes/Sarr1.png"));
 			this.mImages[0][1] = new ImageIcon(this.getClass().getResource("/imagenes/Sarr2.png"));
-			this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Sarr1.png"));
+			this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Sarr3.png"));
 			this.mImages[0][3] = new ImageIcon(this.getClass().getResource("/imagenes/Sarr2.png"));
 			
 			
 			
 			this.mImages[1][0] = new ImageIcon(this.getClass().getResource("/imagenes/Sabj1.png"));
 			this.mImages[1][1] = new ImageIcon(this.getClass().getResource("/imagenes/Sabj2.png"));
-			this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Sabj1.png"));
+			this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Sabj3.png"));
 			this.mImages[1][3] = new ImageIcon(this.getClass().getResource("/imagenes/Sabj2.png"));
 			
 			
@@ -43,7 +43,7 @@ public class gSirius extends gEntidad{
 			this.mImages[3][3] = new ImageIcon(this.getClass().getResource("/imagenes/Sder3.png"));
 			
 			
-			this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
+			this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
 		}
 		
 		public void mover() {
@@ -85,6 +85,7 @@ public class gSirius extends gEntidad{
 			super.mover(n);
 			
 			}}
+			else destruir();
 		}
 		
 		
@@ -94,7 +95,7 @@ public class gSirius extends gEntidad{
 		
 		
 		private void chequeoColisiones(){
-			if(jugador!=null){
+			if(jugador!=null && !jugador.getModoDios()){
 			if(mPosicion.equals(jugador.getPosicion())){
 				jugador.morir();
 			}}

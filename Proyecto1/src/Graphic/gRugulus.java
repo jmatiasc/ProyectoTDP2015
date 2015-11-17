@@ -21,14 +21,14 @@ public class gRugulus extends gEntidad {
 		
 		this.mImages[0][0] = new ImageIcon(this.getClass().getResource("/imagenes/Rarr1.png"));
 		this.mImages[0][1] = new ImageIcon(this.getClass().getResource("/imagenes/Rarr2.png"));
-		this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Rarr1.png"));
+		this.mImages[0][2] = new ImageIcon(this.getClass().getResource("/imagenes/Rarr3.png"));
 		this.mImages[0][3] = new ImageIcon(this.getClass().getResource("/imagenes/Rarr2.png"));
 		
 		
 		
 		this.mImages[1][0] = new ImageIcon(this.getClass().getResource("/imagenes/Rabj1.png"));
 		this.mImages[1][1] = new ImageIcon(this.getClass().getResource("/imagenes/Rabj2.png"));
-		this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Rabj1.png"));
+		this.mImages[1][2] = new ImageIcon(this.getClass().getResource("/imagenes/Rabj3.png"));
 		this.mImages[1][3] = new ImageIcon(this.getClass().getResource("/imagenes/Rabj2.png"));
 		
 		
@@ -43,7 +43,7 @@ public class gRugulus extends gEntidad {
 		this.mImages[3][3] = new ImageIcon(this.getClass().getResource("/imagenes/Rder3.png"));
 		
 		
-		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/explotion.png"));
+		this.mDestroyedImage = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
 	}
 	
 	public void mover() {
@@ -86,6 +86,7 @@ public class gRugulus extends gEntidad {
 		super.mover(n);
 		
 		}}
+		else destruir();
 	}
 	
 	
@@ -95,7 +96,7 @@ public class gRugulus extends gEntidad {
 	
 	
 	private void chequeoColisiones(){
-		if(jugador!=null){
+		if(jugador!=null && !jugador.getModoDios()){
 		if(mPosicion.equals(jugador.getPosicion())){
 			jugador.morir();
 		}}

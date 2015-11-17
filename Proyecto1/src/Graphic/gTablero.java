@@ -1,5 +1,6 @@
 package Graphic;
 
+import java.applet.AudioClip;
 import java.awt.Component;
 import java.awt.Point;
 import java.util.Random;
@@ -22,7 +23,12 @@ public class gTablero {
 	
 	private ImageIcon paredI;
 	private ImageIcon paredD;
-
+	
+	private AudioClip SoundExplocion;
+	
+	private AudioClip powerU;
+	
+	
 	
 	private GUI gui;
 	
@@ -35,8 +41,15 @@ public class gTablero {
 	
 	private gBomba bomba;
 	
+	
 	public gTablero(GUI gui){
 		this.gui=gui;
+		
+		
+		SoundExplocion=java.applet.Applet.newAudioClip(getClass().getResource("/Sonidos/explotar.wav"));
+		
+		powerU=java.applet.Applet.newAudioClip(getClass().getResource("/Sonidos/agarroPU.wav"));
+		
 		// Creo el jugador y lo agrego el grafico a la gui.
 				t = new Tablero(13,31);
 				this.mJugador = new gJugador(t.getBomberman().getVelocidad(),t.getBomberman(), 32, 32,t,this);
@@ -210,12 +223,15 @@ public class gTablero {
 			Point pos=new Point(arregloP[i].getPosicion().getEjeX()*32,arregloP[i].getPosicion().getEjeY()*32);
 			
 			if(pos.equals(mJugador.getPosicion())){
+				powerU.play();
 					if(i>=0 && i<=3){
+						
 						mJugador.aumentarVelocidad();
 					}
 				
 					if(i==10){
 						MasacralityThread activacion=new MasacralityThread(t.getBomberman());
+						
 						activacion.start();
 					}
 					ImageIcon nada=new ImageIcon((this.getClass().getResource("/imagenes/nada.png")));
@@ -303,7 +319,7 @@ public class gTablero {
 			((AltairThread) this.Enemigos[3]).detener();
 			((AltairThread) this.Enemigos[4]).detener();
 			((SiriusThread) this.Enemigos[5]).detener();
-			gui.fin();
+			gui.fin(0);
 			
 			
 		}
@@ -326,7 +342,7 @@ public class gTablero {
 			
 			
 			
-				System.out.println("cant celdas:"+celdas.length);
+				
 				
 				Explosion [] arreglo=new Explosion[celdas.length];
 				arreglo[0]=new Explosion(p);
@@ -337,9 +353,9 @@ public class gTablero {
 				for(int  i=0; i<celdas.length;i++){
 					if(celdas[i]!=null){
 					x=celdas[i].getPosicion().getEjeX()*32;
-					System.out.println("cant x:"+x);
+					
 					y=celdas[i].getPosicion().getEjeY()*32;
-					System.out.println("cant y:"+y);
+					
 					arreglo[i]=new Explosion(new Point(x,y));
 					
 				}
@@ -363,11 +379,18 @@ public class gTablero {
 						destruirPared(arreglo[i].getPosicion());
 					}
 				}}
+				if(t.getBomberman()!=null)
 				gui.sumarPuntos(t.getBomberman().getPuntos());
+				else matarBomberman();
 				
+				
+				
+				if(t.cantDestructibles()==0) gui.fin(1);
+				SoundExplocion.play();
 				
 				ThreadRetardo t=new ThreadRetardo(arreglo,gui);
 				t.start();
+				
 				
 				
 				
