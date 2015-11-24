@@ -10,37 +10,34 @@ public class powerUpsGrafico {
 
 	protected JLabel mGrafico;
 	protected Icon imagen;
-	
-	protected final int mWidth  = 32;
+
+	protected final int mWidth = 32;
 	protected final int mHeight = 32;
-	
+
 	protected Point mPosicion;
-	
-	
-	
-	protected powerUpsGrafico(int x, int y) {	
-		this.mPosicion  = new Point(x, y);
-		imagen = new ImageIcon(this.getClass().getResource("/imagenes/nada.png"));
+
+	protected powerUpsGrafico(int x, int y) {
+		this.mPosicion = new Point(x, y);
+		imagen = new ImageIcon(this.getClass()
+				.getResource("/imagenes/nada.png"));
 	}
-	
-	
-	
-	
+
 	public Point getPosicion() {
 		return this.mPosicion;
 	}
-	
-	public JLabel getGrafico() {	
-			
-		if(this.mGrafico == null){
+
+	public JLabel getGrafico() {
+
+		if (this.mGrafico == null) {
 			this.mGrafico = new JLabel(imagen);
-			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y, this.mWidth, this.mHeight);
+			this.mGrafico.setBounds(this.mPosicion.x, this.mPosicion.y,
+					this.mWidth, this.mHeight);
 		}
-		return this.mGrafico;}
+		return this.mGrafico;
+	}
 
 	protected void destruir() {
-			this.mGrafico.setIcon(null);
-			
-		
+		this.mGrafico.setIcon(null);
+
 	}
 }

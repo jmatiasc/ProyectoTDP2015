@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Clase PowerUp
+ * 
  * @author BERNABÉ DI MARCO, MATIAS CABRERA, GABRIEL PAEZ
  *
  */
@@ -12,45 +13,53 @@ public abstract class PowerUp {
 	protected Posicion ubicacion;
 	protected Bomberman jugador;
 	protected int puntos;
-	
-    public PowerUp(Bomberman b) {
-    	jugador=b;
-    }
 
-    
+	public PowerUp(Bomberman b) {
+		jugador = b;
+	}
 
-    /**
-     * @param Bomberman b
-     */
-    public abstract void aumentarVelocidad();
+	/**
+	 * @param Bomberman
+	 *            b
+	 */
+	public abstract void aumentarVelocidad();
 
-    /**
-     * @param Bomberman b
-     */
-    public abstract void duplicarAlcance();
+	/**
+	 * @param Bomberman
+	 *            b
+	 */
+	public abstract void duplicarAlcance();
 
-    /**
-     * @param Bomberman b
-     */
-    public abstract void aumentarCantidadBombas();
+	/**
+	 * @param Bomberman
+	 *            b
+	 */
+	public abstract void aumentarCantidadBombas();
 
-    /**
-     * @param Bomberman b
-     */
-    public abstract void fullAtributos();
+	/**
+	 * @param Bomberman
+	 *            b
+	 */
+	public abstract void fullAtributos();
 
-    /**
-     * @param Posicion p
-     */
-    public void setPosicion(Posicion p){
-    	ubicacion=p;
-    }
+	/**
+	 * @param Posicion
+	 *            p
+	 */
+	public void setPosicion(Posicion p) {
+		ubicacion = p;
+	}
 
-    /**
-     * retorna el atributo ubicacion 
-     * @return Posicion
-     */
-    public Posicion getPosicion(){return ubicacion;}
-    
-    public int getPuntos(){return puntos;}
+	/**
+	 * retorna el atributo ubicacion
+	 * 
+	 * @return Posicion
+	 */
+	public Posicion getPosicion() {
+		return ubicacion;
+	}
+
+	public int getPuntos() {
+		return puntos;
+	}
 }

@@ -4,54 +4,61 @@ public class MovimientoJugador extends Thread {
 	private gJugador jugador;
 	private String dir;
 	private int velocidad;
-	
+
 	public MovimientoJugador(gJugador j) {
 		jugador = j;
-		
-		
-		velocidad=(100/jugador.getVelocidad());
+
+		velocidad = (100 / jugador.getVelocidad());
 	}
-	
+
 	public void run() {
 		jugador.comenzarAMover();
 		if (dir.equals("arriba"))
 			try {
-				for(int i=0;i<4;i++) {
+				for (int i = 0; i < 4; i++) {
 					jugador.transicionArriba();
-					
+
 					Thread.sleep(velocidad);
-				}		
-			} catch (InterruptedException e) {System.out.println("Interrupted Exception D:");}
-		
+				}
+			} catch (InterruptedException e) {
+				System.out.println("Interrupted Exception D:");
+			}
+
 		if (dir.equals("abajo"))
 			try {
-				for(int i=0;i<4;i++) {
+				for (int i = 0; i < 4; i++) {
 					jugador.transicionAbajo();
-					
+
 					Thread.sleep(velocidad);
-				}		
-			} catch (InterruptedException e) {System.out.println("Interrupted Exception D:");}
-		
+				}
+			} catch (InterruptedException e) {
+				System.out.println("Interrupted Exception D:");
+			}
+
 		if (dir.equals("izquierda"))
 			try {
-				for(int i=0;i<4;i++) {
+				for (int i = 0; i < 4; i++) {
 					jugador.transicionIzquierda();
-					
+
 					Thread.sleep(velocidad);
-				}		
-			} catch (InterruptedException e) {System.out.println("Interrupted Exception D:");}
-		
+				}
+			} catch (InterruptedException e) {
+				System.out.println("Interrupted Exception D:");
+			}
+
 		if (dir.equals("derecha"))
 			try {
-				for(int i=0;i<4;i++) {
+				for (int i = 0; i < 4; i++) {
 					jugador.transicionDerecha();
-					
+
 					Thread.sleep(velocidad);
-				}		
-			} catch (InterruptedException e) {System.out.println("Interrupted Exception D:");}
+				}
+			} catch (InterruptedException e) {
+				System.out.println("Interrupted Exception D:");
+			}
 		jugador.dejarDeMover();
 	}
-	
+
 	public void setDir(String d) {
 		dir = d;
 	}
