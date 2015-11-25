@@ -24,12 +24,12 @@ public class gBomba {
 	protected gTablero gTab;
 
 	public gBomba(Bomba b, gTablero t) {
-		// this.mPosicion = new Point(x, y);
+		
 		bomba = b;
 		imgBomba = new ImageIcon(this.getClass().getResource(
 				"/imagenes/bomba.gif"));
 		this.mGrafico = new JLabel(imgBomba);
-		gTab = t; // Cambio
+		gTab = t; 
 
 	}
 
@@ -54,7 +54,7 @@ public class gBomba {
 	}
 
 	public void setPosicion(Point pos) {
-		Point p = new Point(pos.x, pos.y); // Cambio
+		Point p = new Point(pos.x, pos.y); 
 		mPosicion = p;
 
 	}

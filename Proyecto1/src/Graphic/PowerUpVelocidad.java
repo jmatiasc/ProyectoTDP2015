@@ -14,7 +14,7 @@ public class PowerUpVelocidad extends powerUpsGrafico {
 	public PowerUpVelocidad(int x, int y) {
 		super(x, y);
 		imagen = new ImageIcon(this.getClass().getResource(
-				"/imagenes/speedUp.png"));
+				"/imagenes/SpeedUp.png"));
 
 	}
 

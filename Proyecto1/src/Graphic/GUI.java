@@ -80,8 +80,8 @@ public class GUI extends JFrame {
 
 		lblPuntaje = new JLabel("");
 		lblPuntaje.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuntaje.setFont(new Font("Impact", Font.PLAIN, 32));
-		lblPuntaje.setForeground(new Color(0, 204, 0));
+		lblPuntaje.setFont(new Font("Super Mario 256", Font.PLAIN, 32));
+		lblPuntaje.setForeground(Color.BLACK);
 		lblPuntaje.setBounds(0, 341, 993, 32);
 		mContentPane.add(lblPuntaje);
 
@@ -89,7 +89,7 @@ public class GUI extends JFrame {
 		lblGameOver.setBackground(Color.DARK_GRAY);
 		lblGameOver.setForeground(new Color(204, 0, 0));
 		lblGameOver.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGameOver.setFont(new Font("Impact", Font.PLAIN, 93));
+		lblGameOver.setFont(new Font("Super Mario 256", Font.PLAIN, 93));
 		lblGameOver.setBounds(0, 140, 984, 181);
 		mContentPane.add(lblGameOver);
 
@@ -168,12 +168,12 @@ public class GUI extends JFrame {
 		if (e == 0) {
 			sonido.stop();
 			sonido = java.applet.Applet.newAudioClip(getClass().getResource(
-					"/Sonidos/pierde.wav"));
+					"/Sonidos/Pierde.wav"));
 			sonido.play();
 		} else if (e == 1) {
 			sonido.stop();
 			sonido = java.applet.Applet.newAudioClip(getClass().getResource(
-					"/Sonidos/fin.wav"));
+					"/Sonidos/Fin.wav"));
 			sonido.play();
 		}
 

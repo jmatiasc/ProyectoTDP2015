@@ -11,7 +11,7 @@ public class PowerUpBombality extends powerUpsGrafico {
 	public PowerUpBombality(int x, int y) {
 		super(x, y);
 		imagen = new ImageIcon(this.getClass().getResource(
-				"/imagenes/bombality.png"));
+				"/imagenes/Bombality.png"));
 
 	}
 

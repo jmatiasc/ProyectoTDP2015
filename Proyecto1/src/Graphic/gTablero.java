@@ -28,7 +28,7 @@ public class gTablero {
 
 	private GUI gui;
 
-	// HACER ARREGLO
+	
 	private PowerUp[] arregloP;
 	private powerUpsGrafico[] arregloPGrafico;
 
@@ -43,7 +43,7 @@ public class gTablero {
 				.getResource("/Sonidos/explotar.wav"));
 
 		powerU = java.applet.Applet.newAudioClip(getClass().getResource(
-				"/Sonidos/agarroPU.wav"));
+				"/Sonidos/AgarroPU.wav"));
 
 		// Creo el jugador y lo agrego el grafico a la gui.
 		t = new Tablero(13, 31);
@@ -57,7 +57,7 @@ public class gTablero {
 				(this.getClass().getResource("/imagenes/pared.png")));
 
 		paredD = new ImageIcon(
-				(this.getClass().getResource("/imagenes/paredD.png")));
+				(this.getClass().getResource("/imagenes/ParedD.png")));
 
 		// Creo los malos y agrego a la gui su grafico.
 		this.Enemigos = new Thread[6];
@@ -112,7 +112,7 @@ public class gTablero {
 		ponerPared(gui);
 		ponerParedD(t.getPosDestructibles(), gui);
 
-		// POWER UPS!!!HACER ARREGLO PLEASE
+	
 
 		arregloP = t.obtenerPowerUp();
 		arregloPGrafico = new powerUpsGrafico[11];

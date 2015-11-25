@@ -19,7 +19,7 @@ public class Explosion {
 	public Explosion(Point p) {
 		this.mPosicion = p;
 		mPowerUpV = new ImageIcon(this.getClass().getResource(
-				"/imagenes/explosion.png"));
+				"/imagenes/explosion2.png"));
 
 		if (this.mGrafico == null) {
 			this.mGrafico = new JLabel(mPowerUpV);
