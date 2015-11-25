@@ -11,7 +11,7 @@ public class PowerUpMasacrality extends powerUpsGrafico {
 	public PowerUpMasacrality(int x, int y) {
 		super(x, y);
 		imagen = new ImageIcon(this.getClass().getResource(
-				"/imagenes/masacrality.png"));
+				"/imagenes/Masacrality.png"));
 
 	}
 

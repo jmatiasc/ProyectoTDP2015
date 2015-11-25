@@ -20,7 +20,7 @@ public class gPared {
 	public gPared(Point p) {
 		this.mPosicion = p;
 		mPowerUpV = new ImageIcon(this.getClass().getResource(
-				"/imagenes/paredD.png"));
+				"/imagenes/ParedD.PNG"));
 
 		if (this.mGrafico == null) {
 			this.mGrafico = new JLabel(mPowerUpV);

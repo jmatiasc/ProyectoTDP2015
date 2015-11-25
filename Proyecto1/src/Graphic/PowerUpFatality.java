@@ -11,7 +11,7 @@ public class PowerUpFatality extends powerUpsGrafico {
 	public PowerUpFatality(int x, int y) {
 		super(x, y);
 		imagen = new ImageIcon(this.getClass().getResource(
-				"/imagenes/fatality.png"));
+				"/imagenes/Fatality.png"));
 
 	}
 
