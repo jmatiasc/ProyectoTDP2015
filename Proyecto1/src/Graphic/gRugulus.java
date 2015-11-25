@@ -10,7 +10,8 @@ public class gRugulus extends gEntidad {
 	private Rugulus mRug;
 	private gJugador jugador;
 	private MovimientoRugulus movimientoThread;
-
+	private boolean seMueve;
+	
 	public gRugulus(int velocidad, int x, int y, Enemigo rug, gJugador jugador) {
 		super(velocidad, x, y);
 
@@ -61,6 +62,7 @@ public class gRugulus extends gEntidad {
 		// Calculo la siguiente direccion aleatoriamente.
 
 		if (mRug.estaVivo()) {
+			if (!seMueve){
 			int n = mRug.mover();
 			if (n != -1) {
 				switch (n) {
@@ -94,7 +96,7 @@ public class gRugulus extends gEntidad {
 				}
 
 				super.mover(n);
-
+			}
 			}
 		} else
 			destruir();
@@ -130,6 +132,14 @@ public class gRugulus extends gEntidad {
 	public void transicionDerecha() {
 		this.mPosicion.setLocation(this.mPosicion.x + 8, this.mPosicion.y);
 		super.mover(MOVIMIENTO_DERECHA);
+	}
+	
+	public void comenzarAMover() {
+		seMueve = true;
+	}
+
+	public void dejarDeMover() {
+		seMueve = false;
 	}
 
 }

@@ -11,7 +11,8 @@ public class gAltair extends gEntidad {
 	Altair mAlt;
 	gJugador jugador;
 	private MovimientoAltair movimientoThread;
-
+	private boolean seMueve;
+	
 	public gAltair(int velocidad, int x, int y, Enemigo alt, gJugador jugador) {
 		super(velocidad, x, y);
 
@@ -61,7 +62,8 @@ public class gAltair extends gEntidad {
 	public void mover() {
 		// Calculo la siguiente direccion aleatoriamente.
 
-		if (mAlt.estaVivo()) {
+		if (mAlt.estaVivo() ) {
+			if (!seMueve){
 			int n = mAlt.mover();
 			if (n != -1) {
 				switch (n) {
@@ -95,7 +97,7 @@ public class gAltair extends gEntidad {
 				}
 
 				super.mover(n);
-
+			}
 			}
 		} else
 			destruir();
@@ -131,6 +133,14 @@ public class gAltair extends gEntidad {
 	public void transicionDerecha() {
 		this.mPosicion.setLocation(this.mPosicion.x + 8, this.mPosicion.y);
 		super.mover(MOVIMIENTO_DERECHA);
+	}
+	
+	public void comenzarAMover() {
+		seMueve = true;
+	}
+
+	public void dejarDeMover() {
+		seMueve = false;
 	}
 
 }

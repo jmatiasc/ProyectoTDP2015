@@ -11,7 +11,8 @@ public class gSirius extends gEntidad {
 	Sirius mSir;
 	gJugador jugador;
 	private MovimientoSirius movimientoThread;
-
+	private boolean seMueve;
+	
 	public gSirius(int velocidad, int x, int y, Enemigo sir, gJugador jugador) {
 		super(velocidad, x, y);
 
@@ -62,6 +63,7 @@ public class gSirius extends gEntidad {
 		// Calculo la siguiente direccion aleatoriamente.
 
 		if (mSir.estaVivo()) {
+			if (!seMueve){
 			int n = mSir.mover();
 			if (n != -1) {
 				switch (n) {
@@ -95,7 +97,7 @@ public class gSirius extends gEntidad {
 				}
 
 				super.mover(n);
-
+			}
 			}
 		} else
 			destruir();
@@ -131,5 +133,13 @@ public class gSirius extends gEntidad {
 	public void transicionDerecha() {
 		this.mPosicion.setLocation(this.mPosicion.x + 8, this.mPosicion.y);
 		super.mover(MOVIMIENTO_DERECHA);
+	}
+	
+	public void comenzarAMover() {
+		seMueve = true;
+	}
+
+	public void dejarDeMover() {
+		seMueve = false;
 	}
 }

@@ -99,29 +99,29 @@ public class GUI extends JFrame {
 		panel.setLayout(null);
 
 		lblPuntos = new JLabel("PUNTOS:");
-		lblPuntos.setFont(new Font("Impact", Font.BOLD, 30));
+		lblPuntos.setFont(new Font("Super Mario 256", Font.BOLD, 30));
 		lblPuntos.setForeground(Color.WHITE);
 		lblPuntos.setBackground(Color.WHITE);
-		lblPuntos.setBounds(25, 0, 136, 55);
+		lblPuntos.setBounds(25, 0, 168, 55);
 		panel.add(lblPuntos);
 
 		lblCambioPuntos = new JLabel("0");
 		lblCambioPuntos.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCambioPuntos.setFont(new Font("Impact", Font.BOLD, 30));
+		lblCambioPuntos.setFont(new Font("Super Mario 256", Font.BOLD, 30));
 		lblCambioPuntos.setForeground(Color.WHITE);
-		lblCambioPuntos.setBounds(165, 0, 426, 55);
+		lblCambioPuntos.setBounds(191, 0, 400, 55);
 		panel.add(lblCambioPuntos);
 
 		JLabel lblTiempo = new JLabel("TIEMPO:");
-		lblTiempo.setFont(new Font("Impact", Font.BOLD, 30));
+		lblTiempo.setFont(new Font("Super Mario 256", Font.BOLD, 30));
 		lblTiempo.setForeground(Color.WHITE);
-		lblTiempo.setBounds(628, 0, 113, 55);
+		lblTiempo.setBounds(601, 0, 157, 55);
 		panel.add(lblTiempo);
 
 		lblMinutos = new JLabel("00:00");
-		lblMinutos.setFont(new Font("Impact", Font.BOLD, 30));
+		lblMinutos.setFont(new Font("Super Mario 256", Font.BOLD, 30));
 		lblMinutos.setForeground(Color.WHITE);
-		lblMinutos.setBounds(751, 0, 232, 55);
+		lblMinutos.setBounds(767, 0, 216, 55);
 		panel.add(lblMinutos);
 
 		JLabel label = new JLabel("");

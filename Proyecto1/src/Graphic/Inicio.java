@@ -59,7 +59,7 @@ public class Inicio extends JFrame {
 		JButton btnComenzar = new JButton("");
 		btnComenzar.setIcon(new ImageIcon(Inicio.class
 				.getResource("/imagenes/BOTON.png")));
-		btnComenzar.setBackground(new Color(30, 144, 255));
+		btnComenzar.setBackground(Color.GRAY);
 		btnComenzar.setFont(new Font("Impact", Font.BOLD, 25));
 		btnComenzar.setForeground(new Color(245, 255, 250));
 		btnComenzar.addActionListener(new ActionListener() {
@@ -82,7 +82,7 @@ public class Inicio extends JFrame {
 				});
 			}
 		});
-		btnComenzar.setBounds(688, 289, 186, 57);
+		btnComenzar.setBounds(329, 173, 256, 98);
 		getContentPane().add(btnComenzar);
 		Image.setIcon(new ImageIcon(Inicio.class
 				.getResource("/imagenes/start.png")));
