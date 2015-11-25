@@ -50,6 +50,7 @@ public class GUI extends JFrame {
 	}
 
 	public GUI() {
+		setTitle("BOMBERMARIO");
 		sonido = java.applet.Applet.newAudioClip(getClass().getResource(
 				"/Sonidos/Musica.wav"));
 		sonido.play();
@@ -69,7 +70,7 @@ public class GUI extends JFrame {
 		});
 
 		this.mContentPane = new JPanel();
-		mContentPane.setBackground(new Color(0, 191, 255));
+		mContentPane.setBackground(new Color(128, 128, 128));
 		mContentPane.setForeground(new Color(34, 139, 34));
 		this.mContentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.mContentPane.setLayout(null);

@@ -46,6 +46,7 @@ public class Inicio extends JFrame {
 	 * Create the frame.
 	 */
 	public Inicio() {
+		setTitle("BOMBERMARIO");
 
 		sonido = java.applet.Applet.newAudioClip(getClass().getResource(
 				"/Sonidos/MusicaMenu.wav"));
@@ -57,9 +58,10 @@ public class Inicio extends JFrame {
 		getContentPane().setLayout(null);
 
 		JButton btnComenzar = new JButton("");
-		btnComenzar.setIcon(new ImageIcon(Inicio.class
-				.getResource("/imagenes/BOTON.png")));
-		btnComenzar.setBackground(Color.GRAY);
+		btnComenzar.setVerticalAlignment(SwingConstants.BOTTOM);
+		btnComenzar.setIcon(new ImageIcon(Inicio.class.getResource("/imagenes/BOTON.png")));
+		btnComenzar.setSelectedIcon(new ImageIcon(Inicio.class.getResource("/imagenes/BOTON.png")));
+		btnComenzar.setBackground(Color.BLACK);
 		btnComenzar.setFont(new Font("Impact", Font.BOLD, 25));
 		btnComenzar.setForeground(new Color(245, 255, 250));
 		btnComenzar.addActionListener(new ActionListener() {
@@ -82,7 +84,7 @@ public class Inicio extends JFrame {
 				});
 			}
 		});
-		btnComenzar.setBounds(329, 173, 256, 98);
+		btnComenzar.setBounds(320, 343, 277, 107);
 		getContentPane().add(btnComenzar);
 		Image.setIcon(new ImageIcon(Inicio.class
 				.getResource("/imagenes/start.png")));
