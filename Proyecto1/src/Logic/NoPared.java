@@ -8,14 +8,16 @@ import java.util.*;
  * @author Bernabe - Cabrera - Paez
  */
 public class NoPared extends Contenido {
+	
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param pu
 	 *            Powerup
 	 */
-	public NoPared(PowerUp pu) {
-		super();
+	public NoPared(Tablero t,PowerUp pu) {
+		super(t);
 		powerUp = pu;
 	}
 
@@ -26,7 +28,7 @@ public class NoPared extends Contenido {
 	 *            EstadoPared
 	 */
 	public void setEstado(EstadoPared e) {
-		miEstado = new Indestructible();
+		miEstado = new Indestructible(tablero);
 	}
 
 	/**

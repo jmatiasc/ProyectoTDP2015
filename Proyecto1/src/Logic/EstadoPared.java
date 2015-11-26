@@ -10,11 +10,13 @@ import java.util.*;
 public abstract class EstadoPared {
 	protected int puntos;
 	protected PowerUp pw;
+	protected Tablero tablero;
 
 	/**
 	 * Constructor
 	 */
-	public EstadoPared() {
+	public EstadoPared(Tablero t) {
+		tablero=t;
 	}
 
 	/**

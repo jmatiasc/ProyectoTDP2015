@@ -12,7 +12,8 @@ public class Indestructible extends EstadoPared {
 	/**
 	 * Constructor
 	 */
-	public Indestructible() {
+	public Indestructible(Tablero t) {
+		super(t);
 		puntos = 0;
 		pw = null;
 	}

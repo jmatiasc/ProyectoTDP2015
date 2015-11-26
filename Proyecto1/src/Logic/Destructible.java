@@ -19,7 +19,8 @@ public class Destructible extends EstadoPared {
 	protected Enemigo enemigo;
 	protected Bomberman bomberman;
 
-	public Destructible(PowerUp p) {
+	public Destructible(Tablero t, PowerUp p) {
+		super(t);
 		puntos = 10;
 		pw = p;
 	}
@@ -28,6 +29,7 @@ public class Destructible extends EstadoPared {
 	 * Consulta la cantidad de puntos a otorgar.
 	 */
 	public int destruir() {
+		tablero.disminuirParedes();
 		if (enemigo != null)
 			return puntos + enemigo.getPuntos();
 		else

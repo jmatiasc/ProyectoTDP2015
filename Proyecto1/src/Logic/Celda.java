@@ -62,11 +62,11 @@ public class Celda {
 	 * @return Cantidad de puntos que otorga el contenido de la Celda.
 	 */
 	public int destruir() {
+		
 		int puntos = contenido.destruir();
 		if (puntos != 0) {
-			tablero.disminuirParedes();
 			PowerUp p = contenido.getPowerUp();
-			contenido = new NoPared(p);
+			contenido = new NoPared(tablero, p);
 		}
 		return puntos;
 	}

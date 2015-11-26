@@ -15,11 +15,13 @@ public abstract class Contenido {
 	protected PowerUp powerUp;
 	protected Enemigo enemigo;
 	protected EstadoPared miEstado;
+	protected Tablero tablero;
 
 	/**
 	 * Constructor de la clase Contenido. Inicializa los atributos.
 	 */
-	public Contenido() {
+	public Contenido(Tablero t) {
+		tablero=t;
 		miEstado = null;
 		bomberman = null;
 		bomba = null;

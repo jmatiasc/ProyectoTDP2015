@@ -15,8 +15,8 @@ public class Pared extends Contenido {
 	/**
 	 * Default constructor
 	 */
-	public Pared() {
-		super();
+	public Pared(Tablero t) {
+		super(t);
 	}
 
 	/**

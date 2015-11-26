@@ -52,7 +52,11 @@ public class Tablero {
 		}
 
 		// AGREGO LAS PAREDES INDESTRUCTIBLES A LAS CELDAS
-		int cantDestructibles = 81;
+		//int cantDestructibles = 81;
+		
+		
+		int cantDestructibles = 30;
+		
 		Random num = new Random();
 		int azar1 = 0;
 		int azar2 = 0;
@@ -83,25 +87,25 @@ public class Tablero {
 			for (int n = 0; n < Alto; n++) {
 
 				if (n == 0) {
-					matrizCeldas[h][n].setContenido(new Pared());
+					matrizCeldas[h][n].setContenido(new Pared(this));
 					matrizCeldas[h][n].getContenido().setEstado(
-							new Indestructible());
+							new Indestructible(this));
 				} else if (h == 0) {
-					matrizCeldas[h][n].setContenido(new Pared());
+					matrizCeldas[h][n].setContenido(new Pared(this));
 					matrizCeldas[h][n].getContenido().setEstado(
-							new Indestructible());
+							new Indestructible(this));
 				} else if (n == 12) {
-					matrizCeldas[h][n].setContenido(new Pared());
+					matrizCeldas[h][n].setContenido(new Pared(this));
 					matrizCeldas[h][n].getContenido().setEstado(
-							new Indestructible());
+							new Indestructible(this));
 				} else if (h == 30) {
-					matrizCeldas[h][n].setContenido(new Pared());
+					matrizCeldas[h][n].setContenido(new Pared(this));
 					matrizCeldas[h][n].getContenido().setEstado(
-							new Indestructible());
+							new Indestructible(this));
 				} else if (h % 2 == 0 && n % 2 == 0) {
-					matrizCeldas[h][n].setContenido(new Pared());
+					matrizCeldas[h][n].setContenido(new Pared(this));
 					matrizCeldas[h][n].getContenido().setEstado(
-							new Indestructible());
+							new Indestructible(this));
 				}
 				// AGREGO AL RESTO TODAS NoPared para prototipo
 				else {
@@ -112,41 +116,44 @@ public class Tablero {
 						if (azar1 == 0 && ult < 80) {
 							if (cantPU < 11 && azar2 == 0) {
 
-								matrizCeldas[h][n].setContenido(new Pared());
+								matrizCeldas[h][n].setContenido(new Pared(this));
 								matrizCeldas[h][n].getContenido().setEstado(
-										new Destructible(powerArreglo[cantPU]));
+										new Destructible(this,powerArreglo[cantPU]));
 								powerArreglo[cantPU].setPosicion(new Posicion(
 										h, n));
 								posDestructible[ult] = new Posicion(h, n);
 								ult++;
 								cantPU++;
 								cantDestructibles--;
+								cantParedesD++;
 							}
 
 							else {
-								matrizCeldas[h][n].setContenido(new Pared());
+								matrizCeldas[h][n].setContenido(new Pared(this));
 								matrizCeldas[h][n].getContenido().setEstado(
-										new Destructible(null));
+										new Destructible(this, null));
 								posDestructible[ult] = new Posicion(h, n);
 								ult++;
 								cantDestructibles--;
+								cantParedesD++;
 							}
 
 						} else
-							matrizCeldas[h][n].setContenido(new NoPared(null));
+							matrizCeldas[h][n].setContenido(new NoPared(this,null));
 					} else
-						matrizCeldas[h][n].setContenido(new NoPared(null));
+						matrizCeldas[h][n].setContenido(new NoPared(this,null));
 				}
 
 			}
 		}
-
+		
+		
 		// LAS PAREDES DESTRUCTIBLES SE AGREGAN EN LUGARES AL AZAR, el 50% de
 		// las celdas que aun no han sido ocupadas(TOTAL 403,TOTAL DE
 		// DESOCUPADAS 160, TOTAL OCUPADAS(INDESTRUCTIBLES)=243)
 		// DEBO AGREGAR 81 PAREDES DESTRUCTIBLES
 
-		cantParedesD = 81;
+		
 
 		// ENEMIGOS
 		Enemigo rugulus1 = new Rugulus(new Posicion(22, 11), this);
@@ -182,31 +189,7 @@ public class Tablero {
 		misEnemigos[4] = altair2;
 		misEnemigos[5] = sirius;
 
-		// creo PowerUp Velocidad
-		/*
-		 * velocidad=new SpeedUp(personaje); velocidad.setPosicion(new
-		 * Posicion(3,6));
-		 * obtenerCelda(velocidad.getPosicion()).getContenido().setPowerUp
-		 * (velocidad);
-		 * 
-		 * 
-		 * bombality=new Bombality(personaje); bombality.setPosicion(new
-		 * Posicion(3,11));
-		 * obtenerCelda(bombality.getPosicion()).getContenido().
-		 * setPowerUp(bombality);
-		 * 
-		 * 
-		 * fatality=new Fatality(personaje); fatality.setPosicion(new
-		 * Posicion(6,11));
-		 * obtenerCelda(fatality.getPosicion()).getContenido().setPowerUp
-		 * (fatality);
-		 * 
-		 * 
-		 * masacrality=new Masacrality(personaje); masacrality.setPosicion(new
-		 * Posicion(10,11));
-		 * obtenerCelda(masacrality.getPosicion()).getContenido
-		 * ().setPowerUp(masacrality);
-		 */
+
 
 	}
 
