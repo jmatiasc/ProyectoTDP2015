@@ -52,10 +52,10 @@ public class Tablero {
 		}
 
 		// AGREGO LAS PAREDES INDESTRUCTIBLES A LAS CELDAS
-		//int cantDestructibles = 81;
+		int cantDestructibles = 81;
 		
 		
-		int cantDestructibles = 30;
+		
 		
 		Random num = new Random();
 		int azar1 = 0;
